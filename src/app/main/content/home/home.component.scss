@@ -1,0 +1,164 @@
+.home {
+  .ads {
+    .section1 {
+      .card {
+        height: 200px;
+        padding: 20px;
+        background-color: darkslateblue;
+        color: white;
+        border-radius: 15px;
+        box-shadow: 0 0 12px #828282;
+        margin: 11px;
+        .label {
+          font-size: 40px;
+          @media screen and (max-width: 700px) {
+            font-size: 30px;
+          }
+        }
+        .details {
+          .from {
+            label {
+              font-size: 25px;
+              text-align: center;
+              display: block;
+              color: #cccccc;
+              @media screen and (max-width: 700px) {
+                font-size: 20px;
+              }
+            }
+            h3 {
+              font-size: 30px;
+              text-align: center;
+              margin: 3px;
+              @media screen and (max-width: 700px) {
+                font-size: 25px;
+              }
+            }
+          }
+        }
+        @media screen and (max-width: 700px) {
+          height: 150px;
+        }
+      }
+    }
+    .section2 {
+      overflow-y: auto;
+      h1 {
+        font-size: 30px;
+        color: #8a8a8a;
+        font-weight: bold;
+        @media screen and (max-width: 700px) {
+          font-size: 20px;
+        }
+      }
+      .card {
+        .mainCard {
+          margin: 11px;
+          padding: 10px 15px;
+          background-color: white;
+          box-shadow: 0 0 12px #828282;
+          border-radius: 10px;
+          .header {
+            display: block;
+            label {
+              font-size: 25px;
+              color: black;
+            }
+          }
+          .progras {
+            width: 100%;
+            span {
+              font-size: 15px;
+            }
+            .prograsBar {
+              position: relative;
+              .gray {
+                position: relative;
+                width: 100%;
+                background-color: gray;
+                height: 15px;
+                border-radius: 15px;
+                z-index: 0;
+              }
+              .green {
+                top: 0px;
+                right: 0px;
+                width: 65%;
+                background-color: #11ca39;
+                height: 15px;
+                border-radius: 15px;
+                z-index: 10000000;
+              }
+            }
+          }
+          .details {
+            padding-top: 10px;
+            .from {
+              label {
+                font-size: 25px;
+                text-align: center;
+                display: block;
+                color: black;
+              }
+              h3 {
+                font-size: 30px;
+                text-align: center;
+                margin: 3px;
+              }
+            }
+          }
+          hr {
+            margin: 18px 0px;
+          }
+          .moreDet {
+            color: darkblue;
+            font-size: 25px;
+          }
+        }
+      }
+    }
+  }
+  .hotSpot {
+    .section1 {
+      .card {
+        height: 200px;
+        padding: 20px;
+        background-color: darkslateblue;
+        color: white;
+        border-radius: 15px;
+        box-shadow: 0 0 12px #828282;
+        margin: 11px;
+        @media screen and (max-width: 700px) {
+        height: 150px;
+        }
+        .label {
+          font-size: 40px;
+          @media screen and (max-width: 700px) {
+            font-size: 30px;
+          }
+        }
+        .details {
+          .from {
+            label {
+              font-size: 25px;
+              text-align: center;
+              display: block;
+              color: #cccccc;
+              @media screen and (max-width: 700px) {
+                font-size: 20px;
+              }
+            }
+            h3 {
+              font-size: 30px;
+              text-align: center;
+              margin: 3px;
+              @media screen and (max-width: 700px) {
+                font-size: 25px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

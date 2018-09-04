@@ -1,0 +1,86 @@
+<div class="page-layout blank p-24" fusePerfectScrollbar>
+  <div class="view">
+    <div class="section1">
+      <div fxLayout="row">
+        <h1>Name</h1>
+      </div>
+      <div fxLayout="row">
+
+        <h1>الاداء العام</h1>
+      </div>
+      <div fxLayout="row">
+        <div fxFlex="20" class="from">
+          <label>
+          مشاهدة
+        </label>
+          <h3>225</h3>
+        </div>
+        <div fxFlex="20" class="from">
+          <label>
+          نقرات
+        </label>
+          <h3>225</h3>
+        </div>
+        <div fxFlex="20" class="from">
+          <label>
+          مستخدمين
+        </label>
+          <h3>225</h3>
+        </div>
+        <div fxFlex="20" class="from">
+          <label>
+          ECPM
+        </label>
+          <h3>225</h3>
+        </div>
+        <div fxFlex="20" class="from">
+          <label>
+          Cost
+        </label>
+          <h3>225</h3>
+        </div>
+      </div>
+    </div>
+    <div fxLayout.md="row " fxLayout.xs="column" class="section2">
+      <div fxFlex="50" class="card noPadding">
+        <fuse-widget  [@animate]="{value:'*',params:{y:'100%'}}" class="widget">
+
+          <!-- Front -->
+          <div class="fuse-widget-front mat-white-bg mat-elevation-z2">
+
+            <!--<div class="px-16 border-bottom" fxLayout="row" fxLayoutAlign="space-between center">
+              <div class="h3">{{widgets.widget6.title}}</div>
+            </div>-->
+
+            <div class="h-400">
+              <ngx-charts-pie-chart *fuseIfOnDom [scheme]="widget6.scheme" [results]="widgets.widget6.mainChart[widget6.currentRange]"
+                [legend]="widget6.showLegend" [explodeSlices]="widget6.explodeSlices" [labels]="widget6.labels" [doughnut]="widget6.doughnut"
+                [gradient]="widget6.gradient" (select)="widget6.onSelect($event)">
+              </ngx-charts-pie-chart>
+            </div>
+
+            <div class="py-8 mh-16 border-top" fxLayout="row" fxLayoutAlign="start center" fxLayoutWrap>
+              <div class="py-8 border-right" fxLayout="column" fxLayoutAlign="center center" fxFlex="100" fxFlex.gt-sm="50">
+                <span class="h4">{{widgets.widget6.footerLeft.title}}</span>
+                <span class="mat-display-1 mb-0">{{widgets.widget6.footerLeft.count[widget6.currentRange]}}</span>
+              </div>
+
+              <div class="py-8" fxLayout="column" fxLayoutAlign="center center" fxFlex="100" fxFlex.gt-sm="50">
+                <span class="h4">{{widgets.widget6.footerRight.title}}</span>
+                <span class="mat-display-1 mb-0">{{widgets.widget6.footerRight.count[widget6.currentRange]}}</span>
+              </div>
+            </div>
+
+          </div>
+          <!-- / Front -->
+
+        </fuse-widget>
+      </div>
+      <div fxFlex="50" class="card">
+        <agm-map [latitude]="lat" [longitude]="lng">
+          <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        </agm-map>
+      </div>
+    </div>
+  </div>
+</div>
