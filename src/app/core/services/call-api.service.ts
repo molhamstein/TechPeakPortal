@@ -24,7 +24,7 @@ export class CallApiService {
   //   "users",
   //   "users/login"
   // ];
-  readonly baseUrl = "http://104.217.253.15:8000/api/"
+  readonly baseUrl = "http://104.217.253.15:3004/api/"
   // readonly baseUrl = "http://185.84.236.39:3000/api/"
   // readonly baseUrl = "http://localhost:7500/api/"
   private errorCode = 0;
