@@ -3,10 +3,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MainService } from './../../../core/services/main.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FuseTranslationLoaderService } from '../../../core/services/translation-loader.service';
-
-import { locale as english } from './i18n/en';
-import { locale as turkish } from './i18n/tr';
+import { Observable } from 'rxjs/Observable';
+import { timeInterval } from 'rxjs/operators';
+import { interval } from 'rxjs/observable/interval';
 
 @Component({
     selector: 'fuse-home',
@@ -15,7 +14,13 @@ import { locale as turkish } from './i18n/tr';
 })
 export class FusehomeComponent {
 
-    compagins=[]
+    compagins=[];
+    headLines: any;
+
+    rows = [];
+    loadingIndicator = false;
+    reorderable = true;
+    allRowsSelected: any;
 
     constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private mainServ: MainService) {
 
@@ -26,6 +31,9 @@ export class FusehomeComponent {
         this.mainServ.APIServ.get("campaigns/states?").subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.compagins = data;
+                for (let index = 0; index < this.compagins.length; index++) {
+                    this.compagins[index].current_progress = this.compagins[index].current_progress / 100;                     
+                }
             }
             else if (this.mainServ.APIServ.getErrorCode() == 400) {
 
@@ -35,10 +43,49 @@ export class FusehomeComponent {
             }
 
         });
+        
+        this.mainServ.APIServ.get("campaigns/actionStates").subscribe(res => {
+            this.headLines = res;
+        })
 
+      this.refresh();
+
+        Observable.interval(10*60*1000).subscribe( () => this.mainServ.APIServ.get("clients/onlineUsers")
+        .subscribe((data:any) => {
+            if (this.mainServ.APIServ.getErrorCode() == 0) {
+                this.rows = data;
+                this.loadingIndicator = true;
+            }
+            else if (this.mainServ.APIServ.getErrorCode() == 400) {
+
+            }
+            else {
+                this.mainServ.globalServ.somthingError();
+            }
+        }))
     }
 
 
+    refresh() {
+        this.loadingIndicator = false;
+        setTimeout(() => {
+            this.mainServ.APIServ.get("clients/onlineUsers").subscribe((data: any) => {
+                if (this.mainServ.APIServ.getErrorCode() == 0) {
+                    this.rows = data;
+                    this.loadingIndicator = true;
+    
+                }
+                else if (this.mainServ.APIServ.getErrorCode() == 400) {
+    
+                }
+                else {
+                    this.mainServ.globalServ.somthingError();
+                }
+    
+            });
+        }, 100);
+        
+    }
 
 
 

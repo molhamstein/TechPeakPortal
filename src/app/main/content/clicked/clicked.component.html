@@ -1,45 +1,61 @@
-<div class="page-layout blank p-24" fusePerfectScrollbar>
+<div class="page-layout blank p-24" >
 
-  <button style="float: left;" mat-raised-button class="mat-accent mr-16" (click)="addAds()">إضافة إعلان
-                            <mat-icon class="s-30">add</mat-icon>
+  <!-- <button style="float: left;" mat-raised-button class="mat-accent mr-16" (click)="addAds()">إضافة إعلان
+    <mat-icon class="s-30">add</mat-icon>
+  </button> -->
+ 
+  <div *ngIf="loadingIndicator == true" style="font-size : 17px; font-weight: 700">
+    عدد النقرات : {{rowsCount}}
+  </div>
 
-  </button>
-  <br>
-  <br>
-  <br>
-  <ngx-datatable *ngIf="rows[0]!=null" class="material" [rows]="rows" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
-    [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable" [limit]="5">
+  <div *ngIf="loadingIndicator == true" [formGroup]="form" style="width:50%; margin-right: 75%">
+      <mat-form-field fxFlex="50">
+          <mat-select placeholder="Filter By Location" formControlName="location" (selectionChange)="selectLocation(currentLocation)" [(ngModel)]="currentLocation">
+              <mat-option *ngFor="let l of locations" [value]="l" >
+                  {{l.name}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+  </div>
 
+  <div *ngIf="loadingIndicator == false" style="margin-right: 45%;">
+    <mat-spinner></mat-spinner>
+  </div>
 
-    <ngx-datatable-column name="اسم الإعلان" prop="name">
+  <ngx-datatable *ngIf="rows[0]!=null && loadingIndicator == true" class="material" [rows]="rows" [columnMode]="'force'"
+    [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
+    [limit]="5">
+
+    <ngx-datatable-column name="اسم الإعلان" prop="ad.name">
     </ngx-datatable-column>
 
-
-
-    <ngx-datatable-column name="نوع الإهلان" prop="type">
+    <ngx-datatable-column name="الموقع" prop="location.name">
     </ngx-datatable-column>
 
-    <ngx-datatable-column name="id">
+    <!--  <ngx-datatable-column name="id">
       <ng-template let-column="column" ngx-datatable-header-template>
-        صورة
+        <div class="table-header-font">
+            صورة
+        </div>
       </ng-template>
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <!--<i class="pb-icon icon-edit" (click)="detail(row)">{{row|json}}</i>-->
         <img src="{{row['thumb_link']}}">
       </ng-template>
-    </ngx-datatable-column>
+    </ngx-datatable-column> -->
 
-    <ngx-datatable-column name="id">
+    <!-- <ngx-datatable-column name="id">
       <ng-template let-column="column" ngx-datatable-header-template>
-        Action
+        <div class="table-header-font" style="padding-right : 17px; padding-top:12px;">
+          Action
+        </div>
       </ng-template>
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <button style="float: left;background-color: darkgreen;" *ngIf="row['status']==0" mat-raised-button class="mat-accent mr-16" (click)="toggleRow(row)">تفعيل</button>
-        <button style="float: left;background-color: brown;"  *ngIf="row['status']==1" mat-raised-button class="mat-accent mr-16" (click)="toggleRow(row)">إلغاء تفعيل</button>
-        <button style="float: left;" mat-raised-button class="mat-accent mr-16" (click)="edit(row['id'])">تعديل</button>
+        <button mat-mini-fab class="mr-16" (click)="edit(row['id'])" style="background-color: rgba(20, 160, 202, 0.911);">
+          <mat-icon style="color : white;">edit</mat-icon>
+        </button>
 
       </ng-template>
-    </ngx-datatable-column>
+    </ngx-datatable-column> -->
   </ngx-datatable>
 
 </div>

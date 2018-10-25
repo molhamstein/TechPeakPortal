@@ -5,6 +5,7 @@ import { RouterModule, Route, CanActivate } from '@angular/router';
 import { SharedModule } from '../../../core/modules/shared.module';
 
 import { FuseClickedComponent } from './clicked.component';
+import { FormsModule } from '@angular/forms';
 
 const routes = [
     {
@@ -20,6 +21,7 @@ const routes = [
     ],
     imports: [
         SharedModule,
+        FormsModule,
         // RouterModule.forChild(routes)
     ],
     providers: [

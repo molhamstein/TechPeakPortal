@@ -1,155 +1,189 @@
-<div class="page-layout blank p-24 home main" fusePerfectScrollbar>
-  <div>
-    <mat-tab-group>
-      <mat-tab label="الإعلانات">
-        <div class="ads">
-          <div fxLayout="row" class="section1">
-            <div class="card" fxFlex="45">
-              <div class="label">
-                <label>عدد المشاهدات</label>
-              </div>
-              <div fxLayout="row" class="details">
-                <div fxFlex="45" class="from">
-                  <label>
-                حتى الأن
-              </label>
-                  <h3>225</h3>
-                </div>
-                <div fxFlex="45" class="from">
-                  <label>
-                اليوم
-              </label>
-                  <h3>225</h3>
-                </div>
-              </div>
+<div class="page-layout blank p-24 home main">
+
+  <mat-tab-group>
+    <mat-tab label="الإعلانات">
+      <div class="ads">
+        <div *ngIf="headLines" fxLayout="row" class="section1">
+          <div class="card" fxFlex="45">
+            <div class="label">
+              <label>عدد المشاهدات</label>
             </div>
-            <div fxFlex="8"></div>
-            <div class="card" fxFlex="45">
-              <div class="label">
-                <label>عدد النقرات</label>
+            <div fxLayout="row" class="details">
+              <div class="from">
+                <label>
+                  حتى الأن
+                </label>
+                <h3>{{headLines.impressions.all}}</h3>
               </div>
-              <div fxLayout="row" class="details">
-                <div fxFlex="45" class="from">
-                  <label>
-                حتى الأن
-              </label>
-                  <h3>225</h3>
-                </div>
-                <div fxFlex="45" class="from">
-                  <label>
-                اليوم
-              </label>
-                  <h3>225</h3>
-                </div>
+              <div fxFlex="45" class="from" style="padding-right: 150px;">
+                <label>
+                  اليوم
+                </label>
+                <h3>{{headLines.impressions.day}}</h3>
               </div>
             </div>
           </div>
-          <h1>الحملات الإعلانية</h1>
-          <div fxLayout.sm="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="" class="section2">
-            <div class="card" fxFlex="50%" *ngFor="let oneCompagin of compagins">
-              <div class="mainCard">
-                <div class="header">
-                  <label class="name">{{oneCompagin.campaign.name}}</label>
-                </div>
-                <div class="progras">
-                  <span>{{oneCompagin.current_progress}}%</span>
-                  <div class="prograsBar">
-                    <div class="gray">
-                      <div class="green" [style.width.%]="oneCompagin.current_progress"></div>
+          <div fxFlex="2"></div>
+          <div class="card" fxFlex="45">
+            <div class="label">
+              <label>عدد النقرات</label>
+            </div>
+            <div fxLayout="row" class="details">
+              <div class="from">
+                <label>
+                  حتى الأن
+                </label>
+                <h3>{{headLines.clicks.all}}</h3>
+              </div>
+              <div fxFlex="45" class="from" style="padding-right: 150px;">
+                <label>
+                  اليوم
+                </label>
+                <h3>{{headLines.clicks.day}}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h1 class="header1">الحملات الإعلانية</h1>
+        <div fxLayout.sm="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="" class="section2">
+          <div class="card" fxFlex="47%" *ngFor="let oneCompagin of compagins">
+            <div class="mainCard">
+              <div class="header">
+                <label class="name">{{oneCompagin.campaign.name}}</label>
+              </div>
+              <div class="progras">
+                <span>{{oneCompagin.current_progress}}%</span>
+                <div class="prograsBar">
+                  <div class="gray">
+                    <div class="green" [style.width.%]="oneCompagin.current_progress"></div>
 
-                    </div>
                   </div>
                 </div>
-                <div fxLayout="row" class="details">
-                  <div fxFlex="45" class="from">
-                    <label>
-                    المشاهدات 
+              </div>
+              <div fxLayout="row" class="details">
+                <div class="from">
+                  <label>
+                    المشاهدات
                   </label>
-                    <h3>{{oneCompagin.impressions}}</h3>
-                  </div>
-                  <div fxFlex="45" class="from">
-                    <label>
+                  <h3>{{oneCompagin.impressions}}</h3>
+                </div>
+                <div fxFlex="45" class="from" style="padding-right:150px;">
+                  <label>
                     النقرات
                   </label>
-                    <h3>{{oneCompagin.clicks}}</h3>
-                  </div>
+                  <h3>{{oneCompagin.clicks}}</h3>
                 </div>
-                <div fxLayout="row" class="details">
-                  <div fxFlex="45" class="from">
-                    <label>
+              </div>
+              <div fxLayout="row" class="details">
+                <div class="from">
+                  <label>
                     الأماكن
                   </label>
-                    <h3>225</h3>
-                  </div>
-                  <div fxFlex="45" class="from">
-                    <label>
+                  <h3>225</h3>
+                </div>
+                <div fxFlex="45" class="from" style="padding-right:150px;">
+                  <label>
                     مستخدمين
                   </label>
-                    <h3>225</h3>
-                  </div>
+                  <h3>225</h3>
                 </div>
-                <hr>
-                <h3 class="moreDet">التقرير المفصل</h3>
+              </div>
+              <hr>
+              <h3 class="moreDet">التقرير المفصل</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="MyhotSpot">
+      <div class="hotSpot">
+        <div fxLayout.md="row" fxLayout.xs="column" class="section1">
+          <div class="card" fxFlex="72">
+            <div class="label">
+              <label>الاداء العام</label>
+            </div>
+            <div fxLayout="row" class="details">
+              <div fxFlex="25" class="from">
+                <label>
+                  hotSpots
+                </label>
+                <h3>225</h3>
+              </div>
+              <div fxFlex="35" class="from">
+                <label>
+                  مستخدمين
+                </label>
+                <h3>225</h3>
+              </div>
+              <div fxFlex="35" class="from">
+                <label>
+                  اليوم
+                </label>
+                <h3>225</h3>
+              </div>
+              <div fxFlex="35" class="from">
+                <label>
+                  اليوم
+                </label>
+                <h3>225</h3>
+              </div>
+            </div>
+          </div>
+          <div fxFlex="1"></div>
+          <div class="card" fxFlex="22">
+            <div class="label">
+              <label>الرصيد </label>
+            </div>
+            <div fxLayout="row" class="details">
+              <div fxFlex="100" class="from">
+                <label>
+                  حتى الأن
+                </label>
+                <h3>225</h3>
               </div>
             </div>
           </div>
         </div>
-      </mat-tab>
-      <mat-tab label="MyhotSpot">
-        <div class="hotSpot">
-          <div fxLayout.md="row" fxLayout.xs="column" class="section1">
-            <div class="card" fxFlex="72">
-              <div class="label">
-                <label>الاداء العام</label>
-              </div>
-              <div fxLayout="row" class="details">
-                <div fxFlex="25" class="from">
-                  <label>
-                hotSpots
-              </label>
-                  <h3>225</h3>
-                </div>
-                <div fxFlex="25" class="from">
-                  <label>
-                مستخدمين
-              </label>
-                  <h3>225</h3>
-                </div>
-                <div fxFlex="25" class="from">
-                  <label>
-                اليوم
-              </label>
-                  <h3>225</h3>
-                </div>
-                <div fxFlex="25" class="from">
-                  <label>
-                اليوم
-              </label>
-                  <h3>225</h3>
-                </div>
-              </div>
-            </div>
-            <div fxFlex="4"></div>
-            <div class="card" fxFlex="22">
-              <div class="label">
-                <label>الرصيد </label>
-              </div>
-              <div fxLayout="row" class="details">
-                <div fxFlex="100" class="from">
-                  <label>
-                حتى الأن
-              </label>
-                  <h3>225</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div fxLayout="row" fxLayout="row" class="section1">
-            <div class="content-card mat-white-bg">
-            </div>
+        <div fxLayout="row" fxLayout="row" class="section1">
+          <div class="content-card mat-white-bg">
           </div>
         </div>
-      </mat-tab>
-    </mat-tab-group>
-  </div>
+      </div>
+
+      <mat-card style="margin-top:15px;">
+
+        <div *ngIf="loadingIndicator == false" style="margin-right: 45%;">
+          <mat-spinner></mat-spinner>
+        </div>
+
+        <ngx-datatable *ngIf="rows[0]!=null && loadingIndicator == true" class="material" [rows]="rows" [columnMode]="'force'"
+          [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
+          [limit]="100000">
+
+          <ngx-datatable-column [width]="200" name="الاسم" prop="username">
+          </ngx-datatable-column>
+
+          <ngx-datatable-column [width]="200" name="المركز" prop="calledstationid">
+          </ngx-datatable-column>
+
+          <ngx-datatable-column [width]="200" name="العنوان" prop="nasipaddress">
+          </ngx-datatable-column>
+
+          <ngx-datatable-column [width]="200" name="المدخل" prop="nasportid">
+          </ngx-datatable-column>
+
+          <ngx-datatable-column [width]="25" name="id">
+            <ng-template let-column="column" ngx-datatable-header-template>
+              <div style="margin-top:13px;">
+                <mat-icon style="color : rgb(145, 145, 145); cursor: pointer;" (click)="refresh()">refresh</mat-icon>
+              </div>
+            </ng-template>
+
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </mat-card>
+
+    </mat-tab>
+  </mat-tab-group>
+
 </div>

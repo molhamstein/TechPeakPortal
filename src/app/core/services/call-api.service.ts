@@ -1,10 +1,10 @@
 import { LoginService } from './login.service';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
 import { Response } from '@angular/http';
 import 'rxjs/add/operator/Map';
-import 'rxjs/Rx';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/timeout'
 
 @Injectable()
 export class CallApiService {
@@ -24,7 +24,7 @@ export class CallApiService {
   //   "users",
   //   "users/login"
   // ];
-  readonly baseUrl = "http://104.217.253.15:3004/api/"
+  readonly baseUrl = "http://185.84.236.39:3000/api/"
   // readonly baseUrl = "http://185.84.236.39:3000/api/"
   // readonly baseUrl = "http://localhost:7500/api/"
   private errorCode = 0;

@@ -101,4 +101,8 @@ export class FuseToolbarComponent
         // Use the selected language for translations
         this.translate.use(lang.id);
     }
+    logOut() {
+        this.mainServ.loginServ.logout();
+        this.mainServ.globalServ.goTo("/login")
+    }
 }

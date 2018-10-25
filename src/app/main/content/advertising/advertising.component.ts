@@ -17,6 +17,7 @@ export class FuseAdvertisingComponent implements OnInit {
     count: number=0;
     offset: number = 0;
     limit: number = 10;
+    loadingIndicator = false ;
 
     constructor(private http: HttpClient, private translationLoader: FuseTranslationLoaderService, private mainServ: MainService) {
 
@@ -30,7 +31,7 @@ export class FuseAdvertisingComponent implements OnInit {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
 
                 this.rows = data;
-                // this.loadingIndicator = false;
+                this.loadingIndicator = true;
 
             }
             else if (this.mainServ.APIServ.getErrorCode() == 400) {

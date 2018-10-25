@@ -15,8 +15,7 @@ export class FuseClientComponent implements OnInit {
     loadingIndicator = false;
     reorderable = true;
     allRowsSelected: any;
-
-
+    rowsCount:any;
     rows = [];
     count: number = 0;
     offset: number = 0;
@@ -32,7 +31,7 @@ export class FuseClientComponent implements OnInit {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
 
                 this.rows = data;
-                // this.loadingIndicator = false;
+                this.loadingIndicator = true;
 
             }
             else if (this.mainServ.APIServ.getErrorCode() == 400) {
@@ -43,6 +42,10 @@ export class FuseClientComponent implements OnInit {
             }
 
         });
+
+        this.mainServ.APIServ.get("clients/count").subscribe((res:any) => {
+            this.rowsCount = res.count;
+        })
     }
 
 

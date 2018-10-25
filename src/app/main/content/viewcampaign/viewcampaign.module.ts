@@ -9,6 +9,7 @@ import { FuseviewCampaignComponent } from './viewcampaign.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AgmCoreModule } from '@agm/core';
+import { DatePipe } from '@angular/common';
 
 const routes = [
     {
@@ -24,16 +25,18 @@ const routes = [
     ],
     imports: [
         SharedModule,
+        RouterModule,
         NgxChartsModule,
         FuseWidgetModule,
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyD81ecsCj4yYpcXSLFcYU97PvRsE_X8Bx8'
+            apiKey: 'AIzaSyAfaEzR5KKaRsI6ByG0oEokmAIG4wjZ848'
         })
 
         // RouterModule.forChild(routes)
     ],
     providers: [
-        AuthGuardService
+        AuthGuardService,
+        DatePipe
     ],
     exports: [
         FuseviewCampaignComponent

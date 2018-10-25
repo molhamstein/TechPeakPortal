@@ -32,7 +32,7 @@ export class FusePartnerComponent implements OnInit {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
 
                 this.rows = data;
-                // this.loadingIndicator = false;
+                this.loadingIndicator = true;
 
             }
             else if (this.mainServ.APIServ.getErrorCode() == 400) {

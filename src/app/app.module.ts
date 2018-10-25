@@ -9,11 +9,9 @@ import { FuseaddPartnerComponent } from './main/content/addpartner/addpartner.co
 import { FuseaddClientComponent } from './main/content/addclient/addclient.component';
 import { FuseClientComponent } from './main/content/client/client.component';
 import { FuseviewCampaignModule } from './main/content/viewcampaign/viewcampaign.module';
-import { FuseeditCampaignModule } from './main/content/editcampaign/editcampaign.module';
 import { FuseCampaignModule } from './main/content/campaign/campaign.module';
 import { FuseaddCampaignModule } from './main/content/addcampaign/addcampaign.module';
 import { FuseviewCampaignComponent } from './main/content/viewcampaign/viewcampaign.component';
-import { FuseeditCampaignComponent } from './main/content/editcampaign/editcampaign.component';
 import { FuseaddCampaignComponent } from './main/content/addcampaign/addcampaign.component';
 import { FuseCampaignComponent } from './main/content/campaign/campaign.component';
 import { FuseAdvertisingComponent } from './main/content/advertising/advertising.component';
@@ -45,9 +43,41 @@ import { FuseConfigService } from './core/services/config.service';
 import { FuseNavigationService } from './core/components/navigation/navigation.service';
 import { FuseSampleModule } from './main/content/sample/sample.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { FuseImpressionsComponent } from './main/content/impressions/impressions.component';
+import { FuseImpressionsModule } from './main/content/impressions/impressions.module';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { FuseLocationsComponent } from './main/content/locations/locations.component';
+import { FuseLocationsModule } from './main/content/locations/locations.module';
+import { FuseaddLocationComponent } from './main/content/addlocation/addlocation.component';
+import { FuseaddLocationModule } from './main/content/addlocation/addlocation.module';
+import { AgmCoreModule } from '@agm/core';
+import { FuseeditLocationComponent } from './main/content/editlocation/editlocation.component';
+import { FuseeditLocationModule } from './main/content/editlocation/editlocation.module';
+import { FuseviewLocationComponent } from './main/content/viewlocation/viewlocation.component';
+import { FuseviewLocationModule } from './main/content/viewlocation/viewlocation.module';
 
 const appRoutes: Routes = [
 
+    {
+        path: 'locations',
+        component: FuseLocationsComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'addlocation',
+        component: FuseaddLocationComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'editlocation/:id',
+        component: FuseeditLocationComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'viewlocation/:id',
+        component: FuseviewLocationComponent,
+        canActivate: [AuthGuardService]
+    },
     {
         path: 'campaign',
         component: FuseCampaignComponent,
@@ -56,11 +86,6 @@ const appRoutes: Routes = [
     {
         path: 'addcampaign',
         component: FuseaddCampaignComponent,
-        canActivate: [AuthGuardService]
-    },
-    {
-        path: 'editcampaign/:id',
-        component: FuseeditCampaignComponent,
         canActivate: [AuthGuardService]
     },
     {
@@ -110,13 +135,20 @@ const appRoutes: Routes = [
         component: FuseClickedComponent,
         canActivate: [AuthGuardService]
     },
+
+    {
+        path: 'impressions',
+        component: FuseImpressionsComponent,
+        canActivate: [AuthGuardService]
+    },
     {
         path: 'home',
         component: FusehomeComponent,
         canActivate: [AuthGuardService],
     },
     {
-        path: '**',
+        path: '',
+        pathMatch: 'full',
         component: FusehomeComponent,
         canActivate: [AuthGuardService],
     },
@@ -135,6 +167,7 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes),
         SharedModule,
         TranslateModule.forRoot(),
+
         FuseMainModule,
         FuseSampleModule,
         PagesModule,
@@ -145,7 +178,6 @@ const appRoutes: Routes = [
 
         FuseaddCampaignModule,
         FuseCampaignModule,
-        FuseeditCampaignModule,
         FuseviewCampaignModule,
 
         FusePartnerModule,
@@ -154,7 +186,12 @@ const appRoutes: Routes = [
         FuseaddClientModule,
 
         FuseClickedModule,
+        FuseImpressionsModule,
 
+        FuseLocationsModule,
+        FuseaddLocationModule,
+        FuseeditLocationModule,
+        FuseviewLocationModule,
 
     ],
     providers: [
@@ -165,7 +202,8 @@ const appRoutes: Routes = [
         CallApiService,
         LoginService,
         MainService,
-        GlobalService
+        GlobalService,
+        {provide: LocationStrategy, useClass: HashLocationStrategy}
     ],
     bootstrap: [
         AppComponent

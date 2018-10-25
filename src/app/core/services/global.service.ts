@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material';
 // import { ErrorModalComponent } from './../error-modal/error-modal.component';
 import { ActivatedRoute } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { DatePipe } from '@angular/common';
 

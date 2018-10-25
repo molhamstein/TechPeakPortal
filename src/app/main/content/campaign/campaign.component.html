@@ -1,38 +1,59 @@
-<div class="page-layout blank p-24" fusePerfectScrollbar>
+<div class="page-layout blank p-24">
 
   <button style="float: left;" mat-raised-button class="mat-accent mr-16" (click)="addAds()">إضافة حملة
-                            <mat-icon class="s-30">add</mat-icon>
+    <mat-icon class="s-30">add</mat-icon>
 
   </button>
   <br>
   <br>
   <br>
-  <ngx-datatable *ngIf="rows[0]!=null" class="material" [rows]="rows" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
-    [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable" [limit]="5">
+
+  <div *ngIf="loadingIndicator == false" style="margin-right: 45%;">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <ngx-datatable *ngIf="rows[0]!=null && loadingIndicator == true" class="material" [rows]="rows" [columnMode]="'force'"
+    [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
+    [limit]="5">
 
 
-    <ngx-datatable-column [width]="100" name="اسم الحملة" prop="name">
+    <ngx-datatable-column [width]="150" name="اسم الحملة" prop="name">
     </ngx-datatable-column>
 
 
 
-    <ngx-datatable-column [width]="100"  name="نوع الحملة" prop="type">
+    <ngx-datatable-column [width]="150" name="نوع الحملة" prop="type">
     </ngx-datatable-column>
 
 
-    <ngx-datatable-column [width]="100" name="المستهدفين" prop="eCPM">
+    <ngx-datatable-column [width]="150" name="المستهدفين" prop="target">
     </ngx-datatable-column>
 
+    <ngx-datatable-column [width]="150" name="الحالة" prop="status">
+    </ngx-datatable-column>
 
-    <ngx-datatable-column [width]="300" name="id">
+    <ngx-datatable-column [width]="200" name="id">
       <ng-template let-column="column" ngx-datatable-header-template>
-        Action
+        <div class="table-header-font">
+          Action
+        </div>
       </ng-template>
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <button style="float: left;background-color: darkgreen;" *ngIf="row['status']==0" mat-raised-button class="mat-accent mr-16" (click)="toggleRow(row)">تفعيل</button>
-        <button style="float: left;background-color: brown;"  *ngIf="row['status']==1" mat-raised-button class="mat-accent mr-16" (click)="toggleRow(row)">إلغاء تفعيل</button>
-        <button style="float: left;" mat-raised-button class="mat-accent mr-16" (click)="edit(row['id'])">تعديل</button>
-        <button style="float: left;" mat-raised-button class="mat-accent mr-16" (click)="view(row['id'])">عرض</button>
+        <!-- <button style="background-color: rgba(24, 179, 24, 0.795);" *ngIf="row['status']==0" mat-mini-fab class="mat-accent mr-16"
+          (click)="toggleRow(row)">
+          <mat-icon style="color : white ;">check</mat-icon>
+        </button>
+        <button style="background-color: rgba(187, 35, 35, 0.815);" *ngIf="row['status']==1" mat-mini-fab class="mat-accent mr-16"
+          (click)="toggleRow(row)">
+          <mat-icon style="color: white;">close</mat-icon>
+        </button> -->
+        <button style="background-color: rgba(7, 112, 7, 0.849);" mat-mini-fab class="mr-16" (click)="view(row['id'])">
+          <mat-icon style="color : white;">visibility</mat-icon>
+        </button>
+        <button mat-mini-fab class="mr-16" (click)="edit(row)" style="background-color: rgba(20, 160, 202, 0.911);">
+          <mat-icon style="color : white;">edit</mat-icon>
+        </button>
+
 
       </ng-template>
     </ngx-datatable-column>

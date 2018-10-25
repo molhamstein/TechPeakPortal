@@ -28,6 +28,13 @@ export class NavigationModel
 
             },{
                 'id': 'home',
+                'title': 'المشاهدات',
+                'type': 'item',
+                'icon': 'forum',
+                'url': '/impressions'
+
+            },{
+                'id': 'home',
                 'title': 'الحملات الإعلانية',
                 'type': 'item',
                 'icon': 'forum',
@@ -36,19 +43,27 @@ export class NavigationModel
             },
             {
                 'id': 'home',
-                'title': 'المستخدمين',
+                'title': 'الشركاء',
                 'type': 'item',
                 'icon': 'people',
                 'url': '/partner'
 
             },{
                 'id': 'home',
-                'title': '2المستخدمين',
+                'title': 'المشتركين',
                 'type': 'item',
                 'icon': 'people',
                 'url': '/client'
 
-            },{
+            },
+            {
+                'id': 'loc',
+                'title': 'المواقع',
+                'type': 'item',
+                'icon': 'location_on',
+                'url': '/locations'
+
+            }/* ,{
                 'id': 'home',
                 'title': 'الصفحة الشخصية',
                 'type': 'item',
@@ -76,7 +91,7 @@ export class NavigationModel
                 'icon': 'flag',
                 'url': '/apps/dashboards/project'
 
-            }
+            } */
             
         ]
     }

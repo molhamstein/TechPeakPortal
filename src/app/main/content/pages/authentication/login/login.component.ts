@@ -1,6 +1,6 @@
 import { MainService } from './../../../../../core/services/main.service';
 import { Component, OnInit } from '@angular/core';
-
+import { MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FuseConfigService } from '../../../../../core/services/config.service';
 import { fuseAnimations } from '../../../../../core/animations';
@@ -19,7 +19,8 @@ export class FuseLoginComponent implements OnInit
     constructor(
         private fuseConfig: FuseConfigService,
         private formBuilder: FormBuilder,
-        private mainServ : MainService
+        private mainServ : MainService,
+        private snack: MatSnackBar
     )
     {
         this.fuseConfig.setSettings({
@@ -77,6 +78,10 @@ export class FuseLoginComponent implements OnInit
             }
             else if (this.mainServ.APIServ.getErrorCode() == 400) {
                 
+            }
+            else if (this.mainServ.APIServ.getErrorCode() == 401) {
+                this.snack.open("You Entered a wrong Email or Password.. Please Re-enter", "Close");
+                this.mainServ.APIServ.setErrorCode(0);
             }
             else {
                 this.mainServ.globalServ.somthingError();

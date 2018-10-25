@@ -1,17 +1,17 @@
-<div class="page-layout blank p-24" fusePerfectScrollbar>
+<div class="page-layout blank p-24" >
+
+  <div *ngIf="loadingIndicator == true" style="font-size : 17px; font-weight: 700">
+    عدد الشركاء : {{rowsCount}}
+  </div>
 
   <button style="float: left;" mat-raised-button class="mat-accent mr-16" (click)="addClient()">إضافة مستخدم
-                            <mat-icon class="s-30">add</mat-icon>
-
+    <mat-icon class="s-30">add</mat-icon>
   </button>
   <br>
   <br>
   <br>
 
-
-
-
-  <ngx-datatable class="material vertical-scroll" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50"
+  <ngx-datatable *ngIf="rows[0]!=null && loadingIndicator == true" class="material vertical-scroll" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50"
     [footerHeight]="50" [scrollbarV]="false" [scrollbarH]="false" [externalPaging]="true" [count]="count" [offset]="offset"
     [limit]="limit" (page)='onPage($event)'>
 
@@ -32,14 +32,18 @@
 
     <ngx-datatable-column name="id">
       <ng-template let-column="column" ngx-datatable-header-template>
-        Action
+        <div class="table-header-font">
+          Action
+        </div>
       </ng-template>
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
         <button style="float: left;background-color: darkgreen;" *ngIf="row['status']==0" mat-raised-button class="mat-accent mr-16"
           (click)="toggleRow(row)">تفعيل</button>
         <button style="float: left;background-color: brown;" *ngIf="row['status']==1" mat-raised-button class="mat-accent mr-16"
           (click)="toggleRow(row)">إلغاء تفعيل</button>
-        <button style="float: left;" mat-raised-button class="mat-accent mr-16" (click)="edit(row['id'])">تعديل</button>
+        <button mat-mini-fab class="mr-16" (click)="edit(row['id'])" style="background-color: rgba(20, 160, 202, 0.911);">
+          <mat-icon style="color : white;">edit</mat-icon>
+        </button>
 
       </ng-template>
     </ngx-datatable-column>

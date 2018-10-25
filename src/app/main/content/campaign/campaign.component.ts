@@ -2,9 +2,9 @@ import { MainService } from './../../../core/services/main.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FuseTranslationLoaderService } from '../../../core/services/translation-loader.service';
-
 import { locale as english } from './i18n/en';
 import { locale as turkish } from './i18n/tr';
+import swal from 'sweetalert2';
 
 @Component({
     selector: 'fuse-campaign',
@@ -23,7 +23,7 @@ export class FuseCampaignComponent implements OnInit {
         this.mainServ.APIServ.get("campaigns").subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.rows = data;
-                // this.loadingIndicator = false;
+                this.loadingIndicator = true;
 
             }
             else if (this.mainServ.APIServ.getErrorCode() == 400) {
@@ -40,6 +40,7 @@ export class FuseCampaignComponent implements OnInit {
     view(id) {
         this.mainServ.globalServ.goTo("viewcampaign/" + id)
     }
+
     addAds() {
         this.mainServ.globalServ.goTo("addcampaign")
     }
@@ -66,7 +67,43 @@ export class FuseCampaignComponent implements OnInit {
         });
     }
 
-    edit(adsId) {
+    /* edit(adsId) {
         this.mainServ.globalServ.goTo("editcampaign/" + adsId)
+    } */
+
+    edit(camp) {
+        swal({
+        title: 'Select field validation',
+        input: 'select',
+        inputOptions: {
+          'active': 'Active',
+          'pending': 'Pending',
+          'deactivated': 'Deactivated',
+        },
+        inputPlaceholder: 'تغيير الحالة',
+        showCancelButton: true,
+        inputValidator: (value) => {
+          return new Promise((resolve) => {
+            if (value !== '') {
+                camp.status = value;
+                this.mainServ.APIServ.put("campaigns", camp).subscribe(res => {
+                    for (let index = 0; index < this.rows.length; index++) {
+                        if(this.rows[index].id == camp.id) {
+                            this.rows[index].status = value;
+                        }
+                    }
+                    swal('Status has been changed to: ' + value)
+                    
+                },
+                err => { resolve('Something is Wrong Please Re-enter') }
+                )
+                
+                
+              } else {
+                resolve('You need to select status')
+              }
+          })
+        }
+      })
     }
 }
