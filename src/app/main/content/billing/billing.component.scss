@@ -1,0 +1,64 @@
+.view {
+  .section1 {
+    padding: 10px;
+    background-color: darkslateblue;
+    box-shadow: 0 0 12px #828282;
+    width: 100%;
+    h1 {
+      color: white;
+      font-weight: bold;
+    }
+    .from {
+      label {
+        font-size: 25px;
+        text-align: center;
+        display: block;
+        color: #cccccc;
+      }
+      h3 {
+        font-size: 30px;
+        text-align: center;
+        margin: 3px;
+        color: white;
+      }
+    }
+  }
+}
+
+:host ::ng-deep .datatable-header .datatable-header-cell.sortable .datatable-header-cell-wrapper {
+    font-size: 18px !important;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+  }
+
+//:host ::ng-deep .ngx-datatable.material .datatable-body .datatable-row-wrapper .datatable-body-cell {}
+
+  .table-header-font {
+    font-size: 18px;
+    padding-right : 17px;
+    padding-top:12px;
+}
+
+.btn-add {
+  font-family: 'Cairo', sans-serif;
+  margin-top: 15px; 
+  float: left; 
+  color:white; 
+  background-color:rgb(41, 158, 17);
+}
+
+.cost {
+  text-align: left;
+  font-size : 17px; 
+  font-weight: 700; 
+  margin-top: -20px; 
+  margin-bottom: 30px;
+  font-family: 'Cairo', sans-serif;
+}
+
+.title {
+  font-size : 17px; 
+  font-weight: 700;  
+  font-family: 'Cairo', sans-serif;
+  margin-bottom: 25px;
+}

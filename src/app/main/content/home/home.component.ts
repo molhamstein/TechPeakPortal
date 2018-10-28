@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { timeInterval } from 'rxjs/operators';
 import { interval } from 'rxjs/observable/interval';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'fuse-home',
@@ -21,10 +22,10 @@ export class FusehomeComponent {
     loadingIndicator = false;
     reorderable = true;
     allRowsSelected: any;
+    refreshTime = 20*1000;
 
-    constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private mainServ: MainService) {
-
-
+    constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, 
+        private mainServ: MainService, private datePipe: DatePipe) {
     }
 
     ngOnInit() {
@@ -50,10 +51,14 @@ export class FusehomeComponent {
 
       this.refresh();
 
-        Observable.interval(10*60*1000).subscribe( () => this.mainServ.APIServ.get("clients/onlineUsers")
+        Observable.interval(this.refreshTime).subscribe( () => this.mainServ.APIServ.get("clients/onlineUsers")
         .subscribe((data:any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.rows = data;
+                for (let index = 0; index < this.rows.length; index++) {
+                    this.rows[index].acctstartDate = this.datePipe.transform(this.rows[index].acctstarttime, 'hh:mm a');
+                    this.rows[index].acctstarttime = this.datePipe.transform(this.rows[index].acctstarttime, 'yyyy-MM-dd');
+                }
                 this.loadingIndicator = true;
             }
             else if (this.mainServ.APIServ.getErrorCode() == 400) {
@@ -72,6 +77,10 @@ export class FusehomeComponent {
             this.mainServ.APIServ.get("clients/onlineUsers").subscribe((data: any) => {
                 if (this.mainServ.APIServ.getErrorCode() == 0) {
                     this.rows = data;
+                    for (let index = 0; index < this.rows.length; index++) {
+                        this.rows[index].acctstartDate = this.datePipe.transform(this.rows[index].acctstarttime, 'hh:mm a');
+                        this.rows[index].acctstarttime = this.datePipe.transform(this.rows[index].acctstarttime, 'yyyy-MM-dd');
+                    }
                     this.loadingIndicator = true;
     
                 }
