@@ -1,3 +1,6 @@
+import { AddPaymentsComponent } from './main/content/dialog/add-payments/add-payments.component';
+import { FusePaymentModule } from './main/content/payment/payment.module';
+import { FusePaymentComponent } from './main/content/payment/payment.component';
 import { FuseClickedModule } from './main/content/clicked/clicked.module';
 import { FuseClickedComponent } from './main/content/clicked/clicked.component';
 import { FusePartnerModule } from './main/content/partner/partner.module';
@@ -129,6 +132,11 @@ const appRoutes: Routes = [
         component: FuseaddPartnerComponent,
         canActivate: [AuthGuardService]
     },
+    {
+        path: 'payment',
+        component: FusePaymentComponent,
+        canActivate: [AuthGuardService]
+    },
 
     {
         path: 'clicked',
@@ -157,7 +165,10 @@ const appRoutes: Routes = [
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        // dialog
+        AddPaymentsComponent
+        // end Dialog
     ],
     imports: [
         BrowserModule,
@@ -192,7 +203,7 @@ const appRoutes: Routes = [
         FuseaddLocationModule,
         FuseeditLocationModule,
         FuseviewLocationModule,
-
+        FusePaymentModule
     ],
     providers: [
         AuthGuardService,
@@ -203,8 +214,9 @@ const appRoutes: Routes = [
         LoginService,
         MainService,
         GlobalService,
-        {provide: LocationStrategy, useClass: HashLocationStrategy}
+        { provide: LocationStrategy, useClass: HashLocationStrategy }
     ],
+    entryComponents: [AddPaymentsComponent],
     bootstrap: [
         AppComponent
     ]

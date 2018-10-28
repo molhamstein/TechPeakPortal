@@ -1,0 +1,57 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar matDialogTitle class="mat-accent m-0">
+    <div style="padding-top: 7px;" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title" *ngIf="type=='add'">إضافة فاتورة</span>
+      <span class="title dialog-title" *ngIf="type=='edit'">تعديل فاتورة</span>
+      <button style="float: right;" mat-button class="mat-icon-button" (click)="dialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+    </div>
+  </mat-toolbar>
+
+  <div *ngIf="loadingIndicator == false" style="position: absolute;top: 100px;left: calc(50% - 50px);">
+    <mat-spinner></mat-spinner>
+  </div>
+
+
+  <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+    <form name="eventForm" [formGroup]="paymentForm" class="event-form">
+
+      <div style="padding-top:10px;" fxLayout="column" fxLayout.gt-md="row wrap" fxLayoutAlign.gt-md="space-around center" fxFlex>
+
+        <mat-form-field class="w-100-p">
+          <mat-select formControlName="partner_id" placeholder="اختر الشخص" required>
+            <mat-option *ngFor="let onePartner of partners" [value]="onePartner.id">
+              {{ onePartner.fullname }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error>This Field is Requierd</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100-p">
+          <input matInput name="location" type="number" formControlName="value" placeholder="القيمة" required>
+          <mat-icon matSuffix>place</mat-icon>
+          <mat-error>This Field is Requierd</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+
+  </div>
+
+  <div *ngIf="type=='add'" mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+
+    <button mat-raised-button class="save-button mat-accent" (click)="save(true)" [disabled]="paymentForm.invalid" aria-label="SAVE">
+           حفظ واغلاق
+        </button>
+    <button mat-raised-button class="save-button mat-accent" (click)="save(false)" [disabled]="paymentForm.invalid" aria-label="SAVE">
+            حفظ
+        </button>
+
+  </div>
+  <div *ngIf="type=='edit'" mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-raised-button class="save-button mat-accent" (click)="edit(true)" [disabled]="paymentForm.invalid" aria-label="SAVE">
+           تعديل
+        </button>
+  </div>
+
+</div>

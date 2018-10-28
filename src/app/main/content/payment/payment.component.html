@@ -1,0 +1,94 @@
+<div class="page-layout blank p-24">
+
+  <div *ngIf="loadingIndicator == true" style="font-size : 17px; font-weight: 700">
+    قيمة الفوتير : {{totalPayments}}
+  </div>
+
+  <!--<div *ngIf="loadingIndicator == true"  style="width:50%; margin-right: 75%">
+      <mat-select placeholder="Filter By Location" (selectionChange)="selectLocation(currentLocation)"
+        [(ngModel)]="currentLocation">
+        <mat-option *ngFor="let onePartner of partners" [value]="onePartner">
+          {{onePartner.fullname}}
+        </mat-option>
+      </mat-select>
+  </div>-->
+
+
+  <div *ngIf="loadingIndicator == true" [formGroup]="form" style="width:50%; margin-right: 75%">
+    <mat-form-field fxFlex="50">
+      <mat-select placeholder="Filter By Partner" formControlName="partner" (selectionChange)="selectPartner(currentPartner)" [(ngModel)]="currentPartner">
+        <mat-option *ngFor="let onePartner of partners" [value]="onePartner">
+          {{onePartner.fullname}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+  <button style="float: left;" mat-raised-button class="mat-accent mr-16" (click)="add()">إضافة إعلان
+    <mat-icon class="s-30">add</mat-icon>
+
+  </button>
+
+  <div *ngIf="loadingIndicator == false" style="margin-right: 45%;">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  
+  <br>
+  <br>
+  <br>
+
+
+  <ngx-datatable *ngIf="rows[0]!=null && loadingIndicator == true" class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="48"
+    [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable" [limit]="5">
+
+
+    <ngx-datatable-column [width]="150" name="القيمة" prop="value">
+    </ngx-datatable-column>
+
+
+
+    <ngx-datatable-column [width]="150" name="الأسم" prop="partner.fullname">
+    </ngx-datatable-column>
+
+
+    <ngx-datatable-column [width]="150" name="التاريخ" prop="creation_date">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value | date: 'dd/MM/yyyy'}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [width]="150" name="الساعة" prop="creation_date">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value | date: 'hh:mm'}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <!--
+    <ngx-datatable-column [width]="150" name="المستهدفين" prop="target">
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [width]="150" name="الحالة" prop="status">
+    </ngx-datatable-column>-->
+
+    <ngx-datatable-column [width]="200" name="id">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <div class="table-header-font">
+          Action
+        </div>
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <button style="background-color: rgba(187, 35, 35, 0.815);"  mat-mini-fab class="mat-accent mr-16"
+          (click)="delete(row)"><mat-icon style="color: white;">close</mat-icon></button>
+        <button mat-mini-fab class="mr-16" (click)="edit(row)" style="background-color: rgba(20, 160, 202, 0.911);">
+          <mat-icon style="color : white;">edit</mat-icon>
+        </button>
+
+
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+
+
+</div>
