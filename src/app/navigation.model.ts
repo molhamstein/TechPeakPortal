@@ -1,9 +1,7 @@
-export class NavigationModel
-{
+export class NavigationModel {
     public model: any[];
 
-    constructor()
-    {
+    constructor() {
         this.model = [
             {
                 'id': 'home',
@@ -12,33 +10,39 @@ export class NavigationModel
                 'icon': 'home',
                 'url': '/home'
             },
-             {
+            {
                 'id': 'home',
                 'title': 'الإعلانات',
                 'type': 'item',
                 'icon': 'send',
                 'url': '/advertising'
 
-            },{
+            }, {
                 'id': 'home',
                 'title': 'النقرات',
                 'type': 'item',
                 'icon': 'forum',
                 'url': '/clicked'
 
-            },{
+            }, {
                 'id': 'home',
                 'title': 'المشاهدات',
                 'type': 'item',
                 'icon': 'forum',
                 'url': '/impressions'
 
-            },{
+            }, {
                 'id': 'home',
                 'title': 'الحملات الإعلانية',
                 'type': 'item',
                 'icon': 'forum',
                 'url': '/campaign'
+            }, {
+                'id': 'home',
+                'title': 'الفوتير',
+                'type': 'item',
+                'icon': 'forum',
+                'url': '/payment'
 
             },
             {
@@ -48,7 +52,7 @@ export class NavigationModel
                 'icon': 'people',
                 'url': '/partner'
 
-            },{
+            }, {
                 'id': 'home',
                 'title': 'المشتركين',
                 'type': 'item',
@@ -100,7 +104,7 @@ export class NavigationModel
                 'url': '/apps/dashboards/project'
 
             } */
-            
+
         ]
     }
 }

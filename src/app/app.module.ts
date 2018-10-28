@@ -149,18 +149,16 @@ const appRoutes: Routes = [
         canActivate: [AuthGuardService]
     },
     {
-<<<<<<< HEAD
         path: 'payment',
         component: FusePaymentComponent,
         canActivate: [AuthGuardService]
     },
 
-=======
+    {
         path: 'editpartner/:id',
         component: FuseeditPartnerComponent,
         canActivate: [AuthGuardService]
     },
->>>>>>> 4b8c961f2d7e42dff116a2c4c06fc5b70c7d0d9b
     {
         path: 'clicked',
         component: FuseClickedComponent,
@@ -228,13 +226,8 @@ const appRoutes: Routes = [
         FuseaddLocationModule,
         FuseeditLocationModule,
         FuseviewLocationModule,
-<<<<<<< HEAD
-        FusePaymentModule
-=======
-
-        FuseBillingModule,
-
->>>>>>> 4b8c961f2d7e42dff116a2c4c06fc5b70c7d0d9b
+        FusePaymentModule,
+        FuseBillingModule
     ],
     providers: [
         AuthGuardService,

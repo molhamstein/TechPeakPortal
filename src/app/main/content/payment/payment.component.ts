@@ -75,7 +75,8 @@ export class FusePaymentComponent implements OnInit {
 
                 this.loadingIndicator = true;
                 this.partners = data;
-                this.addPartner = data;
+                this.addPartner = data.map(x => Object.assign({}, x));
+                
                 this.partners.unshift({ fullname: "ALL", id: "" })
                 this.selectPartner(this.currentPartner)
             }
