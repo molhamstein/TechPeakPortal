@@ -55,9 +55,20 @@ import { FuseeditLocationComponent } from './main/content/editlocation/editlocat
 import { FuseeditLocationModule } from './main/content/editlocation/editlocation.module';
 import { FuseviewLocationComponent } from './main/content/viewlocation/viewlocation.component';
 import { FuseviewLocationModule } from './main/content/viewlocation/viewlocation.module';
+import { FuseBillingComponent } from './main/content/billing/billing.component';
+import { FuseBillingModule } from './main/content/billing/billing.module';
+import { FuseeditPartnerComponent } from './main/content/editpartner/editpartner.component';
+import { FuseeditPartnerModule } from './main/content/editpartner/editpartner.module';
+import { FuseeditClientModule } from './main/content/editclient/editclient.module';
+import { FuseeditClientComponent } from './main/content/editclient/editclient.component';
 
 const appRoutes: Routes = [
 
+    {
+        path: 'billing',
+        component: FuseBillingComponent,
+        canActivate: [AuthGuardService]
+    },
     {
         path: 'locations',
         component: FuseLocationsComponent,
@@ -120,6 +131,11 @@ const appRoutes: Routes = [
         canActivate: [AuthGuardService]
     },
     {
+        path: 'editclient/:id',
+        component: FuseeditClientComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
         path: 'partner',
         component: FusePartnerComponent,
         canActivate: [AuthGuardService]
@@ -129,7 +145,11 @@ const appRoutes: Routes = [
         component: FuseaddPartnerComponent,
         canActivate: [AuthGuardService]
     },
-
+    {
+        path: 'editpartner/:id',
+        component: FuseeditPartnerComponent,
+        canActivate: [AuthGuardService]
+    },
     {
         path: 'clicked',
         component: FuseClickedComponent,
@@ -182,8 +202,10 @@ const appRoutes: Routes = [
 
         FusePartnerModule,
         FuseaddPartnerModule,
+        FuseeditPartnerModule,
         FuseClientModule,
         FuseaddClientModule,
+        FuseeditClientModule,
 
         FuseClickedModule,
         FuseImpressionsModule,
@@ -192,6 +214,8 @@ const appRoutes: Routes = [
         FuseaddLocationModule,
         FuseeditLocationModule,
         FuseviewLocationModule,
+
+        FuseBillingModule,
 
     ],
     providers: [

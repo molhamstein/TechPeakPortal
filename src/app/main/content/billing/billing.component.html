@@ -1,0 +1,160 @@
+<div class="page-layout blank p-24">
+
+  <div *ngIf="loadingIndicatorCampaign == false" style="margin-right: 45%;">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div class="view" *ngIf="loadingIndicatorCampaign == true && loadingIndicatorInvoice == true">
+    <div class="section1">
+      <div fxLayout="row">
+        <h1>الدفعات</h1>
+      </div>
+      <div fxLayout="row">
+        <div fxFlex="30" class="from">
+          <label>
+            الكلفة الكلية للحملات
+          </label>
+          <h3>{{campaignCount}}</h3>
+        </div>
+        <div fxFlex="30" class="from">
+          <label>
+            الكلفة الكلية للدفعات
+          </label>
+          <h3>{{invoiceCount}}</h3>
+        </div>
+        <div fxFlex="30" class="from">
+          <label>
+            الربح
+          </label>
+          <h3>{{netBalance}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--   <mat-card *ngIf="loadingIndicatorCampaign == true && loadingIndicatorInvoice == true">
+    <form name="form" [formGroup]="form">
+      <div fxFlex="50" *ngIf="loadingIndicatorCampaign == true" style="font-size : 17px; font-weight: 700; margin-top: 15px;">
+        الربح : {{netBalance}}
+      </div>
+      <div fxFlex="10"></div>
+      <div class="container" fxFlex="50">
+        <mat-form-field style="width:75%">
+          <input type="text" placeholder="اختر المستخدم" matInput [formControl]="myControl" [matAutocomplete]="auto"
+            [(ngModel)]="selectedPartner">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option.fullname}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div fxFlex="5">
+        <button mat-raised-button [disabled]="!selectedPartner" class="btn-add" (click)="filterByName()">
+          بحث
+        </button>
+      </div>
+    </form>
+  </mat-card> -->
+
+
+  <br>
+  <br>
+  <mat-card *ngIf="loadingIndicatorCampaign == true && loadingIndicatorInvoice == true">
+    <form name="form" [formGroup]="form">
+      <div fxFlex="50" style="font-size : 17px; font-weight: 700; margin-top: 15px;"></div>
+      <div fxFlex="10"></div>
+      <div class="container" fxFlex="50">
+        <mat-form-field style="width:75%">
+          <input type="text" placeholder="اختر المستخدم" matInput [formControl]="myControl" [matAutocomplete]="auto"
+            [(ngModel)]="selectedPartner" (input)="getAllData($event)">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option" >
+              {{option.fullname}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div fxFlex="5">
+        <button mat-raised-button [disabled]="!selectedPartner" class="btn-add" (click)="filterByName()">
+          بحث
+        </button>
+      </div>
+    </form>
+
+    <div class="title">
+      الحملات:
+    </div>
+    <!--     <div *ngIf="loadingIndicatorCampaign == true" class="cost">
+      الكلفة الكلية للحملات : {{campaignCount}}
+    </div> -->
+
+    <ngx-datatable class="material" [rows]="rowsCampaign" [columnMode]="'force'" [headerHeight]="48" [footerHeight]="56"
+      [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderableCampaign" [limit]="5" style="margin-bottom:60px;">
+
+      <ngx-datatable-column [width]="125" name="اسم الحملة" prop="campaign.name">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [width]="125" name="عدد النقرات" prop="clicks">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [width]="125" name="سعر النقرة" prop="campaign.CPC">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [width]="125" name="عدد المشاهدات" prop="impressions">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [width]="125" name="سعر المشاهدة" prop="campaign.CPI">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [width]="125" name="الكلفة الكلية" prop="totalCost">
+      </ngx-datatable-column>
+    </ngx-datatable>
+
+    <div class="title">
+      الدفعات:
+    </div>
+
+    <ngx-datatable class="material" [rows]="rowsInvoice" [columnMode]="'force'" [headerHeight]="48" [footerHeight]="56"
+      [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderableInvoice" [limit]="5">
+
+      <ngx-datatable-column [width]="200" name="بإسم" prop="partner.fullname">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [width]="200" name="التاريخ" prop="creation_date">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [width]="200" name="القيمة" prop="value">
+      </ngx-datatable-column>
+
+    </ngx-datatable>
+
+
+
+  </mat-card>
+
+  <!--   <mat-card *ngIf="rowsInvoice[0]!=null && loadingIndicatorInvoice == true" style="margin-top:30px;">
+    <div class="title">
+      الفواتير:
+    </div>
+    <div *ngIf="loadingIndicatorInvoice == true" class="cost">
+      الكلفة الكلية للدفعات : {{invoiceCount}}
+    </div>
+    <ngx-datatable class="material" [rows]="rowsInvoice" [columnMode]="'force'" [headerHeight]="48" [footerHeight]="56"
+      [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderableInvoice" [limit]="5">
+
+      <ngx-datatable-column [width]="200" name="اسم الشريك" prop="partner.fullname">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [width]="200" name="التاريخ" prop="creation_date">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [width]="200" name="القيمة" prop="value">
+      </ngx-datatable-column>
+
+    </ngx-datatable>
+
+  </mat-card> -->
+
+
+</div>

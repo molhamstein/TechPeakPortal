@@ -63,6 +63,14 @@ export class NavigationModel
                 'icon': 'location_on',
                 'url': '/locations'
 
+            },
+            {
+                'id': 'bil',
+                'title': 'الدفعات',
+                'type': 'item',
+                'icon': 'attach_money',
+                'url': '/billing'
+
             }/* ,{
                 'id': 'home',
                 'title': 'الصفحة الشخصية',

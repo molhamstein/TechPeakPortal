@@ -97,7 +97,7 @@
     </mat-tab>
     <mat-tab label="MyhotSpot">
       <div class="hotSpot">
-        <div fxLayout.md="row" fxLayout.xs="column" class="section1">
+ <!--        <div fxLayout.md="row" fxLayout.xs="column" class="section1">
           <div class="card" fxFlex="72">
             <div class="label">
               <label>الاداء العام</label>
@@ -143,7 +143,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div fxLayout="row" fxLayout="row" class="section1">
           <div class="content-card mat-white-bg">
           </div>
@@ -160,19 +160,22 @@
           [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
           [limit]="100000">
 
-          <ngx-datatable-column [width]="200" name="الاسم" prop="username">
+          <ngx-datatable-column [width]="150" name="الاسم" prop="username">
           </ngx-datatable-column>
 
-          <ngx-datatable-column [width]="200" name="المركز" prop="calledstationid">
+          <ngx-datatable-column [width]="150" name="المهنة" prop="profession">
           </ngx-datatable-column>
 
-          <ngx-datatable-column [width]="200" name="العنوان" prop="nasipaddress">
+          <ngx-datatable-column [width]="150" name="الجنس" prop="gender">
           </ngx-datatable-column>
 
-          <ngx-datatable-column [width]="200" name="المدخل" prop="nasportid">
+          <ngx-datatable-column [width]="150" name="تاريخ البدء" prop="acctstarttime">
           </ngx-datatable-column>
 
-          <ngx-datatable-column [width]="25" name="id">
+          <ngx-datatable-column [width]="150" name="وفت البدء" prop="acctstartDate">
+          </ngx-datatable-column>
+
+          <ngx-datatable-column [width]="25" name="ids">
             <ng-template let-column="column" ngx-datatable-header-template>
               <div style="margin-top:13px;">
                 <mat-icon style="color : rgb(145, 145, 145); cursor: pointer;" (click)="refresh()">refresh</mat-icon>
