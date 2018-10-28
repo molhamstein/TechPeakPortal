@@ -7,6 +7,8 @@ import { Observable } from 'rxjs/Observable';
 import { timeInterval } from 'rxjs/operators';
 import { interval } from 'rxjs/observable/interval';
 import { DatePipe } from '@angular/common';
+import { NavigationModel } from '../../../navigation.model';
+import { FuseNavigationService } from '../../../core/components/navigation/navigation.service';
 
 @Component({
     selector: 'fuse-home',
@@ -14,7 +16,7 @@ import { DatePipe } from '@angular/common';
     styleUrls: ['./home.component.scss']
 })
 export class FusehomeComponent {
-
+    navigationModel: NavigationModel;
     compagins=[];
     headLines: any;
 
@@ -24,8 +26,10 @@ export class FusehomeComponent {
     allRowsSelected: any;
     refreshTime = 20*1000;
 
-    constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, 
+    constructor(private route: ActivatedRoute, private formBuilder: FormBuilder,
         private mainServ: MainService, private datePipe: DatePipe) {
+           // this.navigationModel = new NavigationModel(mainServ);
+            
     }
 
     ngOnInit() {

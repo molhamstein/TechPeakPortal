@@ -150,13 +150,15 @@
         </div>
       </div>
 
-      <mat-card style="margin-top:15px;">
 
-        <div *ngIf="loadingIndicator == false" style="margin-right: 45%;">
-          <mat-spinner></mat-spinner>
-        </div>
+      <div *ngIf="loadingIndicator == false" style="margin-right: 45%;">
+        <mat-spinner></mat-spinner>
+      </div>
 
-        <ngx-datatable *ngIf="rows[0]!=null && loadingIndicator == true" class="material" [rows]="rows" [columnMode]="'force'"
+
+      <mat-card *ngIf="rows[0]!=null && loadingIndicator == true" style="margin-top:15px;">
+
+        <ngx-datatable  class="material" [rows]="rows" [columnMode]="'force'"
           [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
           [limit]="100000">
 

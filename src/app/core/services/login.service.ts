@@ -94,7 +94,9 @@ export class LoginService {
       this.router.navigateByUrl('/addAdvertising').then(() => this.router.navigateByUrl('/'));
       location.reload();
     } else
-      location.reload();
+      {
+        location.reload();
+      }
   }
 
 
@@ -122,14 +124,22 @@ export class LoginService {
     this.cookieService.set('userId', data.userId);
     this.cookieService.set('token', data.id);
     this.cookieService.set('userName', data.user.username);
+    if (data.user.roles.length == 0) {
+      this.cookieService.set('role', 'partner');
+    }
+    else {
+      this.cookieService.set('role', data.user.roles[0].code);
+    }
     if (data.user != null)
       this.cookieService.set('dalalAvatar', data.user.avatar);
     // }
-    // location.href="advertising";
-      this.router.navigateByUrl('/').then(() => this.router.navigateByUrl('/'));
+    location.href="home";
+      //this.router.navigateByUrl('/').then(() => this.router.navigateByUrl('/'));
   }
 
-
+  getRole() {
+    return this.cookieService.get('role');
+  }
 
   logoutCook() {
     this.cookieService.delete('userId');

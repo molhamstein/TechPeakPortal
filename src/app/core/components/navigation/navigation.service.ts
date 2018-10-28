@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { NavigationModel } from '../../../navigation.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { MainService } from '../../services/main.service';
 
 @Injectable()
 export class FuseNavigationService
@@ -11,9 +12,9 @@ export class FuseNavigationService
     navigationModel: NavigationModel;
     flatNavigation: any[] = [];
 
-    constructor()
+    constructor(private mainServ : MainService)
     {
-        this.navigationModel = new NavigationModel();
+        this.navigationModel = new NavigationModel(mainServ);
         this.onNavigationModelChange.next(this.navigationModel.model);
     }
 

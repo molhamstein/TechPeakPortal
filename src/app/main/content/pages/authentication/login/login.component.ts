@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FuseConfigService } from '../../../../../core/services/config.service';
 import { fuseAnimations } from '../../../../../core/animations';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector   : 'fuse-login',
@@ -20,7 +21,8 @@ export class FuseLoginComponent implements OnInit
         private fuseConfig: FuseConfigService,
         private formBuilder: FormBuilder,
         private mainServ : MainService,
-        private snack: MatSnackBar
+        private snack: MatSnackBar,
+        private route : Router
     )
     {
         this.fuseConfig.setSettings({
@@ -71,10 +73,11 @@ export class FuseLoginComponent implements OnInit
         }
     }
     login(){
-        console.log(this.loginForm.value);
+        
         this.mainServ.APIServ.post("partners/login?include=user",this.loginForm.value).subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
-                this.mainServ.loginServ.logIn(data,true)
+                this.mainServ.loginServ.logIn(data,true);
+                //this.route.navigate(['/home']);
             }
             else if (this.mainServ.APIServ.getErrorCode() == 400) {
                 
