@@ -58,9 +58,20 @@ import { FuseeditLocationComponent } from './main/content/editlocation/editlocat
 import { FuseeditLocationModule } from './main/content/editlocation/editlocation.module';
 import { FuseviewLocationComponent } from './main/content/viewlocation/viewlocation.component';
 import { FuseviewLocationModule } from './main/content/viewlocation/viewlocation.module';
+import { FuseBillingComponent } from './main/content/billing/billing.component';
+import { FuseBillingModule } from './main/content/billing/billing.module';
+import { FuseeditPartnerComponent } from './main/content/editpartner/editpartner.component';
+import { FuseeditPartnerModule } from './main/content/editpartner/editpartner.module';
+import { FuseeditClientModule } from './main/content/editclient/editclient.module';
+import { FuseeditClientComponent } from './main/content/editclient/editclient.component';
 
 const appRoutes: Routes = [
 
+    {
+        path: 'billing',
+        component: FuseBillingComponent,
+        canActivate: [AuthGuardService]
+    },
     {
         path: 'locations',
         component: FuseLocationsComponent,
@@ -123,6 +134,11 @@ const appRoutes: Routes = [
         canActivate: [AuthGuardService]
     },
     {
+        path: 'editclient/:id',
+        component: FuseeditClientComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
         path: 'partner',
         component: FusePartnerComponent,
         canActivate: [AuthGuardService]
@@ -133,11 +149,18 @@ const appRoutes: Routes = [
         canActivate: [AuthGuardService]
     },
     {
+<<<<<<< HEAD
         path: 'payment',
         component: FusePaymentComponent,
         canActivate: [AuthGuardService]
     },
 
+=======
+        path: 'editpartner/:id',
+        component: FuseeditPartnerComponent,
+        canActivate: [AuthGuardService]
+    },
+>>>>>>> 4b8c961f2d7e42dff116a2c4c06fc5b70c7d0d9b
     {
         path: 'clicked',
         component: FuseClickedComponent,
@@ -193,8 +216,10 @@ const appRoutes: Routes = [
 
         FusePartnerModule,
         FuseaddPartnerModule,
+        FuseeditPartnerModule,
         FuseClientModule,
         FuseaddClientModule,
+        FuseeditClientModule,
 
         FuseClickedModule,
         FuseImpressionsModule,
@@ -203,7 +228,13 @@ const appRoutes: Routes = [
         FuseaddLocationModule,
         FuseeditLocationModule,
         FuseviewLocationModule,
+<<<<<<< HEAD
         FusePaymentModule
+=======
+
+        FuseBillingModule,
+
+>>>>>>> 4b8c961f2d7e42dff116a2c4c06fc5b70c7d0d9b
     ],
     providers: [
         AuthGuardService,
