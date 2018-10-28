@@ -120,25 +120,32 @@ export class FuseviewCampaignComponent implements OnInit {
             this.headLines = res;
         })
 
-        this.mainServ.APIServ.get("campaigns/genderStates").subscribe((res:any) => {
+        this.mainServ.APIServ.get("campaigns/genderStates?campaignId=" + this.id).subscribe((res:any) => {
             this.pieClicks = res[0];
             this.pieImpressions = res[1];
             for (let index = 0; index < this.pieClicks.series.length; index++) {
-                if(this.pieClicks.series[index].key == 'male') {
-                    this.pieClicks.series.splice(index , 1);
-                }
+
                 this.pieClicks.series[index].name = this.pieClicks.series[index].key;
                 delete this.pieClicks.series[index].key;
+                /* if(this.pieClicks.series[index].name == 'male') {
+                    this.pieClicks.series.splice(index , 1);
+                } */
+                
             }
             for (let index = 0; index < this.pieImpressions.series.length; index++) {
-                if(this.pieImpressions.series[index].key == 'male') {
-                    this.pieImpressions.series.splice(index , 1);
-                }
                 this.pieImpressions.series[index].name = this.pieImpressions.series[index].key;
                 delete this.pieImpressions.series[index].key;
+              /*   if(this.pieImpressions.series[index].name == 'male') {
+                    this.pieImpressions.series.splice(index , 1);
+                } */
+                
             }
             this.showPie = this.pieImpressions;
         })
+
+        this.startDate = new Date (2018,9,1);
+        this.endDate = new Date (2018,10,25);
+        this.search();
 
         this.mainServ.APIServ.get("campaigns/locationStates").subscribe((res:any) => {
             this.mapClicks = res[0].series;

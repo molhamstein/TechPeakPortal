@@ -238,7 +238,7 @@ const appRoutes: Routes = [
         LoginService,
         MainService,
         GlobalService,
-        { provide: LocationStrategy, useClass: HashLocationStrategy }
+        { provide: LocationStrategy, useClass: PathLocationStrategy }
     ],
     entryComponents: [AddPaymentsComponent],
     bootstrap: [

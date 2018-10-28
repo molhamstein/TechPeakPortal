@@ -85,7 +85,7 @@
     </div>
 
     <div fxLayout.md="row " fxLayout.xs="column" class="section2">
-      <div *ngIf="dateArray.length != 0" fxFlex="100" class="card noPadding">
+      <div *ngIf="dateArray.length != 0" fxFlex="100" class="card noPadding"> <!-- *ngIf="dateArray.length != 0" -->
         <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="row" fxFlex="100">
 
           <!-- Front -->
@@ -137,8 +137,8 @@
         <!-- / WIDGET 5 -->
       </div>
     </div>
-    <div fxLayout.md="row " fxLayout.xs="column" class="section2">
-      <div fxFlex="100" class="card noPadding" style="box-shadow: 0 0 8px #828282;">
+    <div  fxLayout.md="row " fxLayout.xs="column" class="section2">
+      <div *ngIf="pieImpressions && pieClicks" fxFlex="100" class="card noPadding" style="box-shadow: 0 0 8px #828282;">
 
         <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget">
 
