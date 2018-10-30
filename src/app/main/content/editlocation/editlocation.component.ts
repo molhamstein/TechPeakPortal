@@ -107,6 +107,14 @@ export class FuseeditLocationComponent {
         console.log(this.editedData.lng);
     }
 
+    markerPosition(event) {
+        this.lat = event.coords.lat;
+        this.editedData.lat = event.coords.lat;
+
+        this.lng = event.coords.lng;
+        this.editedData.lng = event.coords.lng;
+    }
+
     back() {
         this.loc.back();
     }

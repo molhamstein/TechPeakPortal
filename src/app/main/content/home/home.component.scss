@@ -136,7 +136,9 @@
             font-size: 25px;
             font-family: 'Cairo', sans-serif;
             font-weight: 600;
+            cursor: pointer;
           }
+          
         }
       }
     }
@@ -192,6 +194,16 @@
       }
     }
   }
+}
+
+h3 .moreDet :hover {
+  color: darkblue;
+  font-size: 25px;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color:darkblue;
+  cursor: pointer;
 }
 
 .header1 {

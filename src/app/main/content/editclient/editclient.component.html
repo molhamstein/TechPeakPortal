@@ -5,21 +5,21 @@
     <div class="h2 mb-24">تعديل مستخدم</div>
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <mat-form-field fxFlex="25%">
-        <input matInput placeholder="اسم المستخدم" formControlName="username" [(ngModel)]="editedData.username">
+        <input matInput placeholder="اسم المستخدم" formControlName="username" [(ngModel)]="editedData.username" autocomplete="off">
         <mat-error *ngIf="formErrors.username.required">
           Required
         </mat-error>
       </mat-form-field>
       <div></div>
       <mat-form-field fxFlex="25%">
-        <input matInput placeholder="الاسم" formControlName="realm" [(ngModel)]="editedData.realm">
+        <input matInput placeholder="الاسم" formControlName="realm" [(ngModel)]="editedData.realm" autocomplete="off">
         <mat-error *ngIf="formErrors.realm.required">
           Required
         </mat-error>
       </mat-form-field>
       <div></div>
       <mat-form-field fxFlex="25%">
-        <input matInput placeholder="الإيميل" formControlName="email" [(ngModel)]="editedData.email">
+        <input matInput placeholder="الإيميل" formControlName="email" [(ngModel)]="editedData.email" autocomplete="off">
         <mat-error *ngIf="formErrors.email.required">
           Required
         </mat-error>
@@ -52,21 +52,21 @@
       </mat-form-field>
       <div></div>
       <mat-form-field fxFlex="25%">
-        <input matInput type="number" placeholder="الرقم" formControlName="mobile" [(ngModel)]="editedData.mobile">
+        <input matInput type="number" placeholder="الرقم" formControlName="mobile" [(ngModel)]="editedData.mobile" autocomplete="off">
         <mat-error *ngIf="formErrors.mobile.required">
           Required
         </mat-error>
       </mat-form-field>
       <div></div>
       <mat-form-field fxFlex="25%">
-        <input matInput placeholder="المهنة" formControlName="profession" [(ngModel)]="editedData.profession">
+        <input matInput placeholder="المهنة" formControlName="profession" [(ngModel)]="editedData.profession" autocomplete="off">
         <mat-error *ngIf="formErrors.profession.required">
           Required
         </mat-error>
       </mat-form-field>
       <div></div>
       <mat-form-field fxFlex="25%">
-        <input matInput placeholder="np" formControlName="np" [(ngModel)]="editedData.np">
+        <input matInput placeholder="np" formControlName="np" [(ngModel)]="editedData.np" autocomplete="off">
         <mat-error *ngIf="formErrors.np.required">
           Required
         </mat-error>

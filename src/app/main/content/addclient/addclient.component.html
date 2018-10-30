@@ -5,21 +5,21 @@
     <div class="h2 mb-24">إضافة مستخدم</div>
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <mat-form-field fxFlex="25%">
-        <input matInput placeholder="اسم المستخدم" formControlName="username">
+        <input matInput placeholder="اسم المستخدم" formControlName="username" autocomplete="off">
         <mat-error *ngIf="formErrors.username.required">
           Required
         </mat-error>
       </mat-form-field>
       <div></div>
       <mat-form-field fxFlex="25%">
-        <input matInput placeholder="الاسم" formControlName="realm">
+        <input matInput placeholder="الاسم" formControlName="realm" autocomplete="off">
         <mat-error *ngIf="formErrors.realm.required">
           Required
         </mat-error>
       </mat-form-field>
       <div></div>
       <mat-form-field fxFlex="25%">
-        <input matInput placeholder="الإيميل" formControlName="email">
+        <input matInput placeholder="الإيميل" formControlName="email" autocomplete="off">
         <mat-error *ngIf="formErrors.email.required">
           Required
         </mat-error>
@@ -50,21 +50,21 @@
       </mat-form-field>
       <div></div>
       <mat-form-field fxFlex="25%">
-        <input matInput type="number" placeholder="الرقم" formControlName="mobile">
+        <input matInput type="number" placeholder="الرقم" formControlName="mobile" autocomplete="off">
         <mat-error *ngIf="formErrors.mobile.required">
           Required
         </mat-error>
       </mat-form-field>
       <div></div>
       <mat-form-field fxFlex="25%">
-        <input matInput placeholder="المهنة" formControlName="profession">
+        <input matInput placeholder="المهنة" formControlName="profession" autocomplete="off">
         <mat-error *ngIf="formErrors.profession.required">
           Required
         </mat-error>
       </mat-form-field>
       <div></div>
       <mat-form-field fxFlex="25%">
-        <input matInput placeholder="np" formControlName="np">
+        <input matInput placeholder="np" formControlName="np" autocomplete="off">
         <mat-error *ngIf="formErrors.np.required">
           Required
         </mat-error>
@@ -73,7 +73,7 @@
 
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <mat-form-field fxFlex="50%">
-        <input matInput placeholder="كلمة السر" formControlName="password">
+        <input matInput placeholder="كلمة السر" formControlName="password" autocomplete="off">
         <mat-error *ngIf="formErrors.password.required">
           Required
         </mat-error>
@@ -81,7 +81,7 @@
       <div></div>
 
       <mat-form-field fxFlex="50%">
-        <input matInput placeholder="إعادة كلمة السر " formControlName="rePassword">
+        <input matInput placeholder="إعادة كلمة السر " formControlName="rePassword" autocomplete="off">
         <mat-error *ngIf="formErrors.username.required">
           Required
         </mat-error>

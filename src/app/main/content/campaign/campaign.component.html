@@ -50,7 +50,7 @@
         <button style="background-color: rgba(7, 112, 7, 0.849);" mat-mini-fab class="mr-16" (click)="view(row['id'])">
           <mat-icon style="color : white;">visibility</mat-icon>
         </button>
-        <button mat-mini-fab class="mr-16" (click)="edit(row)" style="background-color: rgba(20, 160, 202, 0.911);">
+        <button *ngIf="isAdmin" mat-mini-fab class="mr-16" (click)="edit(row)" style="background-color: rgba(20, 160, 202, 0.911);">
           <mat-icon style="color : white;">edit</mat-icon>
         </button>
 

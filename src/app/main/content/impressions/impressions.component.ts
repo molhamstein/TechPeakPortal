@@ -33,11 +33,15 @@ export class FuseImpressionsComponent implements OnInit {
             this.locations = res;
         }) */
 
-        this.mainServ.APIServ.get('impressions?filter={"include":["location","ad"]}').subscribe((data: any) => {
+        this.mainServ.APIServ.get('impressions?filter={"include":["location","ad","campaign"]}').subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.rows = data;
                 this.rowsCount = this.rows.length;
                 for (let index = 0; index < this.rows.length; index++) {
+                    if (this.rows[index].campaign_id == null) {
+                        var temcamp = { name: "" };
+                        this.rows[index].campaign = temcamp;
+                    }
                     if (this.rows[index].location_id == 0) {
                         this.rows[index].location = { name: "" }
                         this.rows[index].location.name = "لا يوجد موقع"
@@ -71,10 +75,14 @@ export class FuseImpressionsComponent implements OnInit {
 
     selectLocation(selectedLocation) {
         if (selectedLocation.name == "ALL") {
-            this.mainServ.APIServ.get('impressions?filter={"include":["location","ad"]}').subscribe((data: any) => {
+            this.mainServ.APIServ.get('impressions?filter={"include":["location","ad","campaign"]}').subscribe((data: any) => {
                 this.rows = data;
                 this.rowsCount = this.rows.length;
                 for (let index = 0; index < this.rows.length; index++) {
+                    if (this.rows[index].campaign_id == null) {
+                        var temcamp = { name: "" };
+                        this.rows[index].campaign = temcamp;
+                    }
                     if (this.rows[index].location_id == 0) {
                         this.rows[index].location = { name: "" }
                         this.rows[index].location.name = "لا يوجد موقع"
@@ -84,9 +92,15 @@ export class FuseImpressionsComponent implements OnInit {
             })
         }
         else {
-            this.mainServ.APIServ.get('impressions?filter={"where":{"and":[{"location_id":' + selectedLocation.id + '}]},"include":["location","ad"]}')
+            this.mainServ.APIServ.get('impressions?filter={"where":{"and":[{"location_id":' + selectedLocation.id + '}]},"include":["location","ad","campaign"]}')
                 .subscribe(data => {
                     this.rows = data;
+                    for (let index = 0; index < this.rows.length; index++) {
+                        if (this.rows[index].campaign_id == null) {
+                            var temcamp = { name: "" };
+                            this.rows[index].campaign = temcamp;
+                        }
+                    }
                     this.rowsCount = this.rows.length;
                 })
         }

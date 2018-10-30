@@ -16,10 +16,18 @@ export class FuseCampaignComponent implements OnInit {
     loadingIndicator = false;
     reorderable = true;
     allRowsSelected: any;
+    isAdmin = true;
+    
     constructor(private http: HttpClient, private translationLoader: FuseTranslationLoaderService, private mainServ: MainService) {
         this.translationLoader.loadTranslations(english, turkish);
     }
     ngOnInit() {
+
+        var role = this.mainServ.loginServ.getRole();
+        if (role == "partner") {
+            this.isAdmin = false;
+        }
+
         this.mainServ.APIServ.get("campaigns").subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.rows = data;

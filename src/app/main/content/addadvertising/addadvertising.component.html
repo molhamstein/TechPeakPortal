@@ -20,7 +20,7 @@
       </mat-form-field>
       <div></div>
       <mat-form-field fxFlex="75%" *ngIf="form.value['type']=='Text'">
-        <textarea style="line-height: 9px" matInput placeholder="Text" [ngModelOptions]="{standalone: true}" [(ngModel)]="ad_text"></textarea>
+        <textarea style="line-height: 9px" matInput placeholder="Text" [ngModelOptions]="{standalone: true}" [(ngModel)]="ad_text" autocomplete="off"></textarea>
         <mat-error *ngIf="errorText== true && form.value['type']=='Text'">
           Required
         </mat-error>
@@ -42,14 +42,14 @@
     </div>
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <mat-form-field fxFlex="50%">
-        <input matInput placeholder="الأسم" formControlName="name">
+        <input matInput placeholder="الأسم" formControlName="name" autocomplete="off">
         <mat-error *ngIf="formErrors.name.required">
           Required
         </mat-error>
       </mat-form-field>
       <div></div>
       <mat-form-field fxFlex="50%">
-        <input matInput placeholder="الرابط" formControlName="link">
+        <input matInput placeholder="الرابط" formControlName="link" autocomplete="off">
         <mat-error *ngIf="formErrors.link.required">
           Required
         </mat-error>

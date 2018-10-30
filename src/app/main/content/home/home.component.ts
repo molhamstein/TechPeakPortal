@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MainService } from './../../../core/services/main.service';
 import { HttpClient } from '@angular/common/http';
@@ -9,6 +9,8 @@ import { interval } from 'rxjs/observable/interval';
 import { DatePipe } from '@angular/common';
 import { NavigationModel } from '../../../navigation.model';
 import { FuseNavigationService } from '../../../core/components/navigation/navigation.service';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/takeUntil';
 
 @Component({
     selector: 'fuse-home',
@@ -26,8 +28,10 @@ export class FusehomeComponent {
     allRowsSelected: any;
     refreshTime = 20*1000;
 
+    private onDestroy$ = new Subject<void>();
+
     constructor(private route: ActivatedRoute, private formBuilder: FormBuilder,
-        private mainServ: MainService, private datePipe: DatePipe) {
+        private mainServ: MainService, private datePipe: DatePipe , private router: Router) {
            // this.navigationModel = new NavigationModel(mainServ);
             
     }
@@ -55,7 +59,7 @@ export class FusehomeComponent {
 
       this.refresh();
 
-        Observable.interval(this.refreshTime).subscribe( () => this.mainServ.APIServ.get("clients/onlineUsers")
+        Observable.interval(this.refreshTime).takeUntil(this.onDestroy$).subscribe( () => this.mainServ.APIServ.get("clients/onlineUsers")
         .subscribe((data:any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.rows = data;
@@ -72,6 +76,10 @@ export class FusehomeComponent {
                 this.mainServ.globalServ.somthingError();
             }
         }))
+    }
+
+    navigate(id) {
+        this.router.navigate(['/viewcampaign', id]);
     }
 
 
@@ -100,6 +108,10 @@ export class FusehomeComponent {
         
     }
 
+    ngOnDestroy(){
+        console.log("out");
+        this.onDestroy$.next();
+    }
 
 
 }

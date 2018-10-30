@@ -6,6 +6,7 @@ import { MatTableDataSource, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { Location } from '../../../../../node_modules/@angular/common';
 
+
 @Component({
     selector: 'fuse-addlocation',
     templateUrl: './addlocation.component.html',
@@ -24,7 +25,7 @@ export class FuseaddLocationComponent {
     lng = 36.27649999999994;
 
     constructor(private formBuilder: FormBuilder, private mainServ: MainService, private loc: Location
-        , private snack : MatSnackBar) {
+        , private snack: MatSnackBar) {
         this.formErrors = {
             name: {},
             ip: {},
@@ -77,14 +78,14 @@ export class FuseaddLocationComponent {
         this.mainServ.APIServ.post("locations", data).subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.mainServ.globalServ.goTo("locations");
-                this.snack.open("أدخلت المعلومات بنجاح","حسناً")._dismissAfter(2000);
+                this.snack.open("أدخلت المعلومات بنجاح", "حسناً")._dismissAfter(2000);
             }
             else if (this.mainServ.APIServ.getErrorCode() == 400) {
 
             }
             else {
                 this.mainServ.globalServ.somthingError();
-                this.snack.open("الرجاء إدخال المعلومات الصحيحة","حسناً");
+                this.snack.open("الرجاء إدخال المعلومات الصحيحة", "حسناً");
             }
 
         });
@@ -94,6 +95,13 @@ export class FuseaddLocationComponent {
         this.lat = $event.coords.lat;
         console.log(this.lat);
         this.lng = $event.coords.lng;
+        console.log(this.lng);
+    }
+
+    markerPosition(event) {
+        this.lat = event.coords.lat;
+        console.log(this.lat);
+        this.lng = event.coords.lng;
         console.log(this.lng);
     }
 

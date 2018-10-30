@@ -5,7 +5,7 @@
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <div fxFlex="40">
         <mat-form-field>
-          <input matInput placeholder="الأسم" formControlName="name">
+          <input matInput placeholder="الأسم" formControlName="name" autocomplete="off">
           <mat-error *ngIf="formErrors.name.required">
             Required
           </mat-error>
@@ -15,14 +15,24 @@
       </div>
       <div fxFlex="40">
         <mat-form-field>
+          <input matInput [matDatepicker]="picker" readonly placeholder="تاريخ البدء" formControlName="start">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="formErrors.start.required">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!-- <div fxFlex="40">
+        <mat-form-field>
           <input matInput readonly placeholder="CPC" formControlName="CPC" [(ngModel)]="CPC">
           <mat-error *ngIf="formErrors.CPC.required">
             Required
           </mat-error>
         </mat-form-field>
-      </div>
+      </div> -->
     </div>
-    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
+    <!-- <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <div fxFlex="40">
         <mat-form-field>
           <input matInput readonly placeholder="CPI" formControlName="CPI" [(ngModel)]="CPI">
@@ -43,7 +53,7 @@
           </mat-error>
         </mat-form-field>
       </div>
-    </div>
+    </div> -->
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <div fxFlex="40">
         <mat-form-field>
@@ -73,17 +83,10 @@
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <div fxFlex="40">
         <mat-form-field>
-          <mat-select formControlName="status" placeholder="الحالة">
-            <mat-option [value]="'active'">
-              Active
-            </mat-option>
-            <mat-option [value]="'pending'">
-              Pending
-            </mat-option>
-            <mat-option [value]="'deactivated'">
-              Deactivated
-            </mat-option>
-          </mat-select>
+          <input matInput type="number" placeholder="الهدف" formControlName="target" autocomplete="off">
+          <mat-error *ngIf="formErrors.target.required">
+            Required
+          </mat-error>
         </mat-form-field>
       </div>
       <div fxFlex="10">
@@ -100,13 +103,20 @@
         </mat-form-field>
       </div>
     </div>
-    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
+    <div *ngIf="isAdmin" class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <div fxFlex="40">
         <mat-form-field>
-          <input matInput type="number" placeholder="الهدف" formControlName="target">
-          <mat-error *ngIf="formErrors.target.required">
-            Required
-          </mat-error>
+          <mat-select formControlName="status" placeholder="الحالة">
+            <mat-option [value]="'active'">
+              Active
+            </mat-option>
+            <mat-option [value]="'pending'">
+              Pending
+            </mat-option>
+            <mat-option [value]="'deactivated'">
+              Deactivated
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
       <div fxFlex="10">
@@ -134,6 +144,27 @@
       </ngx-datatable-column>
     </ngx-datatable>
 
+    <div class="view">
+      <div class="section1">
+        <div fxLayout="row">
+          <h1>تكلفة النقرات و المشاهدات</h1>
+        </div>
+        <div fxLayout="row">
+          <div fxFlex="50" class="from">
+            <label>
+              CPI
+            </label>
+            <h3>{{CPI}}</h3>
+          </div>
+          <div fxFlex="50" class="from">
+            <label>
+              CPC
+            </label>
+            <h3>{{CPC}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="h3 mb-24" style="margin-top:20px;">إضافة معيار</div>
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
@@ -169,10 +200,12 @@
       </div>
       <div *ngIf="selectedCriteria.type == 'age'" fxFlex="40">
         <mat-form-field>
-          <input matInput type="number" placeholder="من العمر" formControlName="fromAge" [(ngModel)]="fromAge">
+          <input matInput type="number" placeholder="من العمر" formControlName="fromAge" [(ngModel)]="fromAge"
+            autocomplete="off">
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="number" placeholder="الى العمر" formControlName="toAge" [(ngModel)]="toAge">
+          <input matInput type="number" placeholder="الى العمر" formControlName="toAge" [(ngModel)]="toAge"
+            autocomplete="off">
         </mat-form-field>
       </div>
       <div *ngIf="selectedCriteria.type == 'profession'" fxFlex="40">

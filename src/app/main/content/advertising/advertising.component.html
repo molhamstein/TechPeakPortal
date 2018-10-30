@@ -45,10 +45,10 @@
         
       </ng-template>
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <button style="background-color: rgba(24, 179, 24, 0.795);" *ngIf="row['status']==0" mat-mini-fab class="mat-accent mr-16"
+        <!-- <button style="background-color: rgba(24, 179, 24, 0.795);" *ngIf="row['status']==0" mat-mini-fab class="mat-accent mr-16"
           (click)="toggleRow(row)"><mat-icon style="color : white ;">check</mat-icon></button>
         <button style="background-color: rgba(187, 35, 35, 0.815);" *ngIf="row['status']==1" mat-mini-fab class="mat-accent mr-16"
-          (click)="toggleRow(row)"><mat-icon style="color: white;">close</mat-icon></button>
+          (click)="toggleRow(row)"><mat-icon style="color: white;">close</mat-icon></button> -->
         <button  mat-mini-fab class="mr-16" (click)="edit(row['id'])" style="background-color: rgba(20, 160, 202, 0.911);">
           <mat-icon style="color : white;">edit</mat-icon></button>
 

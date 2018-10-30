@@ -77,7 +77,7 @@ export class LoginService {
 
   logout() {
     this.cookieService.set('isRemember', "");
-
+    this.isLogIn = false;
     if (this.isRemember) {
       this.logoutCook();
     }
@@ -88,14 +88,14 @@ export class LoginService {
 
 
     if ("/myprofile/me" == this.router.url) {
-      this.router.navigateByUrl('/myprofile/me').then(() => this.router.navigateByUrl('/'));
-      location.reload();
+      //this.router.navigateByUrl('/myprofile/me').then(() => this.router.navigateByUrl('/'));
+      location.href="/login";
     } else if ("/addAdvertising" == this.router.url) {
-      this.router.navigateByUrl('/addAdvertising').then(() => this.router.navigateByUrl('/'));
-      location.reload();
+      //this.router.navigateByUrl('/addAdvertising').then(() => this.router.navigateByUrl('/'));
+      location.href="/login";
     } else
       {
-        location.reload();
+        location.href="/login";
       }
   }
 
@@ -133,7 +133,7 @@ export class LoginService {
     if (data.user != null)
       this.cookieService.set('dalalAvatar', data.user.avatar);
     // }
-    location.href="home";
+    location.href="/home";
       //this.router.navigateByUrl('/').then(() => this.router.navigateByUrl('/'));
   }
 

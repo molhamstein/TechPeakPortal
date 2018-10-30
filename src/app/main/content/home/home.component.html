@@ -89,7 +89,7 @@
                 </div>
               </div>
               <hr>
-              <h3 class="moreDet">التقرير المفصل</h3>
+                <h3 class="moreDet moreDet1" (click)="navigate(oneCompagin.campaign.id)" >التقرير المفصل</h3>
             </div>
           </div>
         </div>
@@ -165,10 +165,10 @@
           <ngx-datatable-column [width]="150" name="الاسم" prop="username">
           </ngx-datatable-column>
 
-          <ngx-datatable-column [width]="150" name="المهنة" prop="profession">
+          <ngx-datatable-column [width]="200" name="المهنة" prop="profession">
           </ngx-datatable-column>
 
-          <ngx-datatable-column [width]="150" name="الجنس" prop="gender">
+          <ngx-datatable-column [width]="100" name="الجنس" prop="gender">
           </ngx-datatable-column>
 
           <ngx-datatable-column [width]="150" name="تاريخ البدء" prop="acctstarttime">
