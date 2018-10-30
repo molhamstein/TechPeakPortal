@@ -64,6 +64,7 @@ import { FuseeditPartnerComponent } from './main/content/editpartner/editpartner
 import { FuseeditPartnerModule } from './main/content/editpartner/editpartner.module';
 import { FuseeditClientModule } from './main/content/editclient/editclient.module';
 import { FuseeditClientComponent } from './main/content/editclient/editclient.component';
+import { RoleGuardService } from './core/services/role-guard.service';
 
 const appRoutes: Routes = [
 
@@ -75,22 +76,34 @@ const appRoutes: Routes = [
     {
         path: 'locations',
         component: FuseLocationsComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, RoleGuardService],
+        data: { 
+            expectedRole: 'admin'
+          }
     },
     {
         path: 'addlocation',
         component: FuseaddLocationComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, RoleGuardService],
+        data: { 
+            expectedRole: 'admin'
+          }
     },
     {
         path: 'editlocation/:id',
         component: FuseeditLocationComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, RoleGuardService],
+        data: { 
+            expectedRole: 'admin'
+          }
     },
     {
         path: 'viewlocation/:id',
         component: FuseviewLocationComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, RoleGuardService],
+        data: { 
+            expectedRole: 'admin'
+          }
     },
     {
         path: 'campaign',
@@ -126,38 +139,59 @@ const appRoutes: Routes = [
     {
         path: 'client',
         component: FuseClientComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, RoleGuardService],
+        data: { 
+            expectedRole: 'admin'
+          }
     },
     {
         path: 'addclient',
         component: FuseaddClientComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, RoleGuardService],
+        data: { 
+            expectedRole: 'admin'
+          }
     },
     {
         path: 'editclient/:id',
         component: FuseeditClientComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, RoleGuardService],
+        data: { 
+            expectedRole: 'admin'
+          }
     },
     {
         path: 'partner',
         component: FusePartnerComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, RoleGuardService],
+        data: { 
+            expectedRole: 'admin'
+          }
     },
     {
         path: 'addpartner',
         component: FuseaddPartnerComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, RoleGuardService],
+        data: { 
+            expectedRole: 'admin'
+          }
     },
     {
         path: 'payment',
         component: FusePaymentComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, RoleGuardService],
+        data: { 
+            expectedRole: 'admin'
+          }
     },
 
     {
         path: 'editpartner/:id',
         component: FuseeditPartnerComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, RoleGuardService],
+        data: { 
+            expectedRole: 'admin'
+          }
     },
     {
         path: 'clicked',
@@ -231,6 +265,7 @@ const appRoutes: Routes = [
     ],
     providers: [
         AuthGuardService,
+        RoleGuardService,
         FuseSplashScreenService,
         FuseConfigService,
         FuseNavigationService,

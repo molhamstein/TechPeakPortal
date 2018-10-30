@@ -6,7 +6,6 @@ export class NavigationModel {
 
     constructor(private mainServ : MainService) {
         this.role = mainServ.loginServ.getRole();
-        debugger
         if (this.role == "partner") {
             this.model = [
                 {

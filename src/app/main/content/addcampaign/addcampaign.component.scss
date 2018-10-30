@@ -24,3 +24,31 @@ mat-form-field{
     padding-right : 17px;
     padding-top:12px;
 }
+
+.view {
+    margin-top: 22px;
+    .section1 {
+      padding: 10px;
+      background-color: darkslateblue;
+      box-shadow: 0 0 12px #828282;
+      width: 100%;
+      h1 {
+        color: white;
+        font-weight: bold;
+      }
+      .from {
+        label {
+          font-size: 25px;
+          text-align: center;
+          display: block;
+          color: #cccccc;
+        }
+        h3 {
+          font-size: 30px;
+          text-align: center;
+          margin: 3px;
+          color: white;
+        }
+      }
+    }
+  }

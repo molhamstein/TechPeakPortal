@@ -21,6 +21,7 @@ export class FuseClickedComponent implements OnInit {
     currentLocation: any;
     reorderable = true;
     allRowsSelected: any;
+    locationURL = "";
     constructor(private http: HttpClient, private formBuilder: FormBuilder, private translationLoader: FuseTranslationLoaderService, private mainServ: MainService) {
         this.translationLoader.loadTranslations(english, turkish);
     }
@@ -33,11 +34,15 @@ export class FuseClickedComponent implements OnInit {
             this.locations = res;
         }) */
 
-        this.mainServ.APIServ.get('clicks?filter={"include":["location","ad"]}').subscribe((data: any) => {
+        this.mainServ.APIServ.get('clicks?filter={"include":["location","ad","campaign"]}').subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.rows = data;
                 this.rowsCount = this.rows.length;
                 for (let index = 0; index < this.rows.length; index++) {
+                    if (this.rows[index].campaign_id == null) {
+                        var temcamp = { name: "" };
+                        this.rows[index].campaign = temcamp;
+                    }
                     if (this.rows[index].location_id == 0) {
                         this.rows[index].location = { name: "" }
                         this.rows[index].location.name = "لا يوجد موقع"
@@ -71,10 +76,14 @@ export class FuseClickedComponent implements OnInit {
 
     selectLocation(selectedLocation) {
         if (selectedLocation.name == "ALL") {
-            this.mainServ.APIServ.get('clicks?filter={"include":["location","ad"]}').subscribe((data: any) => {
+            this.mainServ.APIServ.get('clicks?filter={"include":["location","ad","campaign"]}').subscribe((data: any) => {
                 this.rows = data;
                 this.rowsCount = this.rows.length;
                 for (let index = 0; index < this.rows.length; index++) {
+                    if (this.rows[index].campaign_id == null) {
+                        var temcamp = { name: "" };
+                        this.rows[index].campaign = temcamp;
+                    }
                     if (this.rows[index].location_id == 0) {
                         this.rows[index].location = { name: "" }
                         this.rows[index].location.name = "لا يوجد موقع"
@@ -84,9 +93,15 @@ export class FuseClickedComponent implements OnInit {
             })
         }
         else {
-            this.mainServ.APIServ.get('clicks?filter={"where":{"and":[{"location_id":' + selectedLocation.id + '}]},"include":["location","ad"]}')
+            this.mainServ.APIServ.get('clicks?filter={"where":{"and":[{"location_id":' + selectedLocation.id + '}]},"include":["location","ad","campaign"]}')
                 .subscribe(data => {
                     this.rows = data;
+                    for (let index = 0; index < this.rows.length; index++) {
+                        if (this.rows[index].campaign_id == null) {
+                            var temcamp = { name: "" };
+                            this.rows[index].campaign = temcamp;
+                        }
+                    }
                     this.rowsCount = this.rows.length;
                 })
         }

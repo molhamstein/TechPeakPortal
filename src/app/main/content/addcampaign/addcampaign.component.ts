@@ -54,6 +54,8 @@ export class FuseaddCampaignComponent {
     sendCriteriaFromAge: any;
     sendCriteriaToAge: any;
 
+    isAdmin = true;
+
     constructor(private formBuilder: FormBuilder, private mainServ: MainService) {
         this.formErrors = {
             name: {},
@@ -88,6 +90,11 @@ export class FuseaddCampaignComponent {
         this.form.valueChanges.subscribe(() => {
             this.onFormValuesChanged();
         });
+
+        var role = this.mainServ.loginServ.getRole();
+        if (role == "partner") {
+            this.isAdmin = false;
+        }
 
         this.mainServ.APIServ.get('ADs').subscribe((res: any) => {
             this.rows = res;

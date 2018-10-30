@@ -184,7 +184,7 @@
         <button *ngIf="mapToggle == 'impressions'" mat-raised-button class="btn-toggle-map" (click)="toggleMap('clicks')">
           Impressions </button>
         <hr style="color:black; width:100%; margin-bottom: 45px;">
-        <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-map [zoom]="17" [latitude]="lat" [longitude]="lng">
           <!-- <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker> -->
           <agm-marker *ngFor="let s of showMap; let i = index" [latitude]="s.lat" [longitude]="s.long"></agm-marker>
         </agm-map>

@@ -5,7 +5,7 @@
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <div fxFlex="40">
         <mat-form-field>
-          <input matInput placeholder="الأسم" formControlName="name">
+          <input matInput placeholder="الأسم" formControlName="name" autocomplete="off">
           <mat-error *ngIf="formErrors.name.required">
             Required
           </mat-error>
@@ -15,7 +15,7 @@
       </div>
       <div fxFlex="40">
         <mat-form-field>
-          <input matInput placeholder="IP" formControlName="ip">
+          <input matInput placeholder="IP" formControlName="ip" autocomplete="off">
           <mat-error *ngIf="formErrors.ip.required">
             Required
           </mat-error>
@@ -38,7 +38,7 @@
       </div>
       <div fxFlex="40">
         <mat-form-field>
-          <input matInput placeholder="Hotspot Name" formControlName="routerName">
+          <input matInput placeholder="Hotspot Name" formControlName="routerName" autocomplete="off">
           <mat-error *ngIf="formErrors.routerName.required">
             Required
           </mat-error>
@@ -48,7 +48,7 @@
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <div fxFlex="40">
         <mat-form-field>
-          <input matInput type="number" placeholder="عدد ساعات الاستخدام" formControlName="dailyLimit">
+          <input matInput type="number" placeholder="عدد ساعات الاستخدام" formControlName="dailyLimit" autocomplete="off">
         </mat-form-field>
       </div>
       <div fxFlex="10">
@@ -146,9 +146,12 @@
     </div> -->
 
     <div class="h3 mb-24" style="margin-top:20px;">إحداثيات الموقع</div>
+    <!-- <div id="map-canvas">
+
+    </div> -->
 
     <div>
-      <agm-map [zoom]="17" [latitude]="lat" [longitude]="lng">
+      <agm-map [zoom]="17" [latitude]="lat" [longitude]="lng" (mapDblClick)="markerPosition($event)" [disableDoubleClickZoom]="true">
         <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)">
         </agm-marker>
       </agm-map>

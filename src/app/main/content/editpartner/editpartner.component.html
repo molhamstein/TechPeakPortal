@@ -5,21 +5,21 @@
     <div class="h2 mb-24">تعديل شريك</div>
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <mat-form-field fxFlex="24%">
-        <input matInput placeholder="اسم المستخدم" formControlName="username" [(ngModel)]="editedData.username">
+        <input matInput placeholder="اسم المستخدم" formControlName="username" [(ngModel)]="editedData.username" autocomplete="off">
         <mat-error *ngIf="formErrors.username.required">
           Required
         </mat-error>
       </mat-form-field>
       <div></div>
       <mat-form-field fxFlex="24%">
-        <input matInput placeholder="الاسم" formControlName="realm" [(ngModel)]="editedData.realm">
+        <input matInput placeholder="الاسم" formControlName="realm" [(ngModel)]="editedData.realm" autocomplete="off">
         <mat-error *ngIf="formErrors.realm.required">
           Required
         </mat-error>
       </mat-form-field>
       <div></div>
       <mat-form-field fxFlex="24%">
-        <input matInput placeholder="الإيميل" formControlName="email" [(ngModel)]="editedData.email">
+        <input matInput placeholder="الإيميل" formControlName="email" [(ngModel)]="editedData.email" autocomplete="off">
         <mat-error *ngIf="formErrors.email.required">
           Required
         </mat-error>
@@ -28,7 +28,7 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field fxFlex="24%">
-        <input matInput placeholder="الأسم الكامل" formControlName="fullname" [(ngModel)]="editedData.fullname">
+        <input matInput placeholder="الأسم الكامل" formControlName="fullname" [(ngModel)]="editedData.fullname" autocomplete="off">
         <mat-error *ngIf="formErrors.fullname.required">
           Required
         </mat-error>
@@ -38,26 +38,26 @@
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <div></div>
       <mat-form-field fxFlex="24%">
-        <input matInput placeholder="الرقم" formControlName="partner_mobile" [(ngModel)]="editedData.partner_mobile">
+        <input matInput placeholder="الرقم" formControlName="partner_mobile" [(ngModel)]="editedData.partner_mobile" autocomplete="off">
         <mat-error *ngIf="formErrors.partner_mobile.required">
           Required
         </mat-error>
       </mat-form-field>
       <div></div>
       <mat-form-field fxFlex="24%">
-        <input matInput placeholder="العمل" formControlName="businessName" [(ngModel)]="editedData.businessName">
+        <input matInput placeholder="العمل" formControlName="businessName" [(ngModel)]="editedData.businessName" autocomplete="off">
         <mat-error *ngIf="formErrors.businessName.required">
           Required
         </mat-error>
       </mat-form-field>
       <mat-form-field fxFlex="24%">
-        <input matInput placeholder="balance" formControlName="balance" [(ngModel)]="editedData.balance">
+        <input matInput placeholder="balance" formControlName="balance" [(ngModel)]="editedData.balance" autocomplete="off">
         <mat-error *ngIf="formErrors.balance.required">
           Required
         </mat-error>
       </mat-form-field>
       <mat-form-field fxFlex="24%">
-        <input matInput placeholder="min_balance" formControlName="min_balance" [(ngModel)]="editedData.min_balance">
+        <input matInput placeholder="min_balance" formControlName="min_balance" [(ngModel)]="editedData.min_balance" autocomplete="off">
         <mat-error *ngIf="formErrors.min_balance.required">
           Required
         </mat-error>

@@ -48,8 +48,8 @@ export class FuseviewCampaignComponent implements OnInit {
 
     impressionsClients : any = [];
     clicksClients : any = [];
-    lat = -34.397;
-    lng = 150.644;
+    lat = 33.51380000000012;
+    lng = 36.27649999999994;
 
     campaign: any
 
@@ -143,13 +143,16 @@ export class FuseviewCampaignComponent implements OnInit {
             this.showPie = this.pieImpressions;
         })
 
-        this.startDate = new Date (2018,9,1);
-        this.endDate = new Date (2018,10,25);
+        this.endDate = new Date ();
+        var year = this.endDate.getFullYear();
+        var month = this.endDate.getMonth();
+        this.startDate = new Date (year,month-1,1);
         this.search();
 
         this.mainServ.APIServ.get("campaigns/locationStates").subscribe((res:any) => {
             this.mapClicks = res[0].series;
             this.mapImpressions = res[1].series;
+            this.showMap = this.mapImpressions;
         })
 
         this.mainServ.APIServ.get('impressions?filter={"where":{"and":[{"campaign_id":' + this.id + '}]}, "include":["location","ad","client"],"limit":10}')

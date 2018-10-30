@@ -103,6 +103,6 @@ export class FuseToolbarComponent
     }
     logOut() {
         this.mainServ.loginServ.logout();
-        this.mainServ.globalServ.goTo("/login")
+        //this.mainServ.globalServ.goTo("/login")
     }
 }
