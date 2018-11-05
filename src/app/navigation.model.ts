@@ -1,4 +1,5 @@
 import { MainService } from "./core/services/main.service";
+import { FuseNavigationService } from "./core/components/navigation/navigation.service";
 
 export class NavigationModel {
     public model: any[];
@@ -6,6 +7,7 @@ export class NavigationModel {
 
     constructor(private mainServ : MainService) {
         this.role = mainServ.loginServ.getRole();
+        debugger
         if (this.role == "partner") {
             this.model = [
                 {
@@ -52,6 +54,7 @@ export class NavigationModel {
                 }
     
             ]
+           // navServ.setNavigationModel(this.model);
         }
         else {
 
@@ -159,7 +162,8 @@ export class NavigationModel {
                 } */
     
             ]
-            
+           // navServ.setNavigationModel(this.model);
+        
         }
   
     }

@@ -3,9 +3,11 @@ import { MainService } from './../../../core/services/main.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FuseTranslationLoaderService } from '../../../core/services/translation-loader.service';
+import swal from 'sweetalert2';
 
 import { locale as english } from './i18n/en';
 import { locale as turkish } from './i18n/tr';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     selector: 'fuse-addadvertising',
@@ -16,9 +18,9 @@ export class FuseaddAdvertisingComponent {
     form: FormGroup;
     formErrors: any;
     imageOnLoad: any = [];
-    images  = [];
-    videos  = [];
-   
+    images = [];
+    videos = [];
+
     ad_text = "";
     errorText = false;
     selectedAccount = "Text"
@@ -28,7 +30,7 @@ export class FuseaddAdvertisingComponent {
 
 
 
-    constructor(private formBuilder: FormBuilder, private mainServ: MainService) {
+    constructor(private formBuilder: FormBuilder, private mainServ: MainService, private snack : MatSnackBar) {
         this.formErrors = {
             name: {},
             link: {},
@@ -103,8 +105,10 @@ export class FuseaddAdvertisingComponent {
         }
     }
 
-
     onChange(event: any, isImage) {
+        if(event.target.files.length == 0) {
+            return;
+        }
         let files = [].slice.call(event.target.files);
         let allFilles = event.target.files;
         let images: any = [];
@@ -117,6 +121,11 @@ export class FuseaddAdvertisingComponent {
             console.log(i);
             // this.releadImage(i, file);
         }
+        swal({
+            title: '..يتم تحميل الصورة',
+            allowOutsideClick: false
+        });
+        swal.showLoading();
         let files2 = Array.from(event.target.files);
         if (isImage)
             var folder = "images"
@@ -131,14 +140,20 @@ export class FuseaddAdvertisingComponent {
                 countDelete++;
                 if (this.mainServ.APIServ.getErrorCode() == 0)
                     data.forEach(element => {
-                        if (isImage)
+                        if (isImage) {
                             this.images.push(element);
+                            swal.close();
+                        }
                         else
                             this.videos.push(element);
 
                     });
-                else
+                else {
                     this.mainServ.globalServ.somthingError()
+                    swal.close();
+                    this.snack.open("لم يتم تحميل الصورة أو الفيديو الرجاء إعادة المحاولة", "حسناً")
+                }
+                    
             });
         });
         // });

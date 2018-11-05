@@ -23,7 +23,7 @@ import { FuseNavHorizontalCollapseComponent } from './horizontal/nav-collapse/na
         FuseNavVerticalCollapseComponent,
         FuseNavHorizontalItemComponent,
         FuseNavHorizontalCollapseComponent
-    ]
+    ],
 })
 export class FuseNavigationModule
 {
