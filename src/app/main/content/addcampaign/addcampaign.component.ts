@@ -55,13 +55,12 @@ export class FuseaddCampaignComponent {
     sendCriteriaToAge: any;
 
     isAdmin = true;
+    role : any;
 
     constructor(private formBuilder: FormBuilder, private mainServ: MainService) {
         this.formErrors = {
             name: {},
-            CPI: {},
             type: {},
-            CPC: {},
             expiration_date: {},
             start: {},
             status: {},
@@ -72,10 +71,8 @@ export class FuseaddCampaignComponent {
     ngOnInit() {
         this.form = this.formBuilder.group({
             name: ['', Validators.required],
-            CPI: ['', Validators.required],
             type: ['', Validators.required],
             status: ['', Validators.required],
-            CPC: ['', Validators.required],
             expiration_date: ['', Validators.required],
             target: ['', Validators.required],
             start: ['', Validators.required],
@@ -91,9 +88,29 @@ export class FuseaddCampaignComponent {
             this.onFormValuesChanged();
         });
 
-        var role = this.mainServ.loginServ.getRole();
-        if (role == "partner") {
+        this.role = this.mainServ.loginServ.getRole();
+        if (this.role == "partner") {
             this.isAdmin = false;
+            this.formErrors = {
+                name: {},
+                type: {},
+                expiration_date: {},
+                start: {},
+                target: {}
+            };
+            this.form = this.formBuilder.group({
+                name: ['', Validators.required],
+                type: ['', Validators.required],
+                expiration_date: ['', Validators.required],
+                target: ['', Validators.required],
+                start: ['', Validators.required],
+                criteriaType: [''],
+                location: [''],
+                gender: [''],
+                fromAge: [''],
+                toAge: [''],
+                profession: [''],
+            });
         }
 
         this.mainServ.APIServ.get('ADs').subscribe((res: any) => {
@@ -183,6 +200,9 @@ export class FuseaddCampaignComponent {
         delete data.location;
         delete data.profession;
         delete data.toAge;
+        if (this.role == "partner") {
+            data.status = "pending";
+        }
         data.partner_id = this.selectedPartner.id;
         data.completed = 0;
         data.start = data.start.toISOString();

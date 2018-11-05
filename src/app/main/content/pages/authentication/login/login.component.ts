@@ -5,44 +5,47 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FuseConfigService } from '../../../../../core/services/config.service';
 import { fuseAnimations } from '../../../../../core/animations';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+import { FuseNavigationService } from '../../../../../core/components/navigation/navigation.service';
+import { NavigationModel } from '../../../../../navigation.model';
 
 @Component({
-    selector   : 'fuse-login',
+    selector: 'fuse-login',
     templateUrl: './login.component.html',
-    styleUrls  : ['./login.component.scss'],
-    animations : fuseAnimations
+    styleUrls: ['./login.component.scss'],
+    animations: fuseAnimations
 })
-export class FuseLoginComponent implements OnInit
-{
+export class FuseLoginComponent implements OnInit {
     loginForm: FormGroup;
     loginFormErrors: any;
+
+    navigationModel1: NavigationModel;
 
     constructor(
         private fuseConfig: FuseConfigService,
         private formBuilder: FormBuilder,
-        private mainServ : MainService,
+        private mainServ: MainService,
         private snack: MatSnackBar,
-        private route : Router
-    )
-    {
+        private route: Router,
+        private fuseNavigationService: FuseNavigationService
+    ) {
         this.fuseConfig.setSettings({
             layout: {
                 navigation: 'none',
-                toolbar   : 'none',
-                footer    : 'none'
+                toolbar: 'none',
+                footer: 'none'
             }
         });
 
         this.loginFormErrors = {
-            email   : {},
+            email: {},
             password: {}
         };
     }
 
-    ngOnInit()
-    {
+    ngOnInit() {
         this.loginForm = this.formBuilder.group({
-            email   : ['', [Validators.required, Validators.email]],
+            email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required]
         });
 
@@ -51,12 +54,9 @@ export class FuseLoginComponent implements OnInit
         });
     }
 
-    onLoginFormValuesChanged()
-    {
-        for ( const field in this.loginFormErrors )
-        {
-            if ( !this.loginFormErrors.hasOwnProperty(field) )
-            {
+    onLoginFormValuesChanged() {
+        for (const field in this.loginFormErrors) {
+            if (!this.loginFormErrors.hasOwnProperty(field)) {
                 continue;
             }
 
@@ -66,21 +66,22 @@ export class FuseLoginComponent implements OnInit
             // Get the control
             const control = this.loginForm.get(field);
 
-            if ( control && control.dirty && !control.valid )
-            {
+            if (control && control.dirty && !control.valid) {
                 this.loginFormErrors[field] = control.errors;
             }
         }
     }
-    login(){
-        
-        this.mainServ.APIServ.post("partners/login?include=user",this.loginForm.value).subscribe((data: any) => {
+    login() {
+
+        this.mainServ.APIServ.post("partners/login?include=user", this.loginForm.value).subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
-                this.mainServ.loginServ.logIn(data,true);
+                this.mainServ.loginServ.logIn(data, true);
+                this.navigationModel1 = new NavigationModel(this.mainServ);
+                this.fuseNavigationService.onNavigationModelChange.next(this.navigationModel1.model);
                 //this.route.navigate(['/home']);
             }
             else if (this.mainServ.APIServ.getErrorCode() == 400) {
-                
+
             }
             else if (this.mainServ.APIServ.getErrorCode() == 401) {
                 this.snack.open("You Entered a wrong Email or Password.. Please Re-enter", "Close");
@@ -91,6 +92,6 @@ export class FuseLoginComponent implements OnInit
             }
 
         });
-        
+
     }
 }

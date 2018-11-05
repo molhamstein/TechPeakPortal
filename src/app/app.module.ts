@@ -226,11 +226,12 @@ const appRoutes: Routes = [
         // end Dialog
     ],
     imports: [
+        
         BrowserModule,
         HttpModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        RouterModule.forRoot(appRoutes),
+        
         SharedModule,
         TranslateModule.forRoot(),
 
@@ -261,7 +262,9 @@ const appRoutes: Routes = [
         FuseeditLocationModule,
         FuseviewLocationModule,
         FusePaymentModule,
-        FuseBillingModule
+        FuseBillingModule,
+
+        RouterModule.forRoot(appRoutes , { enableTracing: false, useHash: true }),
     ],
     providers: [
         AuthGuardService,
