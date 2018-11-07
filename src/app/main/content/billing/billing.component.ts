@@ -53,7 +53,7 @@ export class FuseBillingComponent implements OnInit {
                     if (this.rowsCampaign[index].campaign.CPC == "") {
                         this.rowsCampaign[index].campaign.CPC = "0";
                     }
-                    this.rowsCampaign[index].totalCost = parseInt(this.rowsCampaign[index].campaign.CPI) + parseInt(this.rowsCampaign[index].campaign.CPC);
+                    this.rowsCampaign[index].totalCost = (parseInt(this.rowsCampaign[index].campaign.CPI) * parseInt(this.rowsCampaign[index].impressions)) + (parseInt(this.rowsCampaign[index].campaign.CPC) * parseInt(this.rowsCampaign[index].clicks));
                     this.campaignCount = this.campaignCount + this.rowsCampaign[index].totalCost;
                 }
                 this.loadingIndicatorCampaign = true;
@@ -117,7 +117,7 @@ export class FuseBillingComponent implements OnInit {
                             if (this.rowsCampaign[index].campaign.CPC == "") {
                                 this.rowsCampaign[index].campaign.CPC = "0";
                             }
-                            this.rowsCampaign[index].totalCost = parseInt(this.rowsCampaign[index].campaign.CPI) + parseInt(this.rowsCampaign[index].campaign.CPC);
+                            this.rowsCampaign[index].totalCost = (parseInt(this.rowsCampaign[index].campaign.CPI) * parseInt(this.rowsCampaign[index].impressions)) + (parseInt(this.rowsCampaign[index].campaign.CPC) * parseInt(this.rowsCampaign[index].clicks));
                             this.campaignCount = this.campaignCount + this.rowsCampaign[index].totalCost;
                         }
                         this.loadingIndicatorCampaign = true;

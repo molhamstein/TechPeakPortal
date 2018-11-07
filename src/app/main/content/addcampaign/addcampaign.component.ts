@@ -243,8 +243,17 @@ export class FuseaddCampaignComponent {
         this.newCriteria.criteria = this.selectedCriteria.type;
         this.newCriteria.cpi = this.selectedCriteria.perClick;
         this.newCriteria.cpc = this.selectedCriteria.perImp;
-        this.CPI = this.CPI + this.selectedCriteria.perClick;
-        this.CPC = this.CPC + this.selectedCriteria.perImp;
+        var exist = false;
+        for (let index = 0; index < this.myData.length; index++) {
+            if (this.newCriteria.criteria == this.myData[index].criteria) {
+                exist = true;
+                break;
+            }
+        }
+        if (exist == false) {
+            this.CPI = this.CPI + this.selectedCriteria.perClick;
+            this.CPC = this.CPC + this.selectedCriteria.perImp;
+        }
         if (this.newCriteria.criteria == "location") {
             this.newCriteria.data = this.selectedLocation.name;
             this.selectedCriteria = {};
@@ -289,8 +298,6 @@ export class FuseaddCampaignComponent {
 
     deleteCriteria(cri) {
         var i = this.myData.indexOf(cri, 0);
-        this.CPI = this.CPI - cri.cpi;
-        this.CPC = this.CPC - cri.cpc;
         this.myData.splice(i, 1);
         this.dataSource.data = this.myData;
         if (cri.criteria == "gender") {
@@ -298,6 +305,18 @@ export class FuseaddCampaignComponent {
         }
         if (cri.criteria == "age") {
             this.criteriaTypes.splice(this.ageIndex, 0, this.ageObject)
+        }
+
+        var exist = false;
+        for (let index = 0; index < this.myData.length; index++) {
+            if (cri.criteria == this.myData[index].criteria){
+                exist = true;
+                break;
+            }
+        }
+        if (exist == false) {
+            this.CPI = this.CPI - cri.cpi;
+            this.CPC = this.CPC - cri.cpc;
         }
     }
 

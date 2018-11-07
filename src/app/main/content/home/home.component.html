@@ -89,7 +89,7 @@
                 </div>
               </div>
               <hr>
-                <h3 class="moreDet moreDet1" (click)="navigate(oneCompagin.campaign.id)" >التقرير المفصل</h3>
+              <h3 class="moreDet moreDet1" (click)="navigate(oneCompagin.campaign.id)">التقرير المفصل</h3>
             </div>
           </div>
         </div>
@@ -97,7 +97,7 @@
     </mat-tab>
     <mat-tab label="MyhotSpot">
       <div class="hotSpot">
- <!--        <div fxLayout.md="row" fxLayout.xs="column" class="section1">
+        <!--        <div fxLayout.md="row" fxLayout.xs="column" class="section1">
           <div class="card" fxFlex="72">
             <div class="label">
               <label>الاداء العام</label>
@@ -156,11 +156,20 @@
       </div>
 
 
-      <mat-card *ngIf="rows[0]!=null && loadingIndicator == true" style="margin-top:15px;">
+      <mat-card *ngIf=" loadingIndicator == true" style="margin-top:15px;">
 
-        <ngx-datatable  class="material" [rows]="rows" [columnMode]="'force'"
-          [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
-          [limit]="100000">
+        <div [formGroup]="form" >
+          <mat-form-field fxFlex="40" style="margin-right:60%">
+            <mat-select placeholder="Filter By Location" formControlName="location" (selectionChange)="selectLocation($event)">
+              <mat-option *ngFor="let l of locations" [value]="l">
+                {{l.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="48" [footerHeight]="56"
+          [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable" [limit]="100000">
 
           <ngx-datatable-column [width]="150" name="الاسم" prop="username">
           </ngx-datatable-column>
@@ -174,7 +183,7 @@
           <ngx-datatable-column [width]="150" name="تاريخ البدء" prop="acctstarttime">
           </ngx-datatable-column>
 
-          <ngx-datatable-column [width]="150" name="وفت البدء" prop="acctstartDate">
+          <ngx-datatable-column [width]="150" name="وقت البدء" prop="acctstartDate">
           </ngx-datatable-column>
 
           <ngx-datatable-column [width]="25" name="ids">
