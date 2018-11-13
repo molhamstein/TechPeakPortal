@@ -166,13 +166,11 @@ export class FuseviewCampaignComponent implements OnInit {
                     this.impressionsClients[index].client = tempClient;
                 }
             }
-            console.log(this.impressionsClients);
         });
 
         this.mainServ.APIServ.get('clicks?filter={"where":{"and":[{"campaign_id":' + this.id + '}]}, "include":["location","ad","client"],"limit":10}')
         .subscribe((res:any) => {
             this.clicksClients = res;
-            console.log(this.clicksClients);
         });
 
     }
@@ -181,12 +179,10 @@ export class FuseviewCampaignComponent implements OnInit {
         if (str == "clicks") {
             this.mapToggle = "clicks";
             this.showMap = this.mapImpressions;
-            console.log(this.showMap);
         }
         else {
             this.mapToggle = "impressions";
             this.showMap = this.mapClicks;
-            console.log(this.showMap);
         }
     }
 
@@ -194,12 +190,10 @@ export class FuseviewCampaignComponent implements OnInit {
         if (str == "clicks") {
             this.pieToggle = "clicks";
             this.showPie = this.pieImpressions;
-            console.log(this.showPie);
         }
         else {
             this.pieToggle = "impressions";
             this.showPie = this.pieClicks;
-            console.log(this.showPie);
         }
     }
 
@@ -213,6 +207,7 @@ export class FuseviewCampaignComponent implements OnInit {
         var eDate = this.datePipe.transform(this.endDate, 'yyyy-MM-dd');
         this.mainServ.APIServ.get('campaigns/graphStates?campaignId=' + this.id + '&startDate=' + sDate + '&endDate=' + eDate).subscribe(res => {
             this.dateArray = res;
+            console.log(this.dateArray);
             for (let index = 0; index < this.dateArray[0].series.length; index++) {
                 this.dateArray[0].series[index].name = this.dateArray[0].series[index].key;
                 delete this.dateArray[0].series[index].key;
@@ -235,6 +230,10 @@ export class FuseviewCampaignComponent implements OnInit {
                     }
                 }
                 this.dateArray[0].series = seriesArray;
+            }
+            for (let index = 0; index < this.dateArray[1].series.length; index++) {
+                this.dateArray[1].series[index].name = this.dateArray[1].series[index].key;
+                delete this.dateArray[1].series[index].key;
             }
             if (this.dateArray[1].series.length != 0) {
                 for (let index = 0; index < this.dateArray[1].series.length; index++) {

@@ -8,3 +8,16 @@
     padding-right : 17px;
     padding-top:12px;
 }
+
+.chip-active {
+  background-color:#0095ff;
+}
+.chip-completed {
+  background-color: #15b328;
+}
+.chip-expired {
+  background-color: #e81d1d;
+}
+.chip-pending {
+  background-color: #e8a713;
+}

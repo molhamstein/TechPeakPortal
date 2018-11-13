@@ -92,7 +92,7 @@
       <div fxFlex="10">
       </div>
       <div fxFlex="40">
-        <mat-form-field>
+        <mat-form-field *ngIf="isAdmin">
           <input type="text" placeholder="اختر المستخدم" matInput [formControl]="myControl" [matAutocomplete]="auto"
             [(ngModel)]="selectedPartner">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
@@ -101,9 +101,13 @@
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
+        <mat-form-field *ngIf="isAdmin == false && selectedPartner">
+          <input matInput readonly placeholder="اسم المستخدم" formControlName="partner" autocomplete="off" [(ngModel)]="selectedPartner.fullname">
+        </mat-form-field>
       </div>
     </div>
-    <div *ngIf="isAdmin" class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
+    <div *ngIf="isAdmin" class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px"
+      fxLayoutGap.xs="0">
       <div fxFlex="40">
         <mat-form-field>
           <mat-select formControlName="status" placeholder="الحالة">
@@ -139,7 +143,7 @@
           </div>
         </ng-template>
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-          <mat-checkbox (change)="checked($event, row)" style="margin-right:30px;"></mat-checkbox>
+          <mat-checkbox (change)="checked($event, row)" style="margin-right:30px;" [checked]="row.checked"></mat-checkbox>
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>

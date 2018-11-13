@@ -2,7 +2,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { MainService } from './../../../core/services/main.service';
 import { Component } from '@angular/core';
 import { startWith, map } from 'rxjs/operators';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -55,9 +55,10 @@ export class FuseaddCampaignComponent {
     sendCriteriaToAge: any;
 
     isAdmin = true;
-    role : any;
+    role: any;
+    id:any;
 
-    constructor(private formBuilder: FormBuilder, private mainServ: MainService) {
+    constructor(private formBuilder: FormBuilder, private mainServ: MainService, private snack : MatSnackBar) {
         this.formErrors = {
             name: {},
             type: {},
@@ -90,6 +91,7 @@ export class FuseaddCampaignComponent {
 
         this.role = this.mainServ.loginServ.getRole();
         if (this.role == "partner") {
+            this.id = this.mainServ.loginServ.getUserId();
             this.isAdmin = false;
             this.formErrors = {
                 name: {},
@@ -104,6 +106,7 @@ export class FuseaddCampaignComponent {
                 expiration_date: ['', Validators.required],
                 target: ['', Validators.required],
                 start: ['', Validators.required],
+                partner: [''],
                 criteriaType: [''],
                 location: [''],
                 gender: [''],
@@ -111,33 +114,66 @@ export class FuseaddCampaignComponent {
                 toAge: [''],
                 profession: [''],
             });
-        }
 
-        this.mainServ.APIServ.get('ADs').subscribe((res: any) => {
-            this.rows = res;
-            this.loadingIndicator = true;
-        })
-
-        this.mainServ.APIServ.get("criteria_prices").subscribe(res => {
-            this.criteriaTypes = res;
-            for (let index = 0; index < this.criteriaTypes.length; index++) {
-                if (this.criteriaTypes[index].type == "default") {
-                    this.CPC = this.criteriaTypes[index].perClick;
-                    this.CPI = this.criteriaTypes[index].perImp;
-                    this.criteriaTypes.splice(this.criteriaTypes.indexOf(this.criteriaTypes[index], 0), 1);
+            this.mainServ.APIServ.get('ADs').subscribe((res: any) => {
+                this.rows = res;
+                for (let index = 0; index < this.rows.length; index++) {
+                    this.rows[index].checked = false;
                 }
-            }
-        })
+                this.loadingIndicator = true;
+            })
 
-        this.mainServ.APIServ.get("partners").subscribe((res: any) => {
-            this.partners = res;
-            this.filteredOptions = this.myControl.valueChanges
-                .pipe(
-                    startWith<string | Partners>(''),
-                    map(value => typeof value === 'string' ? value : value.fullname),
-                    map(title => title ? this._filter(title) : this.partners.slice())
-                );
-        })
+            this.mainServ.APIServ.get("criteria_prices").subscribe(res => {
+                this.criteriaTypes = res;
+                for (let index = 0; index < this.criteriaTypes.length; index++) {
+                    if (this.criteriaTypes[index].type == "default") {
+                        this.CPC = this.criteriaTypes[index].perClick;
+                        this.CPI = this.criteriaTypes[index].perImp;
+                        this.criteriaTypes.splice(this.criteriaTypes.indexOf(this.criteriaTypes[index], 0), 1);
+                    }
+                }
+            })
+            this.mainServ.APIServ.get("partners/" + this.id).subscribe((res:any) => {
+                this.selectedPartner = res;
+            })
+        }
+        else {
+            this.mainServ.APIServ.get('ADs').subscribe((res: any) => {
+                this.rows = res;
+                for (let index = 0; index < this.rows.length; index++) {
+                    this.rows[index].checked = false;
+                }
+                this.loadingIndicator = true;
+            })
+
+            this.mainServ.APIServ.get("criteria_prices").subscribe(res => {
+                this.criteriaTypes = res;
+                for (let index = 0; index < this.criteriaTypes.length; index++) {
+                    if (this.criteriaTypes[index].type == "default") {
+                        this.CPC = this.criteriaTypes[index].perClick;
+                        this.CPI = this.criteriaTypes[index].perImp;
+                        this.criteriaTypes.splice(this.criteriaTypes.indexOf(this.criteriaTypes[index], 0), 1);
+                    }
+                }
+            })
+
+            this.mainServ.APIServ.get("partners").subscribe((res: any) => {
+                if (this.mainServ.APIServ.getErrorCode() == 401 || res == "E") {
+                    this.snack.open("هنالك مشكلة ما.. الرجاء المحاولة لاحقاً", "حسناً");
+                   /*  this.mainServ.globalServ.goTo("campaign"); */
+                }
+                else {
+                    this.partners = res;
+                    this.filteredOptions = this.myControl.valueChanges
+                        .pipe(
+                            startWith<string | Partners>(''),
+                            map(value => typeof value === 'string' ? value : value.fullname),
+                            map(title => title ? this._filter(title) : this.partners.slice())
+                        );
+                }
+            }, err => {this.mainServ.globalServ.goTo("campaign");})
+
+        }
     }
 
     displayFn(part?: Partners): string | undefined {
@@ -190,9 +226,24 @@ export class FuseaddCampaignComponent {
                 }
             }
         }
+        for (let index = 0; index < this.rows.length; index++) {
+            if (this.rows[index].id == ad.id) {
+                if (event.checked == true) {
+                    this.rows[index].checked = true;
+                }
+                else {
+                    this.rows[index].checked = false;
+                }
+            }
+
+        }
     }
 
     addCampaign() {
+        if (this.selectedPartner.id == 0) {
+            this.snack.open("الرجاء إدخال اسم مستخدم صحيح", "حسناً");
+            return;
+        }
         var data = this.form.value;
         delete data.criteriaType;
         delete data.fromAge;
@@ -202,6 +253,7 @@ export class FuseaddCampaignComponent {
         delete data.toAge;
         if (this.role == "partner") {
             data.status = "pending";
+            delete data.partner;
         }
         data.partner_id = this.selectedPartner.id;
         data.completed = 0;
@@ -218,6 +270,9 @@ export class FuseaddCampaignComponent {
             }
             else if (this.myData[index].criteria == "gender") {
                 temp.value = this.myData[index].data.toLowerCase();
+            }
+            else if (this.myData[index].criteria == "location") {
+                temp.value = this.myData[index].id;
             }
             else {
                 temp.value = this.myData[index].data;
@@ -256,6 +311,7 @@ export class FuseaddCampaignComponent {
         }
         if (this.newCriteria.criteria == "location") {
             this.newCriteria.data = this.selectedLocation.name;
+            this.newCriteria.id = this.selectedLocation.id;
             this.selectedCriteria = {};
         }
         else if (this.newCriteria.criteria == "gender") {
@@ -309,7 +365,7 @@ export class FuseaddCampaignComponent {
 
         var exist = false;
         for (let index = 0; index < this.myData.length; index++) {
-            if (cri.criteria == this.myData[index].criteria){
+            if (cri.criteria == this.myData[index].criteria) {
                 exist = true;
                 break;
             }
@@ -345,6 +401,7 @@ export interface Criterias {
     data: string;
     cpi: number;
     cpc: number;
+    id: number;
 }
 
 export interface Partners {

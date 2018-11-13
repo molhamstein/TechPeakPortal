@@ -29,10 +29,8 @@ export class FuseAdvertisingComponent implements OnInit {
 
         this.mainServ.APIServ.get("ADs?filter[limit]=" + limit + "&filter[skip]=" + offset * limit).subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
-
                 this.rows = data;
                 this.loadingIndicator = true;
-
             }
             else if (this.mainServ.APIServ.getErrorCode() == 400) {
 

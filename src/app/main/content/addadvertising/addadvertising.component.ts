@@ -30,7 +30,7 @@ export class FuseaddAdvertisingComponent {
 
 
 
-    constructor(private formBuilder: FormBuilder, private mainServ: MainService, private snack : MatSnackBar) {
+    constructor(private formBuilder: FormBuilder, private mainServ: MainService, private snack: MatSnackBar) {
         this.formErrors = {
             name: {},
             link: {},
@@ -55,24 +55,31 @@ export class FuseaddAdvertisingComponent {
 
     addAds() {
         var data = this.form.value;
-        if (data['type'] == "Image") {
-            if (this.images[0]['file'] == null) {
-                return
+        if (data.type == "image") {
+            if (this.images.length != 0) {
+                if (this.images[0].file == null || this.images[0].file == "") {
+                    this.snack.open("الرجاء إدخال صورة", "حسناً");
+                    return;
+                }
+                data.media_link = this.images[0].file;
+                data.thumb_link = this.images[0].thumbnail;
             }
-            data['media_link'] = this.images[0]['file'];
-            data['thumb_link'] = this.images[0]['thumbnail'];
+            else {
+                this.snack.open("الرجاء إدخال صورة", "حسناً");
+                return;
+            }
 
         } else {
-            if (data['type'] == "Text") {
+            if (data.type == "text") {
                 if (this.ad_text == "") {
                     this.errorText = true;
                     return
                 }
-                data['ad_text'] = this.ad_text
+                data.ad_text = this.ad_text
             }
         }
-        data['partner_id'] = this.mainServ.loginServ.getUserId();
-        // console.log(data);
+        data.partner_id = parseInt(this.mainServ.loginServ.getUserId());
+
         this.mainServ.APIServ.post("ADs", data).subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.mainServ.globalServ.goTo("advertising")
@@ -106,7 +113,7 @@ export class FuseaddAdvertisingComponent {
     }
 
     onChange(event: any, isImage) {
-        if(event.target.files.length == 0) {
+        if (event.target.files.length == 0) {
             return;
         }
         let files = [].slice.call(event.target.files);
@@ -153,7 +160,7 @@ export class FuseaddAdvertisingComponent {
                     swal.close();
                     this.snack.open("لم يتم تحميل الصورة أو الفيديو الرجاء إعادة المحاولة", "حسناً")
                 }
-                    
+
             });
         });
         // });

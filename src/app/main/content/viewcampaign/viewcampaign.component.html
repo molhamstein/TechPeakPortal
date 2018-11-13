@@ -153,14 +153,14 @@
               <div class="h3">{{widgets.widget6.title}}</div>
             </div>-->
 
-            <div *ngIf="showPie" class="h-400">
+            <div *ngIf="showPie.series.length != 0" class="h-400">
               <ngx-charts-pie-chart *fuseIfOnDom [scheme]="pieOptions.scheme" [results]="showPie.series" [legend]="pieOptions.showLegend"
                 [explodeSlices]="pieOptions.explodeSlices" [labels]="pieOptions.labels" [doughnut]="pieOptions.doughnut"
                 [gradient]="pieOptions.gradient" (select)="pieOptions.onSelect($event)">
               </ngx-charts-pie-chart>
             </div>
 
-            <div *ngIf="showPie" class="py-8 mh-16 border-top" fxLayout="row" fxLayoutAlign="start center" fxLayoutWrap>
+            <div *ngIf="showPie.series.length != 0" class="py-8 mh-16 border-top" fxLayout="row" fxLayoutAlign="start center" fxLayoutWrap>
               <div class="py-8 border-right" fxLayout="column" fxLayoutAlign="center center" fxFlex="100" fxFlex.gt-sm="50">
                 <span class="h4 pie-chart-naming">{{showPie.series[0].name}}</span>
                 <span class="mat-display-1 mb-0 pie-chart-naming-1">{{showPie.series[0].value}}</span>

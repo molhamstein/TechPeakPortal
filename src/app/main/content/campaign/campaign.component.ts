@@ -31,6 +31,16 @@ export class FuseCampaignComponent implements OnInit {
         this.mainServ.APIServ.get("campaigns").subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.rows = data;
+                for (let index = 0; index < this.rows.length; index++) {
+                    var today = new Date();
+                    var exp = new Date(this.rows[index].expiration_date);
+                    if (this.rows[index].status == "active" && today.getDate() > exp.getDate()) {
+                        this.rows[index].status = "expired";
+                    }
+                    if (this.rows[index].status == "active" && this.rows[index].completed == this.rows[index].target) {
+                        this.rows[index].status = "completed";
+                    }
+                }
                 this.loadingIndicator = true;
 
             }
