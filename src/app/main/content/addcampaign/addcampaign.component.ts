@@ -286,9 +286,11 @@ export class FuseaddCampaignComponent {
         for (let index = 0; index < this.myData.length; index++) {
             var temp: any = {};
             temp.type = this.myData[index].criteria;
+            temp.operator = "=";
             if (this.myData[index].criteria == "age") {
                 temp.value = this.sendCriteriaFromAge;
                 temp.value2 = this.sendCriteriaToAge;
+                temp.operator = "<>";
             }
             else if (this.myData[index].criteria == "gender") {
                 temp.value = this.myData[index].data.toLowerCase();

@@ -16,9 +16,12 @@
       <div fxFlex="10"></div>
       <div fxFlex="40">
         <mat-form-field >
-          <input type="url" pattern="https?://.+.com" matInput placeholder="الرابط" formControlName="link" autocomplete="off">
+          <input type="url" pattern="https?://.+" matInput placeholder="الرابط" formControlName="link" autocomplete="off">
           <mat-error *ngIf="formErrors.link.required">
-            Required
+            الرجاء إدخال رابط
+          </mat-error>
+          <mat-error style="color:gray" *ngIf="!formErrors.link.required">
+            مثال: https://www.example.com 
           </mat-error>
         </mat-form-field>
       </div>
@@ -55,8 +58,15 @@
       <div *ngIf="form.value['type']=='image'" fxFlex="100"  for="file" class="AddNewForm-imagescontainer-browseimage">
         <div style="text-align:right; font-size:18px; margin-bottom:20px;"> صورة الإعلان الرئيسية</div>
         <input multiple type="file" style="display:none;" id="files1" accept="image/*" (change)="onChange1($event,true)" />
-        <img style="max-height: 200px; cursor: pointer" (click)="openSelectImage(1)" *ngIf="images1[0]==null" src="assets/images/browse.png" />
-        <img style="max-height: 200px; cursor: pointer" (click)="openSelectImage(1)" *ngIf="images1[0]!=null" src="{{images1[0].thumbnail}}" />
+        <img style="max-height: 200px; cursor: pointer" width="450px" (click)="openSelectImage(1)" *ngIf="images1[0]==null" src="assets/images/browse.png" />
+        <img style="max-height: 200px; cursor: pointer" width="450px" (click)="openSelectImage(1)" *ngIf="images1[0]!=null" src="{{images1[0].thumbnail}}" />
+      </div>
+
+      <div *ngIf="form.value['type']=='image'" fxFlex="100"  for="file" class="AddNewForm-imagescontainer-browseimage">
+        <div style="text-align:right; font-size:18px; margin-bottom:20px;"> صورة الإعلان على أجهزة الموبايل</div>
+        <input multiple type="file" style="display:none" id="files2" accept="image/*" (change)="onChange2($event,true)" />
+        <img style="max-width: 200px; cursor: pointer " (click)="openSelectImage(2)" *ngIf="images2[0]==null" src="assets/images/browse.png" />
+        <img style="max-width: 200px; cursor: pointer" (click)="openSelectImage(2)" *ngIf="images2[0]!=null" src="{{images2[0].thumbnail}}" />
       </div>
 
       <div *ngIf="form.value['type']=='video'" fxFlex="100" (click)="openSelectVideo()" for="videos" class="AddNewForm-imagescontainer-browseimage cursorPointer">
@@ -66,7 +76,7 @@
       </div>
     </div>
 
-    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0"
+    <!-- <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0"
       style="margin-top:15px;">
       <div *ngIf="form.value['type']=='image'" fxFlex="100"  for="file" class="AddNewForm-imagescontainer-browseimage">
         <div style="text-align:right; font-size:18px; margin-bottom:20px;"> صورة الإعلان على أجهزة الموبايل</div>
@@ -75,7 +85,7 @@
         <img style="max-width: 200px; cursor: pointer" (click)="openSelectImage(2)" *ngIf="images2[0]!=null" src="{{images2[0].thumbnail}}" />
       </div>
 
-    </div>
+    </div> -->
 
     <div>
       <button mat-raised-button color="accent" style="margin-top:30px; float:left;" class="submit-button" aria-label="LOG IN" (click)="editAds()" [disabled]="form.invalid">
