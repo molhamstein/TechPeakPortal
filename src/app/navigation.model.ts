@@ -130,6 +130,14 @@ export class NavigationModel {
                     'icon': 'attach_money',
                     'url': '/billing'
     
+                },
+                {
+                    'id': 'isp',
+                    'title': 'ISP',
+                    'type': 'item',
+                    'icon': 'forum',
+                    'url': '/isp'
+    
                 }/* ,{
                     'id': 'home',
                     'title': 'الصفحة الشخصية',

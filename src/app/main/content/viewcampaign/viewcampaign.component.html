@@ -14,7 +14,7 @@
     </div>
   </div>
 
-  <div class="view">
+  <div *ngIf="campaign" class="view">
     <div class="section1">
       <div fxLayout="row">
         <h1>الاداء العام</h1>
@@ -40,9 +40,15 @@
         </div>
         <div fxFlex="20" class="from">
           <label>
-            ECPM
+            CPC
           </label>
-          <h3>225</h3>
+          <h3>{{campaign.CPC}}</h3>
+        </div>
+        <div fxFlex="20" class="from">
+          <label>
+            CPI
+          </label>
+          <h3>{{campaign.CPI}}</h3>
         </div>
         <div fxFlex="20" class="from">
           <label>
@@ -85,7 +91,8 @@
     </div>
 
     <div fxLayout.md="row " fxLayout.xs="column" class="section2">
-      <div *ngIf="dateArray.length != 0" fxFlex="100" class="card noPadding"> <!-- *ngIf="dateArray.length != 0" -->
+      <div *ngIf="dateArray.length != 0" fxFlex="100" class="card noPadding">
+        <!-- *ngIf="dateArray.length != 0" -->
         <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="row" fxFlex="100">
 
           <!-- Front -->
@@ -137,7 +144,7 @@
         <!-- / WIDGET 5 -->
       </div>
     </div>
-    <div  fxLayout.md="row " fxLayout.xs="column" class="section2">
+    <div fxLayout.md="row " fxLayout.xs="column" class="section2">
       <div *ngIf="pieImpressions && pieClicks" fxFlex="100" class="card noPadding" style="box-shadow: 0 0 8px #828282;">
 
         <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget">
@@ -145,9 +152,9 @@
           <!-- Front -->
           <div class="fuse-widget-front mat-white-bg mat-elevation-z2">
             <button *ngIf="pieToggle == 'clicks'" mat-raised-button class="btn-toggle" (click)="toggle('impressions')">
-              Clicks </button>
+              View Clicks </button>
             <button *ngIf="pieToggle == 'impressions'" mat-raised-button class="btn-toggle" (click)="toggle('clicks')">
-              Impressions </button>
+              View Impressions </button>
             <hr style="color:black; width:100%">
             <!--<div class="px-16 border-bottom" fxLayout="row" fxLayoutAlign="space-between center">
               <div class="h3">{{widgets.widget6.title}}</div>
@@ -160,7 +167,8 @@
               </ngx-charts-pie-chart>
             </div>
 
-            <div *ngIf="showPie.series.length != 0" class="py-8 mh-16 border-top" fxLayout="row" fxLayoutAlign="start center" fxLayoutWrap>
+            <div *ngIf="showPie.series.length != 0" class="py-8 mh-16 border-top" fxLayout="row" fxLayoutAlign="start center"
+              fxLayoutWrap>
               <div class="py-8 border-right" fxLayout="column" fxLayoutAlign="center center" fxFlex="100" fxFlex.gt-sm="50">
                 <span class="h4 pie-chart-naming">{{showPie.series[0].name}}</span>
                 <span class="mat-display-1 mb-0 pie-chart-naming-1">{{showPie.series[0].value}}</span>
@@ -180,9 +188,9 @@
       </div>
       <div fxFlex="50" class="card" style="box-shadow: 2px 0 8px #828282;">
         <button *ngIf="mapToggle == 'clicks'" mat-raised-button class="btn-toggle-map" (click)="toggleMap('impressions')">
-          Clicks </button>
+          View Clicks </button>
         <button *ngIf="mapToggle == 'impressions'" mat-raised-button class="btn-toggle-map" (click)="toggleMap('clicks')">
-          Impressions </button>
+          View Impressions </button>
         <hr style="color:black; width:100%; margin-bottom: 45px;">
         <agm-map [zoom]="17" [latitude]="lat" [longitude]="lng">
           <!-- <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker> -->
@@ -191,13 +199,48 @@
       </div>
     </div>
   </div>
+
   <mat-card class="mat-elevation-z8 mat-card-style">
+    <div>
+      <div *ngIf="ADs" fxFlex=47>
+        <div class="ads-cri-labels">الإعلانات:</div>
+        <ngx-datatable class="material" [rows]="ADs" [columnMode]="'force'" [headerHeight]="48" [footerHeight]="56"
+          [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable" [limit]="5">
+
+          <ngx-datatable-column [width]="150" name="اسم الإعلان" prop="name">
+          </ngx-datatable-column>
+
+        </ngx-datatable>
+      </div>
+      <div fxFlex=3></div>
+
+      <div *ngIf="campaignCriterias" fxFlex=50>
+          <div class="ads-cri-labels">المعايير:</div>
+        <ngx-datatable class="material" [rows]="campaignCriterias" [columnMode]="'force'" [headerHeight]="48"
+          [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable" [limit]="5">
+
+          <ngx-datatable-column [width]="100" name="النوع" prop="type">
+          </ngx-datatable-column>
+
+          <ngx-datatable-column [width]="175" name="القيمة" prop="value">
+          </ngx-datatable-column>
+
+          <ngx-datatable-column [width]="100" name=" القيمة الثانية" prop="value2">
+          </ngx-datatable-column>
+
+        </ngx-datatable>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card *ngIf="visibility" class="mat-elevation-z8 mat-card-style">
     <mat-tab-group mat-align-tabs="center">
-      <mat-tab label="المشاهدات"> <!-- *ngIf="rows[0]!=null" -->
+      <mat-tab label="المشاهدات">
+        <!-- *ngIf="rows[0]!=null" -->
         <ngx-datatable *ngIf="impressionsClients.length > 0" class="material" [rows]="impressionsClients" [columnMode]="'force'"
           [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
-          [limit]="10">
-          
+          [externalPaging]="true" [count]="countImp" [offset]="offsetImp" [limit]="limitImp" (page)='onPageImp($event)'>
+
           <ngx-datatable-column [width]="150" name="Phone Number" prop="client.mobile">
           </ngx-datatable-column>
 
@@ -209,14 +252,14 @@
 
           <ngx-datatable-column [width]="150" name="Name" prop="client.username">
           </ngx-datatable-column>
-          
+
         </ngx-datatable>
       </mat-tab>
       <mat-tab label="النقرات">
-      <ngx-datatable *ngIf="clicksClients.length > 0" class="material" [rows]="clicksClients" [columnMode]="'force'"
+        <ngx-datatable *ngIf="clicksClients.length > 0" class="material" [rows]="clicksClients" [columnMode]="'force'"
           [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
-          [limit]="10">
-          
+          [externalPaging]="true" [count]="countClk" [offset]="offsetClk" [limit]="limitClk" (page)='onPageClk($event)'>
+
           <ngx-datatable-column [width]="150" name="Phone Number" prop="client.mobile">
           </ngx-datatable-column>
 
@@ -228,7 +271,7 @@
 
           <ngx-datatable-column [width]="150" name="Name" prop="client.username">
           </ngx-datatable-column>
-          
+
         </ngx-datatable>
       </mat-tab>
     </mat-tab-group>

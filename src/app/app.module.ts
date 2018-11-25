@@ -65,6 +65,12 @@ import { FuseeditPartnerModule } from './main/content/editpartner/editpartner.mo
 import { FuseeditClientModule } from './main/content/editclient/editclient.module';
 import { FuseeditClientComponent } from './main/content/editclient/editclient.component';
 import { RoleGuardService } from './core/services/role-guard.service';
+import { FuseISPComponent } from './main/content/isp/isp.component';
+import { FuseISPModule } from './main/content/isp/isp.module';
+import { FuseaddISPModule } from './main/content/addisp/addisp.module';
+import { FuseaddISPComponent } from './main/content/addisp/addisp.component';
+import { FuseeditISPComponent } from './main/content/editisp/editisp.component';
+import { FuseeditISPModule } from './main/content/editisp/editisp.module';
 
 const appRoutes: Routes = [
 
@@ -72,6 +78,30 @@ const appRoutes: Routes = [
         path: 'billing',
         component: FuseBillingComponent,
         canActivate: [AuthGuardService]
+    },
+    {
+        path: 'isp',
+        component: FuseISPComponent,
+        canActivate: [AuthGuardService, RoleGuardService],
+        data: { 
+            expectedRole: 'admin'
+          }
+    },
+    {
+        path: 'addisp',
+        component: FuseaddISPComponent,
+        canActivate: [AuthGuardService, RoleGuardService],
+        data: { 
+            expectedRole: 'admin'
+          }
+    },
+    {
+        path: 'editisp/:id',
+        component: FuseeditISPComponent,
+        canActivate: [AuthGuardService, RoleGuardService],
+        data: { 
+            expectedRole: 'admin'
+          }
     },
     {
         path: 'locations',
@@ -263,6 +293,10 @@ const appRoutes: Routes = [
         FuseviewLocationModule,
         FusePaymentModule,
         FuseBillingModule,
+
+        FuseISPModule,
+        FuseaddISPModule,
+        FuseeditISPModule,
 
         RouterModule.forRoot(appRoutes , { enableTracing: false, useHash: true }),
     ],

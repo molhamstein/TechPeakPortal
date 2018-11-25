@@ -31,16 +31,20 @@ export class FuseaddCampaignComponent {
     partners: Partners[] = [];
     selectedPartner: any;
 
+    myControl1 = new FormControl();
+    filteredOptions1: Observable<Locations[]>;
+    locations: Locations[] = [];
+    selectedLocation: any;
+
     criteriaTypes: any = [];
     selectedCriteria: any = {};
-    locations: any;
-    selectedLocation: any;
     genders: any = [{ name: "Male" }, { name: "Female" }];
     selectedGender: any;
     professions: any = [{ name: "الإداره و خدمات الدعم الاداري" }, { name: "النقل و الحدمات اللوجستيه" }, { name: "الخدمات الاجتماعيه" },
     { name: "الإعلام و الإعلان" }, { name: "المبيعات و التسويق" }, { name: "الصناعه و التصنيع" }, { name: "الخدمات الطبية و العلوم" },
     { name: "الطاقة و النفط و الغاز" }, { name: "الفنادق و المطاعم" }, { name: "التشييد و العقارات" }, { name: "البنوك و الصرفة" },
-    { name: "التكنولوجيا و الاتصالات" }, { name: "المحاسبة" }, { name: "التعليم" }, { name: "الفنون و التصميم" }, { name: "الخدمات القانونية" }, { name: "المهن اليدويه و الحرفية" },];
+    { name: "التكنولوجيا و الاتصالات" }, { name: "المحاسبة" }, { name: "التعليم" }, { name: "الفنون و التصميم" }, { name: "الخدمات القانونية" },
+    { name: "المهن اليدويه و الحرفية" }, { name: "طالب" }];
     selectedProfession: any;
     fromAge: any;
     toAge: any;
@@ -56,9 +60,9 @@ export class FuseaddCampaignComponent {
 
     isAdmin = true;
     role: any;
-    id:any;
+    id: any;
 
-    constructor(private formBuilder: FormBuilder, private mainServ: MainService, private snack : MatSnackBar) {
+    constructor(private formBuilder: FormBuilder, private mainServ: MainService, private snack: MatSnackBar) {
         this.formErrors = {
             name: {},
             type: {},
@@ -83,6 +87,7 @@ export class FuseaddCampaignComponent {
             fromAge: [''],
             toAge: [''],
             profession: [''],
+            view_impressions:[false],
         });
 
         this.form.valueChanges.subscribe(() => {
@@ -133,7 +138,7 @@ export class FuseaddCampaignComponent {
                     }
                 }
             })
-            this.mainServ.APIServ.get("partners/" + this.id).subscribe((res:any) => {
+            this.mainServ.APIServ.get("partners/" + this.id).subscribe((res: any) => {
                 this.selectedPartner = res;
             })
         }
@@ -160,7 +165,7 @@ export class FuseaddCampaignComponent {
             this.mainServ.APIServ.get("partners").subscribe((res: any) => {
                 if (this.mainServ.APIServ.getErrorCode() == 401 || res == "E") {
                     this.snack.open("هنالك مشكلة ما.. الرجاء المحاولة لاحقاً", "حسناً");
-                   /*  this.mainServ.globalServ.goTo("campaign"); */
+                    /*  this.mainServ.globalServ.goTo("campaign"); */
                 }
                 else {
                     this.partners = res;
@@ -171,7 +176,7 @@ export class FuseaddCampaignComponent {
                             map(title => title ? this._filter(title) : this.partners.slice())
                         );
                 }
-            }, err => {this.mainServ.globalServ.goTo("campaign");})
+            }, err => { this.mainServ.globalServ.goTo("campaign"); })
 
         }
     }
@@ -186,14 +191,30 @@ export class FuseaddCampaignComponent {
         return this.partners.filter(part => part.fullname.toLowerCase().indexOf(filterValue) === 0);
     }
 
+    displayLoc(part?: Locations): string | undefined {
+        return part ? part.name : undefined;
+    }
+
+    private _filterLoc(name: string): Locations[] {
+        const filterValue = name.toLowerCase();
+
+        return this.locations.filter(part => part.name.toLowerCase().indexOf(filterValue) === 0);
+    }
+
     criteriaSelectChange() {
         if (this.selectedCriteria.type == "location") {
             this.selectedGender = "";
             this.fromAge = "";
             this.toAge = "";
             this.selectedProfession = "";
-            this.mainServ.APIServ.get("locations").subscribe(res => {
+            this.mainServ.APIServ.get("locations").subscribe((res: any) => {
                 this.locations = res;
+                this.filteredOptions1 = this.myControl1.valueChanges
+                    .pipe(
+                        startWith<string | Locations>(''),
+                        map(value => typeof value === 'string' ? value : value.name),
+                        map(title => title ? this._filterLoc(title) : this.locations.slice())
+                    );
             })
         }
         else if (this.selectedCriteria.type == "gender") {
@@ -253,6 +274,7 @@ export class FuseaddCampaignComponent {
         delete data.toAge;
         if (this.role == "partner") {
             data.status = "pending";
+            data.view_impressions = false;
             delete data.partner;
         }
         data.partner_id = this.selectedPartner.id;
@@ -295,9 +317,22 @@ export class FuseaddCampaignComponent {
     }
 
     pushCriteria() {
+        if (this.selectedCriteria.type == "location") {
+            var ok = false;
+            for (let index = 0; index < this.locations.length; index++) {
+                if (this.selectedLocation.id == this.locations[index].id) {
+                    ok = true;
+                    break;
+                }
+            }
+            if (ok == false) {
+                this.snack.open("الرجاء إدخال موقع صحيح", "حسناً");
+                return;
+            }
+        }
         this.newCriteria.criteria = this.selectedCriteria.type;
-        this.newCriteria.cpi = this.selectedCriteria.perClick;
-        this.newCriteria.cpc = this.selectedCriteria.perImp;
+        this.newCriteria.cpi = this.selectedCriteria.perImp;
+        this.newCriteria.cpc = this.selectedCriteria.perClick;
         var exist = false;
         for (let index = 0; index < this.myData.length; index++) {
             if (this.newCriteria.criteria == this.myData[index].criteria) {
@@ -306,12 +341,13 @@ export class FuseaddCampaignComponent {
             }
         }
         if (exist == false) {
-            this.CPI = this.CPI + this.selectedCriteria.perClick;
-            this.CPC = this.CPC + this.selectedCriteria.perImp;
+            this.CPI = this.CPI + this.selectedCriteria.perImp;
+            this.CPC = this.CPC + this.selectedCriteria.perClick;
         }
         if (this.newCriteria.criteria == "location") {
             this.newCriteria.data = this.selectedLocation.name;
             this.newCriteria.id = this.selectedLocation.id;
+            console.log(this.newCriteria);
             this.selectedCriteria = {};
         }
         else if (this.newCriteria.criteria == "gender") {
@@ -406,5 +442,10 @@ export interface Criterias {
 
 export interface Partners {
     fullname: string;
+    id: number;
+}
+
+export interface Locations {
+    name: string;
     id: number;
 }

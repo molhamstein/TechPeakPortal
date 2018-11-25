@@ -18,7 +18,8 @@ export class FuseaddAdvertisingComponent {
     form: FormGroup;
     formErrors: any;
     imageOnLoad: any = [];
-    images = [];
+    images1 = [];
+    images2 = [];
     videos = [];
 
     ad_text = "";
@@ -35,6 +36,7 @@ export class FuseaddAdvertisingComponent {
             name: {},
             link: {},
             type: {},
+            botton_title: {},
         };
 
 
@@ -46,6 +48,7 @@ export class FuseaddAdvertisingComponent {
             name: ['', Validators.required],
             link: ['', Validators.required],
             type: ['Image', Validators.required],
+            botton_title:['', Validators.required]
         });
 
         this.form.valueChanges.subscribe(() => {
@@ -56,13 +59,26 @@ export class FuseaddAdvertisingComponent {
     addAds() {
         var data = this.form.value;
         if (data.type == "image") {
-            if (this.images.length != 0) {
-                if (this.images[0].file == null || this.images[0].file == "") {
+            if (this.images1.length != 0) {
+                if (this.images1[0].file == null || this.images1[0].file == "") {
                     this.snack.open("الرجاء إدخال صورة", "حسناً");
                     return;
                 }
-                data.media_link = this.images[0].file;
-                data.thumb_link = this.images[0].thumbnail;
+                data.media_link = this.images1[0].file;
+                data.thumb_link = this.images1[0].thumbnail;
+            }
+            else {
+                this.snack.open("الرجاء إدخال صورة", "حسناً");
+                return;
+            }
+
+            if (this.images2.length != 0) {
+                if (this.images2[0].file == null || this.images2[0].file == "") {
+                    this.snack.open("الرجاء إدخال صورة", "حسناً");
+                    return;
+                }
+                data.portrait_link = this.images2[0].file;
+                data.portrait_thumb_link = this.images2[0].thumbnail;
             }
             else {
                 this.snack.open("الرجاء إدخال صورة", "حسناً");
@@ -112,7 +128,7 @@ export class FuseaddAdvertisingComponent {
         }
     }
 
-    onChange(event: any, isImage) {
+    onChange1(event: any, isImage) {
         if (event.target.files.length == 0) {
             return;
         }
@@ -126,7 +142,6 @@ export class FuseaddAdvertisingComponent {
             var x;
             console.log("fromOut");
             console.log(i);
-            // this.releadImage(i, file);
         }
         swal({
             title: '..يتم تحميل الصورة',
@@ -140,20 +155,62 @@ export class FuseaddAdvertisingComponent {
             var folder = "videos"
         files.forEach((fileElement, index) => {
             let countDelete = 0
-            this.images = [];
-            // this.ng2ImgMaxService.compress([fileElement], 0.5, true, true).subscribe((result) => {
+            this.images1 = [];
             this.mainServ.APIServ.uploadImage("attachments/" + folder + "/upload", [fileElement], 1).subscribe((data: any) => {
                 this.imageOnLoad = [];
                 countDelete++;
                 if (this.mainServ.APIServ.getErrorCode() == 0)
                     data.forEach(element => {
                         if (isImage) {
-                            this.images.push(element);
+                            this.images1.push(element);
                             swal.close();
                         }
                         else
                             this.videos.push(element);
 
+                    });
+                else if (this.mainServ.APIServ.getErrorCode() == 500 || this.mainServ.APIServ.getErrorCode() == 400 || this.mainServ.APIServ.getErrorCode() == 404){
+                    this.mainServ.globalServ.somthingError()
+                    swal.close();
+                    this.snack.open("لم يتم تحميل الصورة أو الفيديو الرجاء إعادة المحاولة", "حسناً")
+                }
+
+            });
+        });
+    }
+
+    onChange2(event: any, isImage) {
+        if (event.target.files.length == 0) {
+            return;
+        }
+        let files = [].slice.call(event.target.files);
+        let allFilles = event.target.files;
+        let images: any = [];
+        this.imageOnLoad = Array(files.length);
+        var innerIndex = 0;
+        for (var i = 0; i < allFilles.length; i++) {
+            var file = allFilles[i];
+            var x;
+        }
+        swal({
+            title: '..يتم تحميل الصورة',
+            allowOutsideClick: false
+        });
+        swal.showLoading();
+        let files2 = Array.from(event.target.files);
+        var folder = "images"
+        files.forEach((fileElement, index) => {
+            let countDelete = 0
+            this.images2 = [];
+            this.mainServ.APIServ.uploadImage("attachments/" + folder + "/upload", [fileElement], 1).subscribe((data: any) => {
+                this.imageOnLoad = [];
+                countDelete++;
+                if (this.mainServ.APIServ.getErrorCode() == 0)
+                    data.forEach(element => {
+                        if (isImage) {
+                            this.images2.push(element);
+                            swal.close();
+                        }
                     });
                 else {
                     this.mainServ.globalServ.somthingError()
@@ -163,18 +220,23 @@ export class FuseaddAdvertisingComponent {
 
             });
         });
-        // });
     }
 
-    openSelectImage() {
-        document.getElementById('files').click();
+
+    openSelectImage(num) {
+        if (num == 1) {
+            document.getElementById('files1').click();
+        }
+        if (num == 2) {
+            document.getElementById('files2').click();
+        }
     }
 
     openSelectVideo() {
         document.getElementById('videos').click();
     }
 
-    releadImage(innerIndex, file) {
+    /* releadImage(innerIndex, file) {
         var reader = new FileReader();
         reader.onload = function (e) {
             var id = 'uploadImage' + innerIndex;
@@ -182,7 +244,7 @@ export class FuseaddAdvertisingComponent {
             // this.text = reader.result;
         }
         reader.readAsDataURL(file);
-    }
+    } */
 
 
 }

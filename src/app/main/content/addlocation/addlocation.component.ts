@@ -23,6 +23,8 @@ export class FuseaddLocationComponent {
 
     lat = 33.51380000000012;
     lng = 36.27649999999994;
+    ISPs :any= [];
+    selectedISP:any = {username:"No ISP", id:0};
 
     constructor(private formBuilder: FormBuilder, private mainServ: MainService, private loc: Location
         , private snack: MatSnackBar) {
@@ -39,11 +41,17 @@ export class FuseaddLocationComponent {
             ip: ['', Validators.required],
             routerName: ['', Validators.required],
             dailyLimit: [0],
+            isp:[]
         });
 
         this.form.valueChanges.subscribe(() => {
             this.onFormValuesChanged();
         });
+
+        this.mainServ.APIServ.get("ISP").subscribe((res:any) => {
+            this.ISPs = res;
+            this.ISPs.push({username:"No ISP", id:0});
+        })
 
         this.mainServ.APIServ.get("partners").subscribe((res: any) => {
             this.partners = res;
@@ -71,10 +79,12 @@ export class FuseaddLocationComponent {
         data.partner_id = this.selectedPartner.id;
         data.lng = this.lng;
         data.lat = this.lat;
+        data.isp_id = this.selectedISP.id;
         if (data.partner_id == undefined) {
             this.snack.open("الرجاء إدخال اسم المستخدم الصحيح", "حسناً");
             return;
         }
+        delete data.isp;
         this.mainServ.APIServ.post("locations", data).subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.mainServ.globalServ.goTo("locations");

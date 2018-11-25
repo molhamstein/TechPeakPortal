@@ -1,0 +1,44 @@
+<div class="page-layout blank p-24">
+
+  <button style="float: left;" mat-raised-button class="mat-accent mr-16" (click)="addISP()">إضافة مزود خدمة
+    <mat-icon class="s-30">add</mat-icon>
+
+  </button>
+  <br>
+  <br>
+  <br>
+
+  <div *ngIf="loadingIndicator == false" style="margin-right: 45%;">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <ngx-datatable *ngIf="rows[0]!=null && loadingIndicator == true" class="material" [rows]="rows" [columnMode]="'force'"
+    [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
+    [limit]="5">
+
+    <ngx-datatable-column [width]="200" name="اسم المستخدم" prop="username">
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [width]="200" name="البريد الالكتروني" prop="email">
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [width]="200" name="id">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <div class="table-header-font">
+          Action
+        </div>
+      </ng-template>
+
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <button mat-mini-fab class="mr-16" (click)="edit(row['id'])" style="background-color: rgba(20, 160, 202, 0.911);">
+          <mat-icon style="color : white;">edit</mat-icon>
+        </button>
+        <button mat-mini-fab class="mr-16" (click)="deleteModal(row['id'])" style="background-color: rgba(219, 18, 18, 0.808);">
+          <mat-icon style="color : white;">delete</mat-icon>
+        </button>
+      </ng-template>
+
+    </ngx-datatable-column>
+  </ngx-datatable>
+
+</div>

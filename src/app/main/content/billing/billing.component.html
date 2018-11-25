@@ -61,7 +61,7 @@
   <br>
   <br>
   <mat-card *ngIf="loadingIndicatorCampaign == true && loadingIndicatorInvoice == true">
-    <form name="form" [formGroup]="form">
+    <form *ngIf="!isPartner" name="form" [formGroup]="form">
       <div fxFlex="50" style="font-size : 17px; font-weight: 700; margin-top: 15px;"></div>
       <div fxFlex="10"></div>
       <div class="container" fxFlex="50">

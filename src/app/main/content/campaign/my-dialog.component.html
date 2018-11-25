@@ -1,0 +1,39 @@
+<div class="page-layout blank p-24">
+
+  <h2 mat-dialog-title>تعديل الحملة</h2>
+
+  <mat-dialog-content [formGroup]="form" style="display:contents !important;">
+    <div fxFlex="100">
+      <mat-form-field style="width:100%">
+        <mat-select formControlName="status" placeholder="الحالة" [(ngModel)]="status">
+          <mat-option [value]="'active'">
+            Active
+          </mat-option>
+          <mat-option [value]="'pending'">
+            Pending
+          </mat-option>
+          <mat-option [value]="'deactivated'">
+            Deactivated
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <div fxFlex="50">
+        <div class="verify">
+          إظهار الانطباعات و النقرات
+        </div>
+      </div>
+      <div fxFlex="20">
+        <mat-slide-toggle class="tog" formControlName="view_impressions" [(ngModel)]="view_impressions"></mat-slide-toggle>
+      </div>
+    </div>
+    
+  </mat-dialog-content>
+
+  <mat-dialog-actions style="margin-top:15px">
+    <button class="mat-raised-button" style="background-color: #0095ff; color: white" (click)="save()">حفظ</button>
+    <button class="mat-raised-button" style="background-color:#e81d1d; color: white" (click)="close()">إلغاء</button>
+    
+  </mat-dialog-actions>
+</div>

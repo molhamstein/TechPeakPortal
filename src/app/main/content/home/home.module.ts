@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../../core/modules/shared.module';
 
 import { FusehomeComponent } from './home.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { FuseWidgetModule } from '../../../core/components/widget/widget.module';
 
 const routes = [
     {
@@ -18,6 +20,8 @@ const routes = [
     ],
     imports     : [
         SharedModule,
+        NgxChartsModule,
+        FuseWidgetModule,
         // RouterModule.forChild(routes)
     ],
     exports     : [

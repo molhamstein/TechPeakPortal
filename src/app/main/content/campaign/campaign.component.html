@@ -32,7 +32,7 @@
     <ngx-datatable-column [width]="150" name="الحالة" prop="status">
       <ng-template let-row="row" ngx-datatable-cell-template>
         <mat-chip-list>
-         <!--  <mat-chip [class.chip-active]="row.status == 'active'" [class.chip-expired]="row.status == 'expired'"
+          <!--  <mat-chip [class.chip-active]="row.status == 'active'" [class.chip-expired]="row.status == 'expired'"
           [class.chip-completed]="row.status == 'completed'" [class.chip-pending]="row.status == 'pending'" selected>{{row.status}}</mat-chip> -->
           <mat-chip *ngIf="row.status == 'active'" style="background-color:#0095ff" selected>{{row.status}}</mat-chip>
           <mat-chip *ngIf="row.status == 'expired'" style="background-color:#e81d1d" selected>{{row.status}}</mat-chip>
@@ -60,7 +60,7 @@
         <button style="background-color: rgba(7, 112, 7, 0.849);" mat-mini-fab class="mr-16" (click)="view(row['id'])">
           <mat-icon style="color : white;">visibility</mat-icon>
         </button>
-        <button *ngIf="isAdmin" mat-mini-fab class="mr-16" (click)="edit(row)" style="background-color: rgba(20, 160, 202, 0.911);">
+        <button *ngIf="isAdmin" mat-mini-fab class="mr-16" (click)="open(row)" style="background-color: rgba(20, 160, 202, 0.911);">
           <mat-icon style="color : white;">edit</mat-icon>
         </button>
 

@@ -36,6 +36,7 @@ export class FuseBillingComponent implements OnInit {
     partners: Partners[] = [];
     selectedPartner: any;
 
+    isPartner = false;
 
     constructor(private http: HttpClient, private translationLoader: FuseTranslationLoaderService, private snack: MatSnackBar,
         private mainServ: MainService, private datePipe: DatePipe, private formBuilder: FormBuilder) {
@@ -43,6 +44,10 @@ export class FuseBillingComponent implements OnInit {
         this.form = this.formBuilder.group({});
     }
     ngOnInit() {
+        var role = this.mainServ.loginServ.getRole();
+        if (role == "partner") {
+            this.isPartner = true;
+        }
         this.mainServ.APIServ.get("campaigns/states").subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.rowsCampaign = data;
@@ -158,7 +163,7 @@ export class FuseBillingComponent implements OnInit {
                         if (this.rowsCampaign[index].campaign.CPC == "") {
                             this.rowsCampaign[index].campaign.CPC = "0";
                         }
-                        this.rowsCampaign[index].totalCost = parseInt(this.rowsCampaign[index].campaign.CPI) + parseInt(this.rowsCampaign[index].campaign.CPC);
+                        this.rowsCampaign[index].totalCost = (parseInt(this.rowsCampaign[index].campaign.CPI) * parseInt(this.rowsCampaign[index].impressions)) + (parseInt(this.rowsCampaign[index].campaign.CPC) * parseInt(this.rowsCampaign[index].clicks));
                         this.campaignCount = this.campaignCount + this.rowsCampaign[index].totalCost;
                     }
                     this.loadingIndicatorCampaign = true;

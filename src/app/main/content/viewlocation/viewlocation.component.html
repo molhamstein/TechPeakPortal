@@ -17,26 +17,31 @@
       </div>
     </div>
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
-      <div fxFlex="40">
+      <div *ngIf="viewData.partner" fxFlex="40">
         <mat-form-field>
           <input matInput readonly placeholder="المستخدم" formControlName="partner" [(ngModel)]="viewData.partner.fullname">
         </mat-form-field>
       </div>
-      < <div fxFlex="10">
+      <div fxFlex="10">
       </div>
       <div fxFlex="40">
         <mat-form-field>
-          <input matInput placeholder="Hotspot Name" formControlName="routerName" [(ngModel)]="viewData.routerName">
+          <input matInput readonly placeholder="Hotspot Name" formControlName="routerName" [(ngModel)]="viewData.routerName">
         </mat-form-field>
       </div>
     </div>
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <div fxFlex="40">
         <mat-form-field>
-          <input matInput type="number" placeholder="عدد ساعات الاستخدام" formControlName="dailyLimit" [(ngModel)]="viewData.dailyLimit">
+          <input matInput readonly type="number" placeholder="عدد ساعات الاستخدام" formControlName="dailyLimit" [(ngModel)]="viewData.dailyLimit">
         </mat-form-field>
       </div>
       <div fxFlex="10">
+      </div>
+      <div *ngIf="ispDatum" fxFlex="40">
+        <mat-form-field>
+          <input matInput readonly placeholder="مزود خدمة الانترنت" formControlName="isp" [(ngModel)]="ispDatum.username">
+        </mat-form-field>
       </div>
     </div>
 

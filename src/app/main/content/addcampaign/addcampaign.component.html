@@ -125,6 +125,14 @@
       </div>
       <div fxFlex="10">
       </div>
+      <div fxFlex="20">
+        <div class="verify">
+          إظهار الانطباعات و النقرات
+        </div>
+      </div>
+      <div fxFlex="10">
+        <mat-slide-toggle class="tog" formControlName="view_impressions"></mat-slide-toggle>
+      </div>
     </div>
 
     <div class="h3 mb-24" style="margin-top:10px;">اختيار الاعلانات</div>
@@ -186,11 +194,18 @@
       </div>
       <div *ngIf="selectedCriteria.type == 'location'" fxFlex="40">
         <mat-form-field>
-          <mat-select formControlName="location" placeholder="الموقع" [(ngModel)]="selectedLocation">
+          <input type="text" placeholder="اختر الموقع" matInput [formControl]="myControl1" [matAutocomplete]="auto1"
+            [(ngModel)]="selectedLocation">
+          <mat-autocomplete #auto1="matAutocomplete" [displayWith]="displayLoc">
+            <mat-option *ngFor="let option of filteredOptions1 | async" [value]="option">
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete>
+          <!--  <mat-select formControlName="location" placeholder="الموقع" [(ngModel)]="selectedLocation">
             <mat-option *ngFor="let l of locations" [value]="l">
               {{l.name}}
             </mat-option>
-          </mat-select>
+          </mat-select> -->
         </mat-form-field>
       </div>
       <div *ngIf="selectedCriteria.type == 'gender'" fxFlex="40">

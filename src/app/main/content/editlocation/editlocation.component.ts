@@ -23,6 +23,8 @@ export class FuseeditLocationComponent {
     editedData : any;
     lat = 33.51380000000012;
     lng = 36.27649999999994;
+    ISPs :any= [];
+    selectedISP:any ;
 
     constructor(private formBuilder: FormBuilder, private mainServ: MainService, private loc: Location
         ,private route: ActivatedRoute, private snack : MatSnackBar) {
@@ -39,6 +41,7 @@ export class FuseeditLocationComponent {
             ip: ['', Validators.required],
             routerName: ['', Validators.required],
             dailyLimit: [0],
+            isp:[]
         });
 
         this.form.valueChanges.subscribe(() => {
@@ -49,8 +52,21 @@ export class FuseeditLocationComponent {
 
         this.mainServ.APIServ.get('locations/' + this.id + '?filter={"include":["partner"]}').subscribe((res:any) => {
             this.editedData = res;
-            this.selectedPartner = this.editedData.partner;
+            this.selectedPartner = this.editedData.partner;     
+            this.lng = this.editedData.lng;
+            this.lat = this.editedData.lat;
+
+            this.mainServ.APIServ.get("ISP").subscribe((res:any) => {
+                this.ISPs = res;
+                this.ISPs.push({username:"No ISP", id:0});
+                for (let index = 0; index < this.ISPs.length; index++) {
+                    if (this.ISPs[index].id == this.editedData.isp_id) {
+                        this.selectedISP = this.ISPs[index];
+                    }
+                }
+            })       
         })
+
         this.mainServ.APIServ.get("partners").subscribe((res: any) => {
             this.partners = res;
             this.filteredOptions = this.myControl.valueChanges
@@ -76,12 +92,14 @@ export class FuseeditLocationComponent {
         var data = this.form.value;
         data.id = this.id;
         data.partner_id = this.selectedPartner.id;
-        data.lng = this.editedData.lng;
-        data.lat = this.editedData.lat;
+        data.lng = this.lng;
+        data.lat = this.lat;
+        data.isp_id = this.selectedISP.id;
         if (data.partner_id == undefined) {
             this.snack.open("الرجاء إدخال اسم المستخدم الصحيح", "حسناً");
             return;
         }
+        delete data.isp;
         this.mainServ.APIServ.put("locations", data).subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.mainServ.globalServ.goTo("locations");

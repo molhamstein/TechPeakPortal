@@ -44,6 +44,73 @@
             </div>
           </div>
         </div>
+
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-md="row" class="page-layout blank" style="padding:10px; margin-top:25px;">
+          <form class="mat-white-bg mat-elevation-z4 p-24 mb-10" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto"
+            name="form1" [formGroup]="form1">
+
+            <div class="h2 mb-24">إظهار الإ حصائيات</div>
+            <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px"
+              fxLayoutGap.xs="0">
+              <div fxFlex="40">
+                <mat-form-field style="width:90%">
+                  <input matInput [matDatepicker]="picker" readonly placeholder="تاريخ البدء" [(ngModel)]="startDate"
+                    formControlName="startDate">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div fxFlex="2">
+              </div>
+              <div fxFlex="40">
+                <mat-form-field style="width:90%">
+                  <input matInput [matDatepicker]="picker1" readonly placeholder="تاريخ النهاية" [(ngModel)]="endDate"
+                    formControlName="endDate">
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div fxFlex="5">
+                <button mat-raised-button class="btn-add" [disabled]="!startDate || !endDate" (click)="search()">بحث</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div fxLayout.md="row " fxLayout.xs="column">
+          <div *ngIf="dateArray.length != 0" fxFlex="100" class="card noPadding">
+            <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="row" fxFlex="100">
+              <!-- Front -->
+              <div class="fuse-widget-front mat-white-bg mat-elevation-z2">
+                <div class="px-16 border-bottom" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutWrap>
+                  <div fxFlex class="py-8 h3">الإحصائيات</div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start end" fxLayoutWrap>
+                  <div class="mb-16" fxFlex="100" fxLayoutAlign="row" fxLayoutWrap>
+                    <div fxLayout="column" fxFlex="100" fxLayoutAlign="center">
+                      <div class="px-24">
+                        <div class="h4 secondary-text">القيم</div> 
+                        <div class="mat-display-1 m-0">
+                          {{dateArray[0].series.length + dateArray[1].series.length}}
+                        </div>
+                      </div>
+                      <div style="padding-bottom: 50px;">
+                        <ngx-charts-area-chart *fuseIfOnDom [results]="dateArray" [scheme]="chartOptions.scheme"
+                          [gradient]="chartOptions.gradient" [xAxis]="chartOptions.xAxis" [yAxis]="chartOptions.yAxis"
+                          [legend]="chartOptions.legend" [showXAxisLabel]="chartOptions.showXAxisLabel"
+                          [showYAxisLabel]="chartOptions.showYAxisLabel" [xAxisLabel]="chartOptions.xAxisLabel"
+                          [yAxisLabel]="chartOptions.yAxisLabel" [curve]="chartOptions.curve" [showGridLines]="chartOptions.showGridLines"
+                          [legendTitle]="chartOptions.legendTitle">
+                        </ngx-charts-area-chart>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fuse-widget>
+          </div>
+        </div>
+
         <h1 class="header1">الحملات الإعلانية</h1>
         <div fxLayout.sm="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="" class="section2">
           <div class="card" fxFlex="47%" *ngFor="let oneCompagin of compagins">
@@ -158,7 +225,7 @@
 
       <mat-card *ngIf=" loadingIndicator == true" style="margin-top:15px;">
 
-        <div [formGroup]="form" >
+        <div [formGroup]="form">
           <mat-form-field fxFlex="40" style="margin-right:60%">
             <mat-select placeholder="Filter By Location" formControlName="location" (selectionChange)="selectLocation($event)">
               <mat-option *ngFor="let l of locations" [value]="l">

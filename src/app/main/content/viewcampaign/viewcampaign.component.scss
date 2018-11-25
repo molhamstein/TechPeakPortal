@@ -80,14 +80,14 @@
 .btn-toggle {
   background-color: #02a9f5; 
   color:white; 
-  width: 20%; 
+  width: 30%; 
   margin: 10px;
 }
 
 .btn-toggle-map {
   background-color: #02a9f5; 
   color:white; 
-  width: 20%; 
+  width: 30%; 
   margin: 8px;
 }
 
@@ -118,4 +118,17 @@
 :host ::ng-deep .mat-tab-label {
     font-size: 20px !important;
     font-family: 'Cairo', sans-serif;
-  }
+}
+
+:host ::ng-deep .datatable-header .datatable-header-cell.sortable .datatable-header-cell-wrapper {
+  font-size: 18px !important;
+  font-family: 'Cairo', sans-serif;
+  cursor: pointer;
+}
+
+.ads-cri-labels {
+  font-size: 18px;
+  font-family: 'Cairo', sans-serif;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
