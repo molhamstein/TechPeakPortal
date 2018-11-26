@@ -27,6 +27,7 @@ export class FuseeditAdvertisingComponent {
     projects: any[];
     selectedProject: any;
     videos = [];
+	botton_title:any;
 
     constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, 
         private mainServ: MainService, private snack : MatSnackBar) {
