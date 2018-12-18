@@ -19,7 +19,7 @@ const routes = [
     imports     : [
         SharedModule,
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyAfaEzR5KKaRsI6ByG0oEokmAIG4wjZ848'
+            apiKey: 'AIzaSyB44dir8VgrRW0Bq5zu1qNdsmIlMIdD2Ak'
         }),
         // RouterModule.forChild(routes)
     ],

@@ -299,6 +299,9 @@ const appRoutes: Routes = [
     ],
     imports: [
 
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyB44dir8VgrRW0Bq5zu1qNdsmIlMIdD2Ak'
+        }),
         BrowserModule,
         HttpModule,
         HttpClientModule,
@@ -358,7 +361,7 @@ const appRoutes: Routes = [
         GlobalService,
         { provide: LocationStrategy, useClass: HashLocationStrategy }
     ],
-    entryComponents: [AddPaymentsComponent, generateCodeComponent,paidAccessComponent],
+    entryComponents: [AddPaymentsComponent, generateCodeComponent, paidAccessComponent],
     bootstrap: [
         AppComponent
     ]

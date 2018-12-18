@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { fuseAnimations } from './../../../core/animations';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
@@ -43,7 +44,24 @@ export class FuseviewCampaignComponent implements OnInit {
 
     mapClicks: any;
     mapImpressions: any;
-    showMap: any;
+    showMap = [
+        {
+            lat: 33.510414,
+            lng: 36.278336,
+        }
+    ];
+
+    markers = [
+        {
+            "latitude": 33.510414,
+            "longitude": 36.278336
+        }
+    ]
+
+
+    private convertStringToNumber(value: string): number {
+        return +value;
+    }
     mapToggle: any = "clicks";
 
     impressionsClients: any = [];
@@ -144,15 +162,15 @@ export class FuseviewCampaignComponent implements OnInit {
             this.ADs = res;
         })
 
-        this.mainServ.APIServ.get('campaigns/' + this.id + '/criterias').subscribe((res:any) => {
+        this.mainServ.APIServ.get('campaigns/' + this.id + '/criterias').subscribe((res: any) => {
             for (let index = 0; index < res.length; index++) {
-                if (res[index].type == "location"){
-                    this.mainServ.APIServ.get('locations/' + res[index].value).subscribe((res1:any) =>{
+                if (res[index].type == "location") {
+                    this.mainServ.APIServ.get('locations/' + res[index].value).subscribe((res1: any) => {
                         res[index].value = res1.name;
                         this.campaignCriterias.push(res[index]);
                     })
                 }
-                else {this.campaignCriterias.push(res[index]);}
+                else { this.campaignCriterias.push(res[index]); }
             }
             /* this.campaignCriterias = res; */
         })
@@ -195,7 +213,7 @@ export class FuseviewCampaignComponent implements OnInit {
         this.mainServ.APIServ.get("campaigns/locationStates").subscribe((res: any) => {
             this.mapClicks = res[0].series;
             this.mapImpressions = res[1].series;
-            this.showMap = this.mapImpressions;
+            this.toggleMap("impressions");
         })
 
         /* this.mainServ.APIServ.get('impressions?filter={"where":{"and":[{"campaign_id":' + this.id + '}]}, "include":["location","ad","client"],"limit":10}')
@@ -212,7 +230,7 @@ export class FuseviewCampaignComponent implements OnInit {
                     }
                 }
             }); */
-        
+
 
         /* this.mainServ.APIServ.get('clicks?filter={"where":{"and":[{"campaign_id":' + this.id + '}]}, "include":["location","ad","client"],"limit":10}')
             .subscribe((res: any) => {
@@ -274,14 +292,32 @@ export class FuseviewCampaignComponent implements OnInit {
     }
 
     toggleMap(str) {
+        this.markers=[];
         if (str == "clicks") {
             this.mapToggle = "clicks";
             this.showMap = this.mapImpressions;
+            this.mapImpressions.forEach(element => {
+                this.markers.push(
+                    {
+                        "latitude": element.lat,
+                        "longitude": element.lng
+                    }
+                )
+            });
         }
         else {
             this.mapToggle = "impressions";
-            this.showMap = this.mapClicks;
+            this.mapClicks.forEach(element => {
+                this.markers.push(
+                    {
+                        "latitude": element.lat,
+                        "longitude": element.lng
+                    }
+                )
+            });
+
         }
+        console.log(this.markers);
     }
 
     toggle(str) {

@@ -162,23 +162,24 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__main_content_locations_locations_module__ = __webpack_require__("../../../../../src/app/main/content/locations/locations.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__main_content_addlocation_addlocation_component__ = __webpack_require__("../../../../../src/app/main/content/addlocation/addlocation.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__main_content_addlocation_addlocation_module__ = __webpack_require__("../../../../../src/app/main/content/addlocation/addlocation.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__main_content_editlocation_editlocation_component__ = __webpack_require__("../../../../../src/app/main/content/editlocation/editlocation.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__main_content_editlocation_editlocation_module__ = __webpack_require__("../../../../../src/app/main/content/editlocation/editlocation.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__main_content_viewlocation_viewlocation_component__ = __webpack_require__("../../../../../src/app/main/content/viewlocation/viewlocation.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__main_content_viewlocation_viewlocation_module__ = __webpack_require__("../../../../../src/app/main/content/viewlocation/viewlocation.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__main_content_billing_billing_component__ = __webpack_require__("../../../../../src/app/main/content/billing/billing.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__main_content_billing_billing_module__ = __webpack_require__("../../../../../src/app/main/content/billing/billing.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__main_content_editpartner_editpartner_component__ = __webpack_require__("../../../../../src/app/main/content/editpartner/editpartner.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__main_content_editpartner_editpartner_module__ = __webpack_require__("../../../../../src/app/main/content/editpartner/editpartner.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__main_content_editclient_editclient_module__ = __webpack_require__("../../../../../src/app/main/content/editclient/editclient.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__main_content_editclient_editclient_component__ = __webpack_require__("../../../../../src/app/main/content/editclient/editclient.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__core_services_role_guard_service__ = __webpack_require__("../../../../../src/app/core/services/role-guard.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__main_content_isp_isp_component__ = __webpack_require__("../../../../../src/app/main/content/isp/isp.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__main_content_isp_isp_module__ = __webpack_require__("../../../../../src/app/main/content/isp/isp.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__main_content_addisp_addisp_module__ = __webpack_require__("../../../../../src/app/main/content/addisp/addisp.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_81__main_content_addisp_addisp_component__ = __webpack_require__("../../../../../src/app/main/content/addisp/addisp.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_82__main_content_editisp_editisp_component__ = __webpack_require__("../../../../../src/app/main/content/editisp/editisp.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_83__main_content_editisp_editisp_module__ = __webpack_require__("../../../../../src/app/main/content/editisp/editisp.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__agm_core__ = __webpack_require__("../../../../@agm/core/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__main_content_editlocation_editlocation_component__ = __webpack_require__("../../../../../src/app/main/content/editlocation/editlocation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__main_content_editlocation_editlocation_module__ = __webpack_require__("../../../../../src/app/main/content/editlocation/editlocation.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__main_content_viewlocation_viewlocation_component__ = __webpack_require__("../../../../../src/app/main/content/viewlocation/viewlocation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__main_content_viewlocation_viewlocation_module__ = __webpack_require__("../../../../../src/app/main/content/viewlocation/viewlocation.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__main_content_billing_billing_component__ = __webpack_require__("../../../../../src/app/main/content/billing/billing.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__main_content_billing_billing_module__ = __webpack_require__("../../../../../src/app/main/content/billing/billing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__main_content_editpartner_editpartner_component__ = __webpack_require__("../../../../../src/app/main/content/editpartner/editpartner.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__main_content_editpartner_editpartner_module__ = __webpack_require__("../../../../../src/app/main/content/editpartner/editpartner.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__main_content_editclient_editclient_module__ = __webpack_require__("../../../../../src/app/main/content/editclient/editclient.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__main_content_editclient_editclient_component__ = __webpack_require__("../../../../../src/app/main/content/editclient/editclient.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__core_services_role_guard_service__ = __webpack_require__("../../../../../src/app/core/services/role-guard.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__main_content_isp_isp_component__ = __webpack_require__("../../../../../src/app/main/content/isp/isp.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__main_content_isp_isp_module__ = __webpack_require__("../../../../../src/app/main/content/isp/isp.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_81__main_content_addisp_addisp_module__ = __webpack_require__("../../../../../src/app/main/content/addisp/addisp.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_82__main_content_addisp_addisp_component__ = __webpack_require__("../../../../../src/app/main/content/addisp/addisp.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_83__main_content_editisp_editisp_component__ = __webpack_require__("../../../../../src/app/main/content/editisp/editisp.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_84__main_content_editisp_editisp_module__ = __webpack_require__("../../../../../src/app/main/content/editisp/editisp.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -269,32 +270,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var appRoutes = [
     {
         path: 'billing',
-        component: __WEBPACK_IMPORTED_MODULE_71__main_content_billing_billing_component__["a" /* FuseBillingComponent */],
+        component: __WEBPACK_IMPORTED_MODULE_72__main_content_billing_billing_component__["a" /* FuseBillingComponent */],
         canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */]]
     },
     {
         path: 'isp',
-        component: __WEBPACK_IMPORTED_MODULE_78__main_content_isp_isp_component__["a" /* FuseISPComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_77__core_services_role_guard_service__["a" /* RoleGuardService */]],
+        component: __WEBPACK_IMPORTED_MODULE_79__main_content_isp_isp_component__["a" /* FuseISPComponent */],
+        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_78__core_services_role_guard_service__["a" /* RoleGuardService */]],
         data: {
             expectedRole: 'admin'
         }
     },
     {
         path: 'addisp',
-        component: __WEBPACK_IMPORTED_MODULE_81__main_content_addisp_addisp_component__["a" /* FuseaddISPComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_77__core_services_role_guard_service__["a" /* RoleGuardService */]],
+        component: __WEBPACK_IMPORTED_MODULE_82__main_content_addisp_addisp_component__["a" /* FuseaddISPComponent */],
+        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_78__core_services_role_guard_service__["a" /* RoleGuardService */]],
         data: {
             expectedRole: 'admin'
         }
     },
     {
         path: 'editisp/:id',
-        component: __WEBPACK_IMPORTED_MODULE_82__main_content_editisp_editisp_component__["a" /* FuseeditISPComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_77__core_services_role_guard_service__["a" /* RoleGuardService */]],
+        component: __WEBPACK_IMPORTED_MODULE_83__main_content_editisp_editisp_component__["a" /* FuseeditISPComponent */],
+        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_78__core_services_role_guard_service__["a" /* RoleGuardService */]],
         data: {
             expectedRole: 'admin'
         }
@@ -302,7 +304,7 @@ var appRoutes = [
     {
         path: 'locations',
         component: __WEBPACK_IMPORTED_MODULE_63__main_content_locations_locations_component__["a" /* FuseLocationsComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_77__core_services_role_guard_service__["a" /* RoleGuardService */]],
+        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_78__core_services_role_guard_service__["a" /* RoleGuardService */]],
         data: {
             expectedRole: 'admin'
         }
@@ -310,23 +312,23 @@ var appRoutes = [
     {
         path: 'addlocation',
         component: __WEBPACK_IMPORTED_MODULE_65__main_content_addlocation_addlocation_component__["a" /* FuseaddLocationComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_77__core_services_role_guard_service__["a" /* RoleGuardService */]],
+        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_78__core_services_role_guard_service__["a" /* RoleGuardService */]],
         data: {
             expectedRole: 'admin'
         }
     },
     {
         path: 'editlocation/:id',
-        component: __WEBPACK_IMPORTED_MODULE_67__main_content_editlocation_editlocation_component__["a" /* FuseeditLocationComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_77__core_services_role_guard_service__["a" /* RoleGuardService */]],
+        component: __WEBPACK_IMPORTED_MODULE_68__main_content_editlocation_editlocation_component__["a" /* FuseeditLocationComponent */],
+        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_78__core_services_role_guard_service__["a" /* RoleGuardService */]],
         data: {
             expectedRole: 'admin'
         }
     },
     {
         path: 'viewlocation/:id',
-        component: __WEBPACK_IMPORTED_MODULE_69__main_content_viewlocation_viewlocation_component__["a" /* FuseviewLocationComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_77__core_services_role_guard_service__["a" /* RoleGuardService */]],
+        component: __WEBPACK_IMPORTED_MODULE_70__main_content_viewlocation_viewlocation_component__["a" /* FuseviewLocationComponent */],
+        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_78__core_services_role_guard_service__["a" /* RoleGuardService */]],
         data: {
             expectedRole: 'admin'
         }
@@ -364,7 +366,7 @@ var appRoutes = [
     {
         path: 'client',
         component: __WEBPACK_IMPORTED_MODULE_24__main_content_client_client_component__["a" /* FuseClientComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_77__core_services_role_guard_service__["a" /* RoleGuardService */]],
+        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_78__core_services_role_guard_service__["a" /* RoleGuardService */]],
         data: {
             expectedRole: 'admin'
         }
@@ -372,15 +374,15 @@ var appRoutes = [
     {
         path: 'addclient',
         component: __WEBPACK_IMPORTED_MODULE_23__main_content_addclient_addclient_component__["a" /* FuseaddClientComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_77__core_services_role_guard_service__["a" /* RoleGuardService */]],
+        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_78__core_services_role_guard_service__["a" /* RoleGuardService */]],
         data: {
             expectedRole: 'admin'
         }
     },
     {
         path: 'editclient/:id',
-        component: __WEBPACK_IMPORTED_MODULE_76__main_content_editclient_editclient_component__["a" /* FuseeditClientComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_77__core_services_role_guard_service__["a" /* RoleGuardService */]],
+        component: __WEBPACK_IMPORTED_MODULE_77__main_content_editclient_editclient_component__["a" /* FuseeditClientComponent */],
+        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_78__core_services_role_guard_service__["a" /* RoleGuardService */]],
         data: {
             expectedRole: 'admin'
         }
@@ -388,7 +390,7 @@ var appRoutes = [
     {
         path: 'partner',
         component: __WEBPACK_IMPORTED_MODULE_21__main_content_partner_partner_component__["a" /* FusePartnerComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_77__core_services_role_guard_service__["a" /* RoleGuardService */]],
+        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_78__core_services_role_guard_service__["a" /* RoleGuardService */]],
         data: {
             expectedRole: 'admin'
         }
@@ -396,7 +398,7 @@ var appRoutes = [
     {
         path: 'addpartner',
         component: __WEBPACK_IMPORTED_MODULE_22__main_content_addpartner_addpartner_component__["a" /* FuseaddPartnerComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_77__core_services_role_guard_service__["a" /* RoleGuardService */]],
+        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_78__core_services_role_guard_service__["a" /* RoleGuardService */]],
         data: {
             expectedRole: 'admin'
         }
@@ -404,15 +406,15 @@ var appRoutes = [
     {
         path: 'payment',
         component: __WEBPACK_IMPORTED_MODULE_14__main_content_payment_payment_component__["a" /* FusePaymentComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_77__core_services_role_guard_service__["a" /* RoleGuardService */]],
+        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_78__core_services_role_guard_service__["a" /* RoleGuardService */]],
         data: {
             expectedRole: 'admin'
         }
     },
     {
         path: 'editpartner/:id',
-        component: __WEBPACK_IMPORTED_MODULE_73__main_content_editpartner_editpartner_component__["a" /* FuseeditPartnerComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_77__core_services_role_guard_service__["a" /* RoleGuardService */]],
+        component: __WEBPACK_IMPORTED_MODULE_74__main_content_editpartner_editpartner_component__["a" /* FuseeditPartnerComponent */],
+        canActivate: [__WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_78__core_services_role_guard_service__["a" /* RoleGuardService */]],
         data: {
             expectedRole: 'admin'
         }
@@ -478,6 +480,9 @@ var AppModule = (function () {
                 // end Dialog
             ],
             imports: [
+                __WEBPACK_IMPORTED_MODULE_67__agm_core__["a" /* AgmCoreModule */].forRoot({
+                    apiKey: 'AIzaSyB44dir8VgrRW0Bq5zu1qNdsmIlMIdD2Ak'
+                }),
                 __WEBPACK_IMPORTED_MODULE_46__angular_platform_browser__["BrowserModule"],
                 __WEBPACK_IMPORTED_MODULE_47__angular_http__["a" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_48__angular_common_http__["b" /* HttpClientModule */],
@@ -496,21 +501,21 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_25__main_content_viewcampaign_viewcampaign_module__["a" /* FuseviewCampaignModule */],
                 __WEBPACK_IMPORTED_MODULE_17__main_content_partner_partner_module__["a" /* FusePartnerModule */],
                 __WEBPACK_IMPORTED_MODULE_18__main_content_addpartner_addpartner_module__["a" /* FuseaddPartnerModule */],
-                __WEBPACK_IMPORTED_MODULE_74__main_content_editpartner_editpartner_module__["a" /* FuseeditPartnerModule */],
+                __WEBPACK_IMPORTED_MODULE_75__main_content_editpartner_editpartner_module__["a" /* FuseeditPartnerModule */],
                 __WEBPACK_IMPORTED_MODULE_19__main_content_client_client_module__["a" /* FuseClientModule */],
                 __WEBPACK_IMPORTED_MODULE_20__main_content_addclient_addclient_module__["a" /* FuseaddClientModule */],
-                __WEBPACK_IMPORTED_MODULE_75__main_content_editclient_editclient_module__["a" /* FuseeditClientModule */],
+                __WEBPACK_IMPORTED_MODULE_76__main_content_editclient_editclient_module__["a" /* FuseeditClientModule */],
                 __WEBPACK_IMPORTED_MODULE_15__main_content_clicked_clicked_module__["a" /* FuseClickedModule */],
                 __WEBPACK_IMPORTED_MODULE_61__main_content_impressions_impressions_module__["a" /* FuseImpressionsModule */],
                 __WEBPACK_IMPORTED_MODULE_64__main_content_locations_locations_module__["a" /* FuseLocationsModule */],
                 __WEBPACK_IMPORTED_MODULE_66__main_content_addlocation_addlocation_module__["a" /* FuseaddLocationModule */],
-                __WEBPACK_IMPORTED_MODULE_68__main_content_editlocation_editlocation_module__["a" /* FuseeditLocationModule */],
-                __WEBPACK_IMPORTED_MODULE_70__main_content_viewlocation_viewlocation_module__["a" /* FuseviewLocationModule */],
+                __WEBPACK_IMPORTED_MODULE_69__main_content_editlocation_editlocation_module__["a" /* FuseeditLocationModule */],
+                __WEBPACK_IMPORTED_MODULE_71__main_content_viewlocation_viewlocation_module__["a" /* FuseviewLocationModule */],
                 __WEBPACK_IMPORTED_MODULE_13__main_content_payment_payment_module__["a" /* FusePaymentModule */],
-                __WEBPACK_IMPORTED_MODULE_72__main_content_billing_billing_module__["a" /* FuseBillingModule */],
-                __WEBPACK_IMPORTED_MODULE_79__main_content_isp_isp_module__["a" /* FuseISPModule */],
-                __WEBPACK_IMPORTED_MODULE_80__main_content_addisp_addisp_module__["a" /* FuseaddISPModule */],
-                __WEBPACK_IMPORTED_MODULE_83__main_content_editisp_editisp_module__["a" /* FuseeditISPModule */],
+                __WEBPACK_IMPORTED_MODULE_73__main_content_billing_billing_module__["a" /* FuseBillingModule */],
+                __WEBPACK_IMPORTED_MODULE_80__main_content_isp_isp_module__["a" /* FuseISPModule */],
+                __WEBPACK_IMPORTED_MODULE_81__main_content_addisp_addisp_module__["a" /* FuseaddISPModule */],
+                __WEBPACK_IMPORTED_MODULE_84__main_content_editisp_editisp_module__["a" /* FuseeditISPModule */],
                 __WEBPACK_IMPORTED_MODULE_11__main_content_codes_codes_module__["a" /* FuseCodesModule */],
                 __WEBPACK_IMPORTED_MODULE_7__main_content_pos_pos_module__["a" /* FusePOSModule */],
                 __WEBPACK_IMPORTED_MODULE_5__main_content_addpos_addpos_module__["a" /* FuseaddPOSModule */],
@@ -520,7 +525,7 @@ var AppModule = (function () {
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_44__core_services_auth_guard_service_service__["a" /* AuthGuardService */],
-                __WEBPACK_IMPORTED_MODULE_77__core_services_role_guard_service__["a" /* RoleGuardService */],
+                __WEBPACK_IMPORTED_MODULE_78__core_services_role_guard_service__["a" /* RoleGuardService */],
                 __WEBPACK_IMPORTED_MODULE_55__core_services_splash_screen_service__["a" /* FuseSplashScreenService */],
                 __WEBPACK_IMPORTED_MODULE_56__core_services_config_service__["a" /* FuseConfigService */],
                 __WEBPACK_IMPORTED_MODULE_57__core_components_navigation_navigation_service__["a" /* FuseNavigationService */],
@@ -4523,8 +4528,8 @@ var CallApiService = (function () {
         //   "users",
         //   "users/login"
         // ];
-        this.baseUrl = "https://techpeak-net.com/api/";
-        // readonly baseUrl = "http://185.84.236.39:3000/api/"
+        // readonly baseUrl = "https://techpeak-net.com/api/"
+        this.baseUrl = "http://185.84.236.39:3000/api/";
         // readonly baseUrl = "http://localhost:3000/api/"
         this.errorCode = 0;
         this.headers2 = this.headers2.append("Authorization", "Basic " + btoa("username:password"));
@@ -6738,7 +6743,7 @@ var FuseaddLocationModule = (function () {
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__core_modules_shared_module__["a" /* SharedModule */],
                 __WEBPACK_IMPORTED_MODULE_3__agm_core__["a" /* AgmCoreModule */].forRoot({
-                    apiKey: 'AIzaSyAfaEzR5KKaRsI6ByG0oEokmAIG4wjZ848'
+                    apiKey: 'AIzaSyB44dir8VgrRW0Bq5zu1qNdsmIlMIdD2Ak'
                 }),
             ],
             exports: [
@@ -10106,7 +10111,7 @@ var FuseeditLocationModule = (function () {
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__core_modules_shared_module__["a" /* SharedModule */],
                 __WEBPACK_IMPORTED_MODULE_2__agm_core__["a" /* AgmCoreModule */].forRoot({
-                    apiKey: 'AIzaSyAfaEzR5KKaRsI6ByG0oEokmAIG4wjZ848'
+                    apiKey: 'AIzaSyB44dir8VgrRW0Bq5zu1qNdsmIlMIdD2Ak'
                 }),
             ],
             exports: [
@@ -14266,7 +14271,7 @@ var FuseviewPosModule = (function () {
 /***/ "../../../../../src/app/main/content/viewcampaign/viewcampaign.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"headLines\" class=\"page-layout blank p-20\">\r\n  <div *ngIf=\"campaign\" class=\"view head\">\r\n    <div class=\"section0\">\r\n      <div fxLayout=\"row\">\r\n        <h1>{{campaign.name}}</h1>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"view div-add-campagin\">\r\n    <div fxLayout=\"row\" style=\"float:left;\">\r\n      <button mat-raised-button class=\"btn-add-campaign\" [routerLink]=\"['/addcampaign']\"> إضافة حملة\r\n        <mat-icon style=\"color:white\">add</mat-icon>\r\n      </button>\r\n    </div>\r\n  </div>\r\n\r\n  <div *ngIf=\"campaign\" class=\"view\">\r\n    <div class=\"section1\">\r\n      <div fxLayout=\"row\">\r\n        <h1>الاداء العام</h1>\r\n      </div>\r\n      <div fxLayout=\"row\">\r\n        <div fxFlex=\"20\" class=\"from\">\r\n          <label>\r\n            مشاهدة\r\n          </label>\r\n          <h3>{{headLines.impressions}}</h3>\r\n        </div>\r\n        <div fxFlex=\"20\" class=\"from\">\r\n          <label>\r\n            نقرات\r\n          </label>\r\n          <h3>{{headLines.clicks}}</h3>\r\n        </div>\r\n        <div fxFlex=\"20\" class=\"from\">\r\n          <label>\r\n            مستخدمين\r\n          </label>\r\n          <h3>{{headLines.usersReached}}</h3>\r\n        </div>\r\n        <div fxFlex=\"20\" class=\"from\">\r\n          <label>\r\n            CPC\r\n          </label>\r\n          <h3>{{campaign.CPC}}</h3>\r\n        </div>\r\n        <div fxFlex=\"20\" class=\"from\">\r\n          <label>\r\n            CPI\r\n          </label>\r\n          <h3>{{campaign.CPI}}</h3>\r\n        </div>\r\n        <div fxFlex=\"20\" class=\"from\">\r\n          <label>\r\n            Cost\r\n          </label>\r\n          <h3>{{headLines.cost}}</h3>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div fxLayout=\"column\" fxLayoutAlign=\"start start\" fxLayout.gt-md=\"row\" class=\"page-layout blank\" style=\"padding:10px; margin-top:25px;\">\r\n      <form class=\"mat-white-bg mat-elevation-z4 p-24 mb-10\" fxLayout=\"column\" fxLayoutAlign=\"start\" fxFlex=\"1 0 auto\"\r\n        name=\"form\" [formGroup]=\"form\">\r\n\r\n        <div class=\"h2 mb-24\">إظهار الإ حصائيات</div>\r\n        <div class=\"container\" fxLayout fxLayout.xs=\"column\" fxLayoutAlign=\"right\" fxLayoutGap=\"10px\" fxLayoutGap.xs=\"0\">\r\n          <div fxFlex=\"40\">\r\n            <mat-form-field style=\"width:90%\">\r\n              <input matInput [matDatepicker]=\"picker\" readonly placeholder=\"تاريخ البدء\" [(ngModel)]=\"startDate\"\r\n                formControlName=\"startDate\">\r\n              <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n              <mat-datepicker #picker></mat-datepicker>\r\n            </mat-form-field>\r\n          </div>\r\n          <div fxFlex=\"2\">\r\n          </div>\r\n          <div fxFlex=\"40\">\r\n            <mat-form-field style=\"width:90%\">\r\n              <input matInput [matDatepicker]=\"picker1\" readonly placeholder=\"تاريخ النهاية\" [(ngModel)]=\"endDate\"\r\n                formControlName=\"endDate\">\r\n              <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\r\n              <mat-datepicker #picker1></mat-datepicker>\r\n            </mat-form-field>\r\n          </div>\r\n          <div fxFlex=\"5\">\r\n            <button mat-raised-button class=\"btn-add\" [disabled]=\"!startDate || !endDate\" (click)=\"search()\">بحث</button>\r\n          </div>\r\n        </div>\r\n      </form>\r\n    </div>\r\n\r\n    <div fxLayout.md=\"row \" fxLayout.xs=\"column\" class=\"section2\">\r\n      <div *ngIf=\"dateArray.length != 0\" fxFlex=\"100\" class=\"card noPadding\">\r\n        <!-- *ngIf=\"dateArray.length != 0\" -->\r\n        <fuse-widget [@animate]=\"{value:'*',params:{y:'100%'}}\" class=\"widget\" fxLayout=\"row\" fxFlex=\"100\">\r\n\r\n          <!-- Front -->\r\n          <div class=\"fuse-widget-front mat-white-bg mat-elevation-z2\">\r\n\r\n            <div class=\"px-16 border-bottom\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\" fxLayoutWrap>\r\n\r\n              <div fxFlex class=\"py-8 h3\">الإحصائيات</div>\r\n\r\n              <!-- <div fxFlex=\"0 1 auto\" class=\"py-8\" fxLayout=\"row\">\r\n                <button mat-button class=\"px-16\" *ngFor=\"let range of widgets.widget5.ranges | keys\" (click)=\"widget5.currentRange = range.key\"\r\n                  [disabled]=\"widget5.currentRange == range.key\">\r\n                  {{range.value}}\r\n                </button>\r\n              </div> -->\r\n            </div>\r\n\r\n            <div fxLayout=\"row\" fxLayoutAlign=\"start end\" fxLayoutWrap>\r\n\r\n              <div class=\"mb-16\" fxFlex=\"100\" fxLayoutAlign=\"row\" fxLayoutWrap>\r\n                <!-- fxFlex.gt-sm=\"50\" -->\r\n                <div fxLayout=\"column\" fxFlex=\"100\" fxLayoutAlign=\"center\">\r\n                  <!-- *ngFor=\"let widget of widgets.widget5.supporting | keys\" -->\r\n\r\n                  <div class=\"px-24\">\r\n                    <div class=\"h4 secondary-text\">القيم</div> <!-- {{widget.value.label}} -->\r\n                    <div class=\"mat-display-1 m-0\">\r\n                      {{dateArray[0].series.length + dateArray[1].series.length}}\r\n                      <!-- {{widget.value.count[widget5.currentRange]}} -->\r\n                    </div>\r\n                  </div>\r\n\r\n                  <div style=\"padding-bottom: 50px;\">\r\n                    <ngx-charts-area-chart *fuseIfOnDom [results]=\"dateArray\" [scheme]=\"chartOptions.scheme\" [gradient]=\"chartOptions.gradient\"\r\n                      [xAxis]=\"chartOptions.xAxis\" [yAxis]=\"chartOptions.yAxis\" [legend]=\"chartOptions.legend\"\r\n                      [showXAxisLabel]=\"chartOptions.showXAxisLabel\" [showYAxisLabel]=\"chartOptions.showYAxisLabel\"\r\n                      [xAxisLabel]=\"chartOptions.xAxisLabel\" [yAxisLabel]=\"chartOptions.yAxisLabel\" [curve]=\"chartOptions.curve\"\r\n                      [showGridLines]=\"chartOptions.showGridLines\" [legendTitle]=\"chartOptions.legendTitle\">\r\n                    </ngx-charts-area-chart>\r\n                  </div>\r\n\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <!-- / Front -->\r\n\r\n        </fuse-widget>\r\n        <!-- / WIDGET 5 -->\r\n      </div>\r\n    </div>\r\n    <div fxLayout.md=\"row \" fxLayout.xs=\"column\" class=\"section2\">\r\n      <div *ngIf=\"pieImpressions && pieClicks\" fxFlex=\"100\" class=\"card noPadding\" style=\"box-shadow: 0 0 8px #828282;\">\r\n\r\n        <fuse-widget [@animate]=\"{value:'*',params:{y:'100%'}}\" class=\"widget\">\r\n\r\n          <!-- Front -->\r\n          <div class=\"fuse-widget-front mat-white-bg mat-elevation-z2\">\r\n            <button *ngIf=\"pieToggle == 'clicks'\" mat-raised-button class=\"btn-toggle\" (click)=\"toggle('impressions')\">\r\n              View Clicks </button>\r\n            <button *ngIf=\"pieToggle == 'impressions'\" mat-raised-button class=\"btn-toggle\" (click)=\"toggle('clicks')\">\r\n              View Impressions </button>\r\n            <hr style=\"color:black; width:100%\">\r\n            <!--<div class=\"px-16 border-bottom\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n              <div class=\"h3\">{{widgets.widget6.title}}</div>\r\n            </div>-->\r\n\r\n            <div *ngIf=\"showPie.series.length != 0\" class=\"h-400\">\r\n              <ngx-charts-pie-chart *fuseIfOnDom [scheme]=\"pieOptions.scheme\" [results]=\"showPie.series\" [legend]=\"pieOptions.showLegend\"\r\n                [explodeSlices]=\"pieOptions.explodeSlices\" [labels]=\"pieOptions.labels\" [doughnut]=\"pieOptions.doughnut\"\r\n                [gradient]=\"pieOptions.gradient\" (select)=\"pieOptions.onSelect($event)\">\r\n              </ngx-charts-pie-chart>\r\n            </div>\r\n\r\n            <div *ngIf=\"showPie.series.length != 0\" class=\"py-8 mh-16 border-top\" fxLayout=\"row\" fxLayoutAlign=\"start center\"\r\n              fxLayoutWrap>\r\n              <div class=\"py-8 border-right\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFlex=\"100\" fxFlex.gt-sm=\"50\">\r\n                <span class=\"h4 pie-chart-naming\">{{showPie.series[0].name}}</span>\r\n                <span class=\"mat-display-1 mb-0 pie-chart-naming-1\">{{showPie.series[0].value}}</span>\r\n              </div>\r\n              <div id=\"vertical-line\"></div>\r\n              <div *ngIf=\"showPie && showPie.series.length > 1\" class=\"py-8\" fxLayout=\"column\" fxLayoutAlign=\"center center\"\r\n                fxFlex=\"100\" fxFlex.gt-sm=\"48\">\r\n                <span class=\"h4 pie-chart-naming\">{{showPie.series[1].name}}</span>\r\n                <span class=\"mat-display-1 mb-0 pie-chart-naming-1\">{{showPie.series[1].value}}</span>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n          <!-- / Front -->\r\n\r\n        </fuse-widget>\r\n      </div>\r\n      <div fxFlex=\"50\" class=\"card\" style=\"box-shadow: 2px 0 8px #828282;\">\r\n        <button *ngIf=\"mapToggle == 'clicks'\" mat-raised-button class=\"btn-toggle-map\" (click)=\"toggleMap('impressions')\">\r\n          View Clicks </button>\r\n        <button *ngIf=\"mapToggle == 'impressions'\" mat-raised-button class=\"btn-toggle-map\" (click)=\"toggleMap('clicks')\">\r\n          View Impressions </button>\r\n        <hr style=\"color:black; width:100%; margin-bottom: 45px;\">\r\n        <agm-map [zoom]=\"17\" [latitude]=\"lat\" [longitude]=\"lng\">\r\n          <!-- <agm-marker [latitude]=\"lat\" [longitude]=\"lng\"></agm-marker> -->\r\n          <agm-marker *ngFor=\"let s of showMap; let i = index\" [latitude]=\"s.lat\" [longitude]=\"s.long\"></agm-marker>\r\n        </agm-map>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <mat-card class=\"mat-elevation-z8 mat-card-style\">\r\n    <div>\r\n      <div *ngIf=\"ADs\" fxFlex=47>\r\n        <div class=\"ads-cri-labels\">الإعلانات:</div>\r\n        <ngx-datatable class=\"material\" [rows]=\"ADs\" [columnMode]=\"'force'\" [headerHeight]=\"48\" [footerHeight]=\"56\"\r\n          [rowHeight]=\"'auto'\" [scrollbarH]=\"true\" [reorderable]=\"reorderable\" [limit]=\"5\">\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"اسم الإعلان\" prop=\"name\">\r\n          </ngx-datatable-column>\r\n\r\n        </ngx-datatable>\r\n      </div>\r\n      <div fxFlex=3></div>\r\n\r\n      <div *ngIf=\"campaignCriterias\" fxFlex=50>\r\n          <div class=\"ads-cri-labels\">المعايير:</div>\r\n        <ngx-datatable class=\"material\" [rows]=\"campaignCriterias\" [columnMode]=\"'force'\" [headerHeight]=\"48\"\r\n          [footerHeight]=\"56\" [rowHeight]=\"'auto'\" [scrollbarH]=\"true\" [reorderable]=\"reorderable\" [limit]=\"5\">\r\n\r\n          <ngx-datatable-column [width]=\"100\" name=\"النوع\" prop=\"type\">\r\n          </ngx-datatable-column>\r\n\r\n          <ngx-datatable-column [width]=\"175\" name=\"القيمة\" prop=\"value\">\r\n          </ngx-datatable-column>\r\n\r\n          <ngx-datatable-column [width]=\"100\" name=\" القيمة الثانية\" prop=\"value2\">\r\n          </ngx-datatable-column>\r\n\r\n        </ngx-datatable>\r\n      </div>\r\n    </div>\r\n  </mat-card>\r\n\r\n  <mat-card *ngIf=\"visibility\" class=\"mat-elevation-z8 mat-card-style\">\r\n    <mat-tab-group mat-align-tabs=\"center\">\r\n      <mat-tab label=\"المشاهدات\">\r\n        <!-- *ngIf=\"rows[0]!=null\" -->\r\n        <ngx-datatable *ngIf=\"impressionsClients.length > 0\" class=\"material\" [rows]=\"impressionsClients\" [columnMode]=\"'force'\"\r\n          [headerHeight]=\"48\" [footerHeight]=\"56\" [rowHeight]=\"'auto'\" [scrollbarH]=\"true\" [reorderable]=\"reorderable\"\r\n          [externalPaging]=\"true\" [count]=\"countImp\" [offset]=\"offsetImp\" [limit]=\"limitImp\" (page)='onPageImp($event)'>\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"Phone Number\" prop=\"client.mobile\">\r\n          </ngx-datatable-column>\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"Email\" prop=\"client.email\">\r\n          </ngx-datatable-column>\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"Position\" prop=\"client.profession\">\r\n          </ngx-datatable-column>\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"Name\" prop=\"client.username\">\r\n          </ngx-datatable-column>\r\n\r\n        </ngx-datatable>\r\n      </mat-tab>\r\n      <mat-tab label=\"النقرات\">\r\n        <ngx-datatable *ngIf=\"clicksClients.length > 0\" class=\"material\" [rows]=\"clicksClients\" [columnMode]=\"'force'\"\r\n          [headerHeight]=\"48\" [footerHeight]=\"56\" [rowHeight]=\"'auto'\" [scrollbarH]=\"true\" [reorderable]=\"reorderable\"\r\n          [externalPaging]=\"true\" [count]=\"countClk\" [offset]=\"offsetClk\" [limit]=\"limitClk\" (page)='onPageClk($event)'>\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"Phone Number\" prop=\"client.mobile\">\r\n          </ngx-datatable-column>\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"Email\" prop=\"client.email\">\r\n          </ngx-datatable-column>\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"Position\" prop=\"client.profession\">\r\n          </ngx-datatable-column>\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"Name\" prop=\"client.username\">\r\n          </ngx-datatable-column>\r\n\r\n        </ngx-datatable>\r\n      </mat-tab>\r\n    </mat-tab-group>\r\n  </mat-card>\r\n</div>"
+module.exports = "<div *ngIf=\"headLines\" class=\"page-layout blank p-20\">\r\n  <div *ngIf=\"campaign\" class=\"view head\">\r\n    <div class=\"section0\">\r\n      <div fxLayout=\"row\">\r\n        <h1>{{campaign.name}}</h1>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"view div-add-campagin\">\r\n    <div fxLayout=\"row\" style=\"float:left;\">\r\n      <button mat-raised-button class=\"btn-add-campaign\" [routerLink]=\"['/addcampaign']\"> إضافة حملة\r\n        <mat-icon style=\"color:white\">add</mat-icon>\r\n      </button>\r\n    </div>\r\n  </div>\r\n\r\n  <div *ngIf=\"campaign\" class=\"view\">\r\n    <div class=\"section1\">\r\n      <div fxLayout=\"row\">\r\n        <h1>الاداء العام</h1>\r\n      </div>\r\n      <div fxLayout=\"row\">\r\n        <div fxFlex=\"20\" class=\"from\">\r\n          <label>\r\n            مشاهدة\r\n          </label>\r\n          <h3>{{headLines.impressions}}</h3>\r\n        </div>\r\n        <div fxFlex=\"20\" class=\"from\">\r\n          <label>\r\n            نقرات\r\n          </label>\r\n          <h3>{{headLines.clicks}}</h3>\r\n        </div>\r\n        <div fxFlex=\"20\" class=\"from\">\r\n          <label>\r\n            مستخدمين\r\n          </label>\r\n          <h3>{{headLines.usersReached}}</h3>\r\n        </div>\r\n        <div fxFlex=\"20\" class=\"from\">\r\n          <label>\r\n            CPC\r\n          </label>\r\n          <h3>{{campaign.CPC}}</h3>\r\n        </div>\r\n        <div fxFlex=\"20\" class=\"from\">\r\n          <label>\r\n            CPI\r\n          </label>\r\n          <h3>{{campaign.CPI}}</h3>\r\n        </div>\r\n        <div fxFlex=\"20\" class=\"from\">\r\n          <label>\r\n            Cost\r\n          </label>\r\n          <h3>{{headLines.cost}}</h3>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div fxLayout=\"column\" fxLayoutAlign=\"start start\" fxLayout.gt-md=\"row\" class=\"page-layout blank\" style=\"padding:10px; margin-top:25px;\">\r\n      <form class=\"mat-white-bg mat-elevation-z4 p-24 mb-10\" fxLayout=\"column\" fxLayoutAlign=\"start\" fxFlex=\"1 0 auto\" name=\"form\"\r\n        [formGroup]=\"form\">\r\n\r\n        <div class=\"h2 mb-24\">إظهار الإ حصائيات</div>\r\n        <div class=\"container\" fxLayout fxLayout.xs=\"column\" fxLayoutAlign=\"right\" fxLayoutGap=\"10px\" fxLayoutGap.xs=\"0\">\r\n          <div fxFlex=\"40\">\r\n            <mat-form-field style=\"width:90%\">\r\n              <input matInput [matDatepicker]=\"picker\" readonly placeholder=\"تاريخ البدء\" [(ngModel)]=\"startDate\" formControlName=\"startDate\">\r\n              <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n              <mat-datepicker #picker></mat-datepicker>\r\n            </mat-form-field>\r\n          </div>\r\n          <div fxFlex=\"2\">\r\n          </div>\r\n          <div fxFlex=\"40\">\r\n            <mat-form-field style=\"width:90%\">\r\n              <input matInput [matDatepicker]=\"picker1\" readonly placeholder=\"تاريخ النهاية\" [(ngModel)]=\"endDate\" formControlName=\"endDate\">\r\n              <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\r\n              <mat-datepicker #picker1></mat-datepicker>\r\n            </mat-form-field>\r\n          </div>\r\n          <div fxFlex=\"5\">\r\n            <button mat-raised-button class=\"btn-add\" [disabled]=\"!startDate || !endDate\" (click)=\"search()\">بحث</button>\r\n          </div>\r\n        </div>\r\n      </form>\r\n    </div>\r\n\r\n    <div fxLayout.md=\"row \" fxLayout.xs=\"column\" class=\"section2\">\r\n      <div *ngIf=\"dateArray.length != 0\" fxFlex=\"100\" class=\"card noPadding\">\r\n        <!-- *ngIf=\"dateArray.length != 0\" -->\r\n        <fuse-widget [@animate]=\"{value:'*',params:{y:'100%'}}\" class=\"widget\" fxLayout=\"row\" fxFlex=\"100\">\r\n\r\n          <!-- Front -->\r\n          <div class=\"fuse-widget-front mat-white-bg mat-elevation-z2\">\r\n\r\n            <div class=\"px-16 border-bottom\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\" fxLayoutWrap>\r\n\r\n              <div fxFlex class=\"py-8 h3\">الإحصائيات</div>\r\n\r\n              <!-- <div fxFlex=\"0 1 auto\" class=\"py-8\" fxLayout=\"row\">\r\n                <button mat-button class=\"px-16\" *ngFor=\"let range of widgets.widget5.ranges | keys\" (click)=\"widget5.currentRange = range.key\"\r\n                  [disabled]=\"widget5.currentRange == range.key\">\r\n                  {{range.value}}\r\n                </button>\r\n              </div> -->\r\n            </div>\r\n\r\n            <div fxLayout=\"row\" fxLayoutAlign=\"start end\" fxLayoutWrap>\r\n\r\n              <div class=\"mb-16\" fxFlex=\"100\" fxLayoutAlign=\"row\" fxLayoutWrap>\r\n                <!-- fxFlex.gt-sm=\"50\" -->\r\n                <div fxLayout=\"column\" fxFlex=\"100\" fxLayoutAlign=\"center\">\r\n                  <!-- *ngFor=\"let widget of widgets.widget5.supporting | keys\" -->\r\n\r\n                  <div class=\"px-24\">\r\n                    <div class=\"h4 secondary-text\">القيم</div>\r\n                    <!-- {{widget.value.label}} -->\r\n                    <div class=\"mat-display-1 m-0\">\r\n                      {{dateArray[0].series.length + dateArray[1].series.length}}\r\n                      <!-- {{widget.value.count[widget5.currentRange]}} -->\r\n                    </div>\r\n                  </div>\r\n\r\n                  <div style=\"padding-bottom: 50px;\">\r\n                    <ngx-charts-area-chart *fuseIfOnDom [results]=\"dateArray\" [scheme]=\"chartOptions.scheme\" [gradient]=\"chartOptions.gradient\"\r\n                      [xAxis]=\"chartOptions.xAxis\" [yAxis]=\"chartOptions.yAxis\" [legend]=\"chartOptions.legend\" [showXAxisLabel]=\"chartOptions.showXAxisLabel\"\r\n                      [showYAxisLabel]=\"chartOptions.showYAxisLabel\" [xAxisLabel]=\"chartOptions.xAxisLabel\" [yAxisLabel]=\"chartOptions.yAxisLabel\"\r\n                      [curve]=\"chartOptions.curve\" [showGridLines]=\"chartOptions.showGridLines\" [legendTitle]=\"chartOptions.legendTitle\">\r\n                    </ngx-charts-area-chart>\r\n                  </div>\r\n\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <!-- / Front -->\r\n\r\n        </fuse-widget>\r\n        <!-- / WIDGET 5 -->\r\n      </div>\r\n    </div>\r\n    <div fxLayout.md=\"row \" fxLayout.xs=\"column\" class=\"section2\">\r\n      <div *ngIf=\"pieImpressions && pieClicks\" fxFlex=\"100\" class=\"card noPadding\" style=\"box-shadow: 0 0 8px #828282;\">\r\n\r\n        <fuse-widget [@animate]=\"{value:'*',params:{y:'100%'}}\" class=\"widget\">\r\n\r\n          <!-- Front -->\r\n          <div class=\"fuse-widget-front mat-white-bg mat-elevation-z2\">\r\n            <button *ngIf=\"pieToggle != 'clicks'\" mat-raised-button class=\"btn-toggle\" (click)=\"toggle('impressions')\">\r\n              View Clicks </button>\r\n            <button *ngIf=\"pieToggle != 'impressions'\" mat-raised-button class=\"btn-toggle\" (click)=\"toggle('clicks')\">\r\n              View Impressions </button>\r\n            <hr style=\"color:black; width:100%\">\r\n            <!--<div class=\"px-16 border-bottom\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n              <div class=\"h3\">{{widgets.widget6.title}}</div>\r\n            </div>-->\r\n\r\n            <div *ngIf=\"showPie.series.length != 0\" class=\"h-400\">\r\n              <ngx-charts-pie-chart *fuseIfOnDom [scheme]=\"pieOptions.scheme\" [results]=\"showPie.series\" [legend]=\"pieOptions.showLegend\"\r\n                [explodeSlices]=\"pieOptions.explodeSlices\" [labels]=\"pieOptions.labels\" [doughnut]=\"pieOptions.doughnut\" [gradient]=\"pieOptions.gradient\"\r\n                (select)=\"pieOptions.onSelect($event)\">\r\n              </ngx-charts-pie-chart>\r\n            </div>\r\n\r\n            <div *ngIf=\"showPie.series.length != 0\" class=\"py-8 mh-16 border-top\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutWrap>\r\n              <div class=\"py-8 border-right\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFlex=\"100\" fxFlex.gt-sm=\"50\">\r\n                <span class=\"h4 pie-chart-naming\">{{showPie.series[0].name}}</span>\r\n                <span class=\"mat-display-1 mb-0 pie-chart-naming-1\">{{showPie.series[0].value}}</span>\r\n              </div>\r\n              <div id=\"vertical-line\"></div>\r\n              <div *ngIf=\"showPie && showPie.series.length > 1\" class=\"py-8\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFlex=\"100\"\r\n                fxFlex.gt-sm=\"48\">\r\n                <span class=\"h4 pie-chart-naming\">{{showPie.series[1].name}}</span>\r\n                <span class=\"mat-display-1 mb-0 pie-chart-naming-1\">{{showPie.series[1].value}}</span>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n          <!-- / Front -->\r\n\r\n        </fuse-widget>\r\n      </div>\r\n      <div fxFlex=\"50\" class=\"card\" style=\"box-shadow: 2px 0 8px #828282;\">\r\n        <button *ngIf=\"mapToggle != 'clicks'\" mat-raised-button class=\"btn-toggle-map\" (click)=\"toggleMap('impressions')\">\r\n          View Clicks </button>\r\n        <button *ngIf=\"mapToggle != 'impressions'\" mat-raised-button class=\"btn-toggle-map\" (click)=\"toggleMap('clicks')\">\r\n          View Impressions </button>\r\n        <hr style=\"color:black; width:100%; margin-bottom: 45px;\">\r\n        <agm-map [zoom]=\"17\" [latitude]=\"lat\" [longitude]=\"lng\" *ngIf=\"showMap.length>0\">\r\n          <!--<agm-marker [latitude]=\"33.510414\" [longitude]=\"36.278336\"></agm-marker>-->\r\n\r\n          <!--<agm-marker [latitude]=\"showMap[0].lat\" [longitude]=\"showMap[0].long\"></agm-marker>-->\r\n          <!--<agm-marker-cluster [imagePath]=\"'https://googlemaps.github.io/js-marker-clusterer/images/m'\">-->\r\n\r\n            <agm-marker *ngFor=\"let marker of markers\" [latitude]=\"marker.latitude\" [longitude]=\"marker.longitude\"></agm-marker>\r\n          <!--</agm-marker-cluster>-->\r\n        </agm-map>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <mat-card class=\"mat-elevation-z8 mat-card-style\">\r\n    <div>\r\n      <div *ngIf=\"ADs\" fxFlex=47>\r\n        <div class=\"ads-cri-labels\">الإعلانات:</div>\r\n        <ngx-datatable class=\"material\" [rows]=\"ADs\" [columnMode]=\"'force'\" [headerHeight]=\"48\" [footerHeight]=\"56\" [rowHeight]=\"'auto'\"\r\n          [scrollbarH]=\"true\" [reorderable]=\"reorderable\" [limit]=\"5\">\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"اسم الإعلان\" prop=\"name\">\r\n          </ngx-datatable-column>\r\n\r\n        </ngx-datatable>\r\n      </div>\r\n      <div fxFlex=3></div>\r\n\r\n      <div *ngIf=\"campaignCriterias\" fxFlex=50>\r\n        <div class=\"ads-cri-labels\">المعايير:</div>\r\n        <ngx-datatable class=\"material\" [rows]=\"campaignCriterias\" [columnMode]=\"'force'\" [headerHeight]=\"48\" [footerHeight]=\"56\"\r\n          [rowHeight]=\"'auto'\" [scrollbarH]=\"true\" [reorderable]=\"reorderable\" [limit]=\"5\">\r\n\r\n          <ngx-datatable-column [width]=\"100\" name=\"النوع\" prop=\"type\">\r\n          </ngx-datatable-column>\r\n\r\n          <ngx-datatable-column [width]=\"175\" name=\"القيمة\" prop=\"value\">\r\n          </ngx-datatable-column>\r\n\r\n          <ngx-datatable-column [width]=\"100\" name=\" القيمة الثانية\" prop=\"value2\">\r\n          </ngx-datatable-column>\r\n\r\n        </ngx-datatable>\r\n      </div>\r\n    </div>\r\n  </mat-card>\r\n\r\n  <mat-card *ngIf=\"visibility\" class=\"mat-elevation-z8 mat-card-style\">\r\n    <mat-tab-group mat-align-tabs=\"center\">\r\n      <mat-tab label=\"المشاهدات\">\r\n        <!-- *ngIf=\"rows[0]!=null\" -->\r\n        <ngx-datatable *ngIf=\"impressionsClients.length > 0\" class=\"material\" [rows]=\"impressionsClients\" [columnMode]=\"'force'\"\r\n          [headerHeight]=\"48\" [footerHeight]=\"56\" [rowHeight]=\"'auto'\" [scrollbarH]=\"true\" [reorderable]=\"reorderable\" [externalPaging]=\"true\"\r\n          [count]=\"countImp\" [offset]=\"offsetImp\" [limit]=\"limitImp\" (page)='onPageImp($event)'>\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"Phone Number\" prop=\"client.mobile\">\r\n          </ngx-datatable-column>\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"Email\" prop=\"client.email\">\r\n          </ngx-datatable-column>\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"Position\" prop=\"client.profession\">\r\n          </ngx-datatable-column>\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"Name\" prop=\"client.username\">\r\n          </ngx-datatable-column>\r\n\r\n        </ngx-datatable>\r\n      </mat-tab>\r\n      <mat-tab label=\"النقرات\">\r\n        <ngx-datatable *ngIf=\"clicksClients.length > 0\" class=\"material\" [rows]=\"clicksClients\" [columnMode]=\"'force'\" [headerHeight]=\"48\"\r\n          [footerHeight]=\"56\" [rowHeight]=\"'auto'\" [scrollbarH]=\"true\" [reorderable]=\"reorderable\" [externalPaging]=\"true\"\r\n          [count]=\"countClk\" [offset]=\"offsetClk\" [limit]=\"limitClk\" (page)='onPageClk($event)'>\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"Phone Number\" prop=\"client.mobile\">\r\n          </ngx-datatable-column>\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"Email\" prop=\"client.email\">\r\n          </ngx-datatable-column>\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"Position\" prop=\"client.profession\">\r\n          </ngx-datatable-column>\r\n\r\n          <ngx-datatable-column [width]=\"150\" name=\"Name\" prop=\"client.username\">\r\n          </ngx-datatable-column>\r\n\r\n        </ngx-datatable>\r\n      </mat-tab>\r\n    </mat-tab-group>\r\n  </mat-card>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -14336,6 +14341,18 @@ var FuseviewCampaignComponent = (function () {
         this.reorderable = true;
         this.dateArray = [];
         this.pieToggle = "clicks";
+        this.showMap = [
+            {
+                lat: 33.510414,
+                lng: 36.278336,
+            }
+        ];
+        this.markers = [
+            {
+                "latitude": 33.510414,
+                "longitude": 36.278336
+            }
+        ];
         this.mapToggle = "clicks";
         this.impressionsClients = [];
         this.clicksClients = [];
@@ -14386,6 +14403,9 @@ var FuseviewCampaignComponent = (function () {
             }
         };
     }
+    FuseviewCampaignComponent.prototype.convertStringToNumber = function (value) {
+        return +value;
+    };
     FuseviewCampaignComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.form = this.formBuilder.group({
@@ -14466,7 +14486,7 @@ var FuseviewCampaignComponent = (function () {
         this.mainServ.APIServ.get("campaigns/locationStates").subscribe(function (res) {
             _this.mapClicks = res[0].series;
             _this.mapImpressions = res[1].series;
-            _this.showMap = _this.mapImpressions;
+            _this.toggleMap("impressions");
         });
         /* this.mainServ.APIServ.get('impressions?filter={"where":{"and":[{"campaign_id":' + this.id + '}]}, "include":["location","ad","client"],"limit":10}')
             .subscribe((res: any) => {
@@ -14536,14 +14556,28 @@ var FuseviewCampaignComponent = (function () {
         this.setPageImp(this.offsetClk, this.limitClk);
     };
     FuseviewCampaignComponent.prototype.toggleMap = function (str) {
+        var _this = this;
+        this.markers = [];
         if (str == "clicks") {
             this.mapToggle = "clicks";
             this.showMap = this.mapImpressions;
+            this.mapImpressions.forEach(function (element) {
+                _this.markers.push({
+                    "latitude": element.lat,
+                    "longitude": element.lng
+                });
+            });
         }
         else {
             this.mapToggle = "impressions";
-            this.showMap = this.mapClicks;
+            this.mapClicks.forEach(function (element) {
+                _this.markers.push({
+                    "latitude": element.lat,
+                    "longitude": element.lng
+                });
+            });
         }
+        console.log(this.markers);
     };
     FuseviewCampaignComponent.prototype.toggle = function (str) {
         if (str == "clicks") {
@@ -14878,7 +14912,7 @@ var FuseviewLocationModule = (function () {
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__core_modules_shared_module__["a" /* SharedModule */],
                 __WEBPACK_IMPORTED_MODULE_2__agm_core__["a" /* AgmCoreModule */].forRoot({
-                    apiKey: 'AIzaSyAfaEzR5KKaRsI6ByG0oEokmAIG4wjZ848'
+                    apiKey: 'AIzaSyB44dir8VgrRW0Bq5zu1qNdsmIlMIdD2Ak'
                 }),
             ],
             exports: [
