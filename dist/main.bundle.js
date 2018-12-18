@@ -4528,8 +4528,8 @@ var CallApiService = (function () {
         //   "users",
         //   "users/login"
         // ];
-        // readonly baseUrl = "https://techpeak-net.com/api/"
-        this.baseUrl = "http://185.84.236.39:3000/api/";
+        this.baseUrl = "https://techpeak-net.com/api/";
+        // readonly baseUrl = "http://185.84.236.39:3000/api/"
         // readonly baseUrl = "http://localhost:3000/api/"
         this.errorCode = 0;
         this.headers2 = this.headers2.append("Authorization", "Basic " + btoa("username:password"));
