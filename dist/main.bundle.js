@@ -14683,7 +14683,7 @@ var FuseviewCampaignModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_6__swimlane_ngx_charts__["NgxChartsModule"],
                 __WEBPACK_IMPORTED_MODULE_0__core_components_widget_widget_module__["a" /* FuseWidgetModule */],
                 __WEBPACK_IMPORTED_MODULE_7__agm_core__["a" /* AgmCoreModule */].forRoot({
-                    apiKey: 'AIzaSyDIKQCsMIbHaOKEoo4u3a0SmPwpCTwuKRA'
+                    apiKey: 'AIzaSyB44dir8VgrRW0Bq5zu1qNdsmIlMIdD2Ak'
                 })
             ],
             providers: [

@@ -29,7 +29,7 @@ const routes = [
         NgxChartsModule,
         FuseWidgetModule,
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyDIKQCsMIbHaOKEoo4u3a0SmPwpCTwuKRA'
+            apiKey: 'AIzaSyB44dir8VgrRW0Bq5zu1qNdsmIlMIdD2Ak'
         })
     ],
     providers: [
