@@ -1,0 +1,8 @@
+.table-header-font {
+    font-size: 18px;
+}
+
+:host ::ng-deep .datatable-header .datatable-header-cell.sortable .datatable-header-cell-wrapper {
+    font-size: 18px !important;
+    cursor: pointer;
+  }

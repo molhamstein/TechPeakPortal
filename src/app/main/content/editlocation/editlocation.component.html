@@ -25,8 +25,7 @@
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <div fxFlex="40">
         <mat-form-field>
-          <input type="text" placeholder="اختر المستخدم" matInput [formControl]="myControl" [matAutocomplete]="auto"
-            [(ngModel)]="selectedPartner">
+          <input type="text" placeholder="اختر المستخدم" matInput [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="selectedPartner">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
               {{option.fullname}}
@@ -47,13 +46,20 @@
     </div>
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <div fxFlex="40">
-        <mat-form-field>
+        <!--<mat-form-field>
           <input matInput type="number" placeholder="عدد ساعات الاستخدام" formControlName="dailyLimit" [(ngModel)]="editedData.dailyLimit" autocomplete="off">
+        </mat-form-field>-->
+        <mat-form-field>
+          <mat-select formControlName="type" placeholder="طريقة الدفع" [(ngModel)]="type.value">
+            <mat-option *ngFor="let oneType of typs" [value]="oneType.value">
+              {{oneType.view}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
       <div fxFlex="10">
       </div>
-      <div *ngIf="ISPs" fxFlex = "40">
+      <div *ngIf="ISPs" fxFlex="40">
         <mat-form-field>
           <mat-select formControlName="isp" placeholder="مزود خدمة انترنت" [(ngModel)]="selectedISP">
             <mat-option *ngFor="let l of ISPs" [value]="l">
@@ -63,6 +69,50 @@
         </mat-form-field>
       </div>
     </div>
+
+
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
+      <div fxFlex="40">
+        <mat-form-field>
+          <input matInput placeholder="اسم المستخدم" formControlName="user" [(ngModel)]="editedData.user" autocomplete="off">
+          <mat-error *ngIf="formErrors.user.required">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="10">
+      </div>
+      <div fxFlex="40">
+        <mat-form-field>
+          <input matInput placeholder="كلمة السر" formControlName="password" [(ngModel)]="editedData.password" autocomplete="off">
+          <mat-error *ngIf="formErrors.password.required">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
+      <div fxFlex="40">
+        <mat-form-field>
+          <input matInput placeholder="المنفذ" formControlName="port" [(ngModel)]="editedData.port" autocomplete="off">
+          <mat-error *ngIf="formErrors.port.required">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="10">
+      </div>
+      <div fxFlex="40" *ngIf="type.value=='manual'">
+        <mat-form-field>
+          <input matInput type="number" placeholder="سعر التفعيل" [(ngModel)]="editedData.manualActivationPrice" formControlName="manualActivationPrice" autocomplete="off">
+          <mat-error *ngIf="formErrors.port.required">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
 
     <div class="h3 mb-24" style="margin-top:20px;">إحداثيات الموقع</div>
 

@@ -1,0 +1,56 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar matDialogTitle class="mat-accent m-0">
+    <div style="padding-top: 7px;" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title" *ngIf="type=='add'">إضافة رصيد</span>
+      <span class="title dialog-title" *ngIf="type!='add'">سحب رصيد</span>
+      <button style="float: right;" mat-button class="mat-icon-button" (click)="dialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+    </div>
+  </mat-toolbar>
+
+  <div *ngIf="loadingIndicator == false" style="position: absolute;top: 100px;left: calc(50% - 50px);">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div class="message">{{message}}</div>
+  <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+    <form name="eventForm" [formGroup]="batchForm" class="event-form">
+
+
+      <div style="padding-top:10px;">
+
+
+
+        <div fxFlex="100">
+
+          <mat-form-field fxFlex="90" class="w-100-p">
+            <input matInput name="location" type="number" formControlName="batch" placeholder="المبلغ المالي" required>
+            <mat-icon matSuffix>timer</mat-icon>
+            <mat-error>This Field is Requierd</mat-error>
+          </mat-form-field>
+        </div>
+
+
+      </div>
+
+
+    </form>
+
+  </div>
+
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+
+    <button mat-raised-button class="save-button mat-accent" *ngIf="type=='add'" (click)="add()" [disabled]="batchForm.invalid"
+      aria-label="SAVE">
+           إضافة
+        </button>
+
+    <button mat-raised-button class="save-button mat-accent" *ngIf="type!='add'" (click)="add()" [disabled]="batchForm.invalid"
+      aria-label="SAVE">
+           سحب
+        </button>
+
+
+  </div>
+
+</div>

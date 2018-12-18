@@ -7605,7 +7605,7 @@ var locale = {
 /***/ "../../../../../src/app/main/content/campaign/campaign.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-layout blank p-24\">\r\n\r\n  <button style=\"float: left;\" mat-raised-button class=\"mat-accent mr-16\" (click)=\"addAds()\">إضافة حملة\r\n    <mat-icon class=\"s-30\">add</mat-icon>\r\n\r\n  </button>\r\n  <br>\r\n  <br>\r\n  <br>\r\n\r\n  <div *ngIf=\"loadingIndicator == false\" style=\"margin-right: 45%;\">\r\n    <mat-spinner></mat-spinner>\r\n  </div>\r\n\r\n  <ngx-datatable *ngIf=\"rows[0]!=null && loadingIndicator == true\" class=\"material\" [rows]=\"rows\" [columnMode]=\"'force'\"\r\n    [headerHeight]=\"48\" [footerHeight]=\"56\" [rowHeight]=\"'auto'\" [scrollbarH]=\"true\" [reorderable]=\"reorderable\"\r\n    [limit]=\"5\">\r\n\r\n\r\n    <ngx-datatable-column [width]=\"150\" name=\"اسم الحملة\" prop=\"name\">\r\n    </ngx-datatable-column>\r\n\r\n\r\n\r\n    <ngx-datatable-column [width]=\"150\" name=\"نوع الحملة\" prop=\"type\">\r\n    </ngx-datatable-column>\r\n\r\n\r\n    <ngx-datatable-column [width]=\"150\" name=\"المستهدفين\" prop=\"target\">\r\n    </ngx-datatable-column>\r\n\r\n    <ngx-datatable-column [width]=\"150\" name=\"الحالة\" prop=\"status\">\r\n      <ng-template let-row=\"row\" ngx-datatable-cell-template>\r\n        <mat-chip-list>\r\n          <!--  <mat-chip [class.chip-active]=\"row.status == 'active'\" [class.chip-expired]=\"row.status == 'expired'\"\r\n          [class.chip-completed]=\"row.status == 'completed'\" [class.chip-pending]=\"row.status == 'pending'\" selected>{{row.status}}</mat-chip> -->\r\n          <mat-chip *ngIf=\"row.status == 'active'\" style=\"background-color:#0095ff\" selected>{{row.status}}</mat-chip>\r\n          <mat-chip *ngIf=\"row.status == 'expired'\" style=\"background-color:#e81d1d\" selected>{{row.status}}</mat-chip>\r\n          <mat-chip *ngIf=\"row.status == 'completed'\" style=\"background-color:#15b328\" selected>{{row.status}}</mat-chip>\r\n          <mat-chip *ngIf=\"row.status == 'pending'\" style=\"background-color:#e8a713\" selected>{{row.status}}</mat-chip>\r\n        </mat-chip-list>\r\n      </ng-template>\r\n    </ngx-datatable-column>\r\n\r\n    <ngx-datatable-column [width]=\"200\" name=\"id\">\r\n      <ng-template let-column=\"column\" ngx-datatable-header-template>\r\n        <div class=\"table-header-font\">\r\n          Action\r\n        </div>\r\n      </ng-template>\r\n      <ng-template let-row=\"row\" let-value=\"value\" ngx-datatable-cell-template>\r\n        <!-- <button style=\"background-color: rgba(24, 179, 24, 0.795);\" *ngIf=\"row['status']==0\" mat-mini-fab class=\"mat-accent mr-16\"\r\n          (click)=\"toggleRow(row)\">\r\n          <mat-icon style=\"color : white ;\">check</mat-icon>\r\n        </button>\r\n        <button style=\"background-color: rgba(187, 35, 35, 0.815);\" *ngIf=\"row['status']==1\" mat-mini-fab class=\"mat-accent mr-16\"\r\n          (click)=\"toggleRow(row)\">\r\n          <mat-icon style=\"color: white;\">close</mat-icon>\r\n        </button> -->\r\n        <button style=\"background-color: rgba(7, 112, 7, 0.849);\" mat-mini-fab class=\"mr-16\" (click)=\"view(row['id'])\">\r\n          <mat-icon style=\"color : white;\">visibility</mat-icon>\r\n        </button>\r\n        <button *ngIf=\"isAdmin\" mat-mini-fab class=\"mr-16\" (click)=\"open(row)\" style=\"background-color: rgba(20, 160, 202, 0.911);\">\r\n          <mat-icon style=\"color : white;\">edit</mat-icon>\r\n        </button>\r\n\r\n\r\n      </ng-template>\r\n    </ngx-datatable-column>\r\n  </ngx-datatable>\r\n\r\n</div>"
+module.exports = "<div class=\"page-layout blank p-24\">\r\n\r\n  <button style=\"float: left;\" mat-raised-button class=\"mat-accent mr-16\" (click)=\"addAds()\">إضافة حملة\r\n    <mat-icon class=\"s-30\">add</mat-icon>\r\n\r\n  </button>\r\n  <br>\r\n  <br>\r\n  <br>\r\n\r\n  <div *ngIf=\"loadingIndicator == false\" style=\"margin-right: 45%;\">\r\n    <mat-spinner></mat-spinner>\r\n  </div>\r\n\r\n  <ngx-datatable *ngIf=\"rows[0]!=null && loadingIndicator == true\" class=\"material\" [rows]=\"rows\" [columnMode]=\"'force'\"\r\n    [headerHeight]=\"48\" [footerHeight]=\"56\" [rowHeight]=\"'auto'\" [scrollbarH]=\"true\" [reorderable]=\"reorderable\"\r\n    [limit]=\"5\">\r\n\r\n\r\n    <ngx-datatable-column [width]=\"150\" name=\"اسم الحملة\" prop=\"name\">\r\n    </ngx-datatable-column>\r\n\r\n\r\n\r\n    <ngx-datatable-column [width]=\"150\" name=\"نوع الحملة\" prop=\"type\">\r\n    </ngx-datatable-column>\r\n\r\n\r\n    <ngx-datatable-column [width]=\"150\" name=\"المستهدفين\" prop=\"target\">\r\n    </ngx-datatable-column>\r\n\r\n    <ngx-datatable-column [width]=\"150\" name=\"الحالة\" prop=\"status\">\r\n      <ng-template let-row=\"row\" ngx-datatable-cell-template>\r\n        <mat-chip-list>\r\n          <!--  <mat-chip [class.chip-active]=\"row.status == 'active'\" [class.chip-expired]=\"row.status == 'expired'\"\r\n          [class.chip-completed]=\"row.status == 'completed'\" [class.chip-pending]=\"row.status == 'pending'\" selected>{{row.status}}</mat-chip> -->\r\n          <mat-chip *ngIf=\"row.status == 'active'\" style=\"background-color:#0095ff\" selected>{{row.status}}</mat-chip>\r\n          <mat-chip *ngIf=\"row.status == 'expired'\" style=\"background-color:#e81d1d\" selected>{{row.status}}</mat-chip>\r\n          <mat-chip *ngIf=\"row.status == 'completed'\" style=\"background-color:#15b328\" selected>{{row.status}}</mat-chip>\r\n          <mat-chip *ngIf=\"row.status == 'pending'\" style=\"background-color:#e8a713\" selected>{{row.status}}</mat-chip>\r\n          <mat-chip *ngIf=\"row.status == 'deactivated'\" style=\"background-color:#e81d1d\" selected>{{row.status}}</mat-chip>\r\n\r\n        </mat-chip-list>\r\n      </ng-template>\r\n    </ngx-datatable-column>\r\n\r\n    <ngx-datatable-column [width]=\"200\" name=\"id\">\r\n      <ng-template let-column=\"column\" ngx-datatable-header-template>\r\n        <div class=\"table-header-font\">\r\n          Action\r\n        </div>\r\n      </ng-template>\r\n      <ng-template let-row=\"row\" let-value=\"value\" ngx-datatable-cell-template>\r\n        <!-- <button style=\"background-color: rgba(24, 179, 24, 0.795);\" *ngIf=\"row['status']==0\" mat-mini-fab class=\"mat-accent mr-16\"\r\n          (click)=\"toggleRow(row)\">\r\n          <mat-icon style=\"color : white ;\">check</mat-icon>\r\n        </button>\r\n        <button style=\"background-color: rgba(187, 35, 35, 0.815);\" *ngIf=\"row['status']==1\" mat-mini-fab class=\"mat-accent mr-16\"\r\n          (click)=\"toggleRow(row)\">\r\n          <mat-icon style=\"color: white;\">close</mat-icon>\r\n        </button> -->\r\n        <button style=\"background-color: rgba(7, 112, 7, 0.849);\" mat-mini-fab class=\"mr-16\" (click)=\"view(row['id'])\">\r\n          <mat-icon style=\"color : white;\">visibility</mat-icon>\r\n        </button>\r\n        <button *ngIf=\"isAdmin\" mat-mini-fab class=\"mr-16\" (click)=\"open(row)\" style=\"background-color: rgba(20, 160, 202, 0.911);\">\r\n          <mat-icon style=\"color : white;\">edit</mat-icon>\r\n        </button>\r\n\r\n\r\n      </ng-template>\r\n    </ngx-datatable-column>\r\n  </ngx-datatable>\r\n\r\n</div>"
 
 /***/ }),
 
@@ -7691,11 +7691,11 @@ var FuseCampaignComponent = (function () {
                 for (var index = 0; index < _this.rows.length; index++) {
                     var today = new Date();
                     var exp = new Date(_this.rows[index].expiration_date);
-                    if (_this.rows[index].status == "active" && today.getDate() > exp.getDate()) {
-                        _this.rows[index].status = "expired";
-                    }
                     if (_this.rows[index].status == "active" && _this.rows[index].completed == _this.rows[index].target) {
                         _this.rows[index].status = "completed";
+                    }
+                    else if (_this.rows[index].status == "active" && today.getTime() > exp.getTime()) {
+                        _this.rows[index].status = "expired";
                     }
                 }
                 _this.loadingIndicator = true;
@@ -7739,11 +7739,11 @@ var FuseCampaignComponent = (function () {
                             for (var index = 0; index < _this.rows.length; index++) {
                                 var today = new Date();
                                 var exp = new Date(_this.rows[index].expiration_date);
-                                if (_this.rows[index].status == "active" && today.getDate() > exp.getDate()) {
-                                    _this.rows[index].status = "expired";
-                                }
                                 if (_this.rows[index].status == "active" && _this.rows[index].completed == _this.rows[index].target) {
                                     _this.rows[index].status = "completed";
+                                }
+                                else if (_this.rows[index].status == "active" && today.getTime() > exp.getTime()) {
+                                    _this.rows[index].status = "expired";
                                 }
                             }
                             _this.loadingIndicator = true;
@@ -14513,7 +14513,6 @@ var FuseviewCampaignComponent = (function () {
     };
     FuseviewCampaignComponent.prototype.setPageClk = function (offset, limit) {
         var _this = this;
-        debugger;
         this.mainServ.APIServ.get('clicks?filter={"where":{"and":[{"campaign_id":' + this.id + '}]}, "include":["location","ad","client"],"limit":' + limit + ',"skip":' + offset * limit + '}').subscribe(function (data) {
             if (_this.mainServ.APIServ.getErrorCode() == 0) {
                 _this.clicksClients = data;
@@ -14684,9 +14683,8 @@ var FuseviewCampaignModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_6__swimlane_ngx_charts__["NgxChartsModule"],
                 __WEBPACK_IMPORTED_MODULE_0__core_components_widget_widget_module__["a" /* FuseWidgetModule */],
                 __WEBPACK_IMPORTED_MODULE_7__agm_core__["a" /* AgmCoreModule */].forRoot({
-                    apiKey: 'AIzaSyAfaEzR5KKaRsI6ByG0oEokmAIG4wjZ848'
+                    apiKey: 'AIzaSyDIKQCsMIbHaOKEoo4u3a0SmPwpCTwuKRA'
                 })
-                // RouterModule.forChild(routes)
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_1__core_services_auth_guard_service_service__["a" /* AuthGuardService */],

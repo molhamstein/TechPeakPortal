@@ -1,3 +1,15 @@
+import { FuseviewPosModule } from './main/content/view-pos/view-pos.module';
+import { FuseviewPosComponent } from './main/content/view-pos/view-pos.component';
+import { paidAccessComponent } from './main/content/dialog/paid-access/paid-access.component';
+import { FuseeditPOSModule } from './main/content/editpos/editpos.module';
+import { FuseeditPOSComponent } from './main/content/editpos/editpos.component';
+import { FuseaddPOSModule } from './main/content/addpos/addpos.module';
+import { FuseaddPOSComponent } from './main/content/addpos/addpos.component';
+import { FusePOSModule } from './main/content/pos/pos.module';
+import { FusePOSComponent } from './main/content/pos/pos.component';
+import { generateCodeComponent } from './main/content/dialog/generate-code/generate-code.component';
+import { FuseCodesComponent } from './main/content/codes/codes.component';
+import { FuseCodesModule } from './main/content/codes/codes.module';
 import { AddPaymentsComponent } from './main/content/dialog/add-payments/add-payments.component';
 import { FusePaymentModule } from './main/content/payment/payment.module';
 import { FusePaymentComponent } from './main/content/payment/payment.component';
@@ -83,57 +95,57 @@ const appRoutes: Routes = [
         path: 'isp',
         component: FuseISPComponent,
         canActivate: [AuthGuardService, RoleGuardService],
-        data: { 
+        data: {
             expectedRole: 'admin'
-          }
+        }
     },
     {
         path: 'addisp',
         component: FuseaddISPComponent,
         canActivate: [AuthGuardService, RoleGuardService],
-        data: { 
+        data: {
             expectedRole: 'admin'
-          }
+        }
     },
     {
         path: 'editisp/:id',
         component: FuseeditISPComponent,
         canActivate: [AuthGuardService, RoleGuardService],
-        data: { 
+        data: {
             expectedRole: 'admin'
-          }
+        }
     },
     {
         path: 'locations',
         component: FuseLocationsComponent,
         canActivate: [AuthGuardService, RoleGuardService],
-        data: { 
+        data: {
             expectedRole: 'admin'
-          }
+        }
     },
     {
         path: 'addlocation',
         component: FuseaddLocationComponent,
         canActivate: [AuthGuardService, RoleGuardService],
-        data: { 
+        data: {
             expectedRole: 'admin'
-          }
+        }
     },
     {
         path: 'editlocation/:id',
         component: FuseeditLocationComponent,
         canActivate: [AuthGuardService, RoleGuardService],
-        data: { 
+        data: {
             expectedRole: 'admin'
-          }
+        }
     },
     {
         path: 'viewlocation/:id',
         component: FuseviewLocationComponent,
         canActivate: [AuthGuardService, RoleGuardService],
-        data: { 
+        data: {
             expectedRole: 'admin'
-          }
+        }
     },
     {
         path: 'campaign',
@@ -170,64 +182,92 @@ const appRoutes: Routes = [
         path: 'client',
         component: FuseClientComponent,
         canActivate: [AuthGuardService, RoleGuardService],
-        data: { 
+        data: {
             expectedRole: 'admin'
-          }
+        }
     },
     {
         path: 'addclient',
         component: FuseaddClientComponent,
         canActivate: [AuthGuardService, RoleGuardService],
-        data: { 
+        data: {
             expectedRole: 'admin'
-          }
+        }
     },
     {
         path: 'editclient/:id',
         component: FuseeditClientComponent,
         canActivate: [AuthGuardService, RoleGuardService],
-        data: { 
+        data: {
             expectedRole: 'admin'
-          }
+        }
     },
     {
         path: 'partner',
         component: FusePartnerComponent,
         canActivate: [AuthGuardService, RoleGuardService],
-        data: { 
+        data: {
             expectedRole: 'admin'
-          }
+        }
     },
     {
         path: 'addpartner',
         component: FuseaddPartnerComponent,
         canActivate: [AuthGuardService, RoleGuardService],
-        data: { 
+        data: {
             expectedRole: 'admin'
-          }
+        }
     },
     {
         path: 'payment',
         component: FusePaymentComponent,
         canActivate: [AuthGuardService, RoleGuardService],
-        data: { 
+        data: {
             expectedRole: 'admin'
-          }
+        }
     },
 
     {
         path: 'editpartner/:id',
         component: FuseeditPartnerComponent,
         canActivate: [AuthGuardService, RoleGuardService],
-        data: { 
+        data: {
             expectedRole: 'admin'
-          }
+        }
     },
     {
         path: 'clicked',
         component: FuseClickedComponent,
         canActivate: [AuthGuardService]
     },
+    {
+        path: 'pos',
+        component: FusePOSComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'addpos',
+        component: FuseaddPOSComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'viewpos/:id',
+        component: FuseviewPosComponent,
+        canActivate: [AuthGuardService]
+    },
+
+    {
+        path: 'editpos/:id',
+        component: FuseeditPOSComponent,
+        canActivate: [AuthGuardService],
+    },
+
+    {
+        path: 'codes',
+        component: FuseCodesComponent,
+        canActivate: [AuthGuardService]
+    },
+
 
     {
         path: 'impressions',
@@ -252,16 +292,18 @@ const appRoutes: Routes = [
     declarations: [
         AppComponent,
         // dialog
-        AddPaymentsComponent
+        AddPaymentsComponent,
+        generateCodeComponent,
+        paidAccessComponent
         // end Dialog
     ],
     imports: [
-        
+
         BrowserModule,
         HttpModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        
+
         SharedModule,
         TranslateModule.forRoot(),
 
@@ -297,8 +339,12 @@ const appRoutes: Routes = [
         FuseISPModule,
         FuseaddISPModule,
         FuseeditISPModule,
-
-        RouterModule.forRoot(appRoutes , { enableTracing: false, useHash: true }),
+        FuseCodesModule,
+        FusePOSModule,
+        FuseaddPOSModule,
+        FuseeditPOSModule,
+        FuseviewPosModule,
+        RouterModule.forRoot(appRoutes, { enableTracing: false, useHash: true }),
     ],
     providers: [
         AuthGuardService,
@@ -312,7 +358,7 @@ const appRoutes: Routes = [
         GlobalService,
         { provide: LocationStrategy, useClass: HashLocationStrategy }
     ],
-    entryComponents: [AddPaymentsComponent],
+    entryComponents: [AddPaymentsComponent, generateCodeComponent,paidAccessComponent],
     bootstrap: [
         AppComponent
     ]

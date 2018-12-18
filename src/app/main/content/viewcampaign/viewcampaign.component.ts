@@ -248,7 +248,6 @@ export class FuseviewCampaignComponent implements OnInit {
     }
 
     setPageClk(offset, limit) {
-        debugger
         this.mainServ.APIServ.get('clicks?filter={"where":{"and":[{"campaign_id":' + this.id + '}]}, "include":["location","ad","client"],"limit":' + limit + ',"skip":' + offset * limit + '}').subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.clicksClients = data;

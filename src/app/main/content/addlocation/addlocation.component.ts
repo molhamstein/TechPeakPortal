@@ -23,8 +23,23 @@ export class FuseaddLocationComponent {
 
     lat = 33.51380000000012;
     lng = 36.27649999999994;
-    ISPs :any= [];
-    selectedISP:any = {username:"No ISP", id:0};
+    ISPs: any = [];
+    selectedType="free";
+    selectedISP: any = { username: "No ISP", id: 0 };
+
+    typs = [{
+        "view": "مجانا",
+        "value": "free"
+    },
+    {
+        "view": "الكتروني",
+        "value": "automatic"
+    },
+    {
+        "view": "يدوي",
+        "value": "manual"
+    }
+    ]
 
     constructor(private formBuilder: FormBuilder, private mainServ: MainService, private loc: Location
         , private snack: MatSnackBar) {
@@ -32,6 +47,9 @@ export class FuseaddLocationComponent {
             name: {},
             ip: {},
             routerName: {},
+            user: {},
+            password: {},
+            port: {},
         };
     }
 
@@ -40,26 +58,31 @@ export class FuseaddLocationComponent {
             name: ['', Validators.required],
             ip: ['', Validators.required],
             routerName: ['', Validators.required],
+            user: ['', Validators.required],
+            password: ['', Validators.required],
+            type: ['', Validators.required],
+            port: [22, Validators.required],
+            manualActivationPrice: [0, Validators.required],
             dailyLimit: [0],
-            isp:[]
+            isp: []
         });
 
         this.form.valueChanges.subscribe(() => {
             this.onFormValuesChanged();
         });
 
-        this.mainServ.APIServ.get("ISP").subscribe((res:any) => {
+        this.mainServ.APIServ.get("ISP").subscribe((res: any) => {
             this.ISPs = res;
-            this.ISPs.push({username:"No ISP", id:0});
+            this.ISPs.push({ username: "No ISP", id: 0 });
         })
 
         this.mainServ.APIServ.get("partners").subscribe((res: any) => {
             this.partners = res;
             this.filteredOptions = this.myControl.valueChanges
                 .pipe(
-                    startWith<string | Partners>(''),
-                    map(value => typeof value === 'string' ? value : value.fullname),
-                    map(title => title ? this._filter(title) : this.partners.slice())
+                startWith<string | Partners>(''),
+                map(value => typeof value === 'string' ? value : value.fullname),
+                map(title => title ? this._filter(title) : this.partners.slice())
                 );
         })
     }

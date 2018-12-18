@@ -1,0 +1,130 @@
+<div class="page-layout blank p-24">
+
+  <!-- <button style="float: left;" mat-raised-button class="mat-accent mr-16" (click)="addAds()">إضافة إعلان
+    <mat-icon class="s-30">add</mat-icon>
+  </button> -->
+
+
+  <div *ngIf="loadingIndicator == true" [formGroup]="form">
+    <div fxFlex="50">
+      <button mat-raised-button color="primary" (click)="generateCode(null)" style="background-color: darkslateblue;margin-left: 20px;"><label style="color: white;font-family: 'Cairo', sans-serif;"> إنشاء أكواد </label></button>
+      <button mat-mini-fab color="accent" style="background-color: darkslateblue;">  
+          <mat-icon aria-label="Example icon-button with a heart icon" style="color:white">cached</mat-icon>
+      </button>
+    </div>
+    <div fxFlex="35"></div>
+    <mat-form-field fxFlex="25">
+      <mat-select placeholder="Filter By Location" formControlName="location" (selectionChange)="selectLocation(currentLocation)"
+        [(ngModel)]="currentLocation">
+        <mat-option *ngFor="let oneLocation of locations" [value]="oneLocation">
+          {{oneLocation.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="loadingIndicator == false" style="margin-right: 45%;">
+    <mat-spinner></mat-spinner>
+  </div>
+
+
+
+  <div class="ads">
+    <div fxLayout="row" class="section1">
+      <div class="card" fxFlex="100">
+        <div class="label">
+          <label>الإحصائيات</label>
+        </div>
+        <div fxLayout="row" class="details">
+          <div fxFlex="20" class="from">
+            <label>
+                  المبيعات الكلية
+                </label>
+            <h3>
+              {{state.total==null ? 0 : state.total}} </h3>
+          </div>
+          <div fxFlex="20" class="from">
+            <label>
+                  مبيعات اليوم
+                </label>
+            <h3>
+              {{state.totalToday ==null ? 0 :state.totalToday}}
+            </h3>
+          </div>
+          <div fxFlex="20" class="from">
+            <label>
+                  في الصندوق
+                </label>
+            <h3>
+              {{state.incash==null ? 0 : state.incash}}
+            </h3>
+          </div>
+          <!--<div fxFlex="20" class="from">
+            <label>
+                  نقط البيع
+                </label>
+            <h3>{{state.pos}}</h3>
+          </div>-->
+          <div fxFlex="20" class="from">
+            <label>
+                  البطاقات المباعة
+                </label>
+            <h3>{{state.countSold}}</h3>
+          </div>
+
+          <div fxFlex="20" class="from">
+            <label>
+                  النقط المباعة اليوم
+                </label>
+            <h3>{{state.countSoldToday}}</h3>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loadingIndicator == true && currentLocation.type=='automatic'" style="font-size : 17px; font-weight: 700;padding:15px 0px">
+    الفئات المُباعة
+  </div>
+
+
+  <div fxLayout="row wrap" class="container" fxLayoutAlign="space-between center" style="">
+    <div fxFlex="30" class="myCard" *ngFor="let oneCategory of categories; let i = index">
+      <div class="fuse-card cardCategory" (mouseover)="hoverArray[i]=true" (mouseout)="hoverArray[i]=false" [ngStyle]="{'background-color':hoverArray[i]==true ? colorsCatrgories[i].secondeColor : colorsCatrgories[i].mainColor }">
+        <div class="card-primary-title title" style="">
+          <mat-icon matSuffix style="">timer</mat-icon>
+          <label class="count" style="">قابل للاستعمال<label class="timeCount"> {{oneCategory.used_count}} </label>مرات</label>
+        </div>
+        <p class="residual">تم بيع : {{oneCategory.count}}</p>
+
+        <div class="card-supporting-text main" style="">
+          <div class="priceDiv" style="">
+            <span class="card-title price" style="">{{oneCategory.price}}</span>
+            <span>S.P</span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="addButton" mat-button (click)="generateCode({'price':oneCategory.price,'used_count':oneCategory.used_count})"> <label    style="font-family: 'Cairo', sans-serif;">توليد المزيد</label></button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!--<ngx-datatable *ngIf="rows[0]!=null && loadingIndicator == true" class="material" [rows]="rows" [columnMode]="'force'"
+    [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
+    [limit]="5">
+
+    <ngx-datatable-column name="اسم الإعلان" prop="ad.name">
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="الموقع" prop="location.name">
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="الحملة" prop="campaign.name">
+    </ngx-datatable-column>
+  </ngx-datatable>-->
+
+</div>

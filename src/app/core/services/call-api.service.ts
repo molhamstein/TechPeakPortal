@@ -26,7 +26,7 @@ export class CallApiService {
   // ];
   readonly baseUrl = "https://techpeak-net.com/api/"
   // readonly baseUrl = "http://185.84.236.39:3000/api/"
-  // readonly baseUrl = "http://localhost:7500/api/"
+  // readonly baseUrl = "http://localhost:3000/api/"
   private errorCode = 0;
 
   // get(url) {

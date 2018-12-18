@@ -18,6 +18,20 @@ export class FuseviewLocationComponent {
     id: any;
     viewData: any;
     ispDatum: any;
+    typs = [{
+        "view": "مجانا",
+        "value": "free"
+    },
+    {
+        "view": "الكتروني",
+        "value": "automatic"
+    },
+    {
+        "view": "يدوي",
+        "value": "manual"
+    }
+    ]
+    type;
 
     constructor(private formBuilder: FormBuilder, private mainServ: MainService, private loc: Location
         , private route: ActivatedRoute, private snack: MatSnackBar) {
@@ -30,6 +44,11 @@ export class FuseviewLocationComponent {
             partner: [''],
             routerName: [''],
             dailyLimit: [0],
+            user: ['', Validators.required],
+            password: ['', Validators.required],
+            type: ['', Validators.required],
+            port: [22, Validators.required],
+            manualActivationPrice: [0, Validators.required],
             isp: []
         });
 
@@ -41,8 +60,10 @@ export class FuseviewLocationComponent {
 
         this.mainServ.APIServ.get('locations/' + this.id + '?filter={"include":["partner"]}').subscribe((res: any) => {
             this.viewData = res;
+            this.type = this.typs.find(o => o.value === this.viewData.type);
+
             if (!this.viewData.partner) {
-                this.viewData.partner = {fullname: ""};
+                this.viewData.partner = { fullname: "" };
             }
             if (this.viewData.isp_id != 0) {
                 this.mainServ.APIServ.get('ISP/' + this.viewData.isp_id).subscribe(data => {

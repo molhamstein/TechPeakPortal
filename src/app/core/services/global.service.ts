@@ -26,6 +26,18 @@ export class GlobalService {
     this.unreadNot = 0;
   }
 
+  colorArray = ["#001f3f", "#0074D9", "#7FDBFF", "#39CCCC", "#3D9970", "#2ECC40", "#01FF70",
+    "#FFDC00", "#FF851B", "#FF4136", "#85144b", "#F012BE", "#B10DC9", "#AAAAAA"];
+
+  randomNumber = Math.floor(Math.random() * 10) + 1;
+
+  getColor(mainIndex) {
+    var index = mainIndex + this.randomNumber
+    if (this.colorArray[index] == null)
+      index = index % this.colorArray.length;
+    return this.colorArray[index];
+
+  }
 
   goTo2(id) {
     this.router.navigateByUrl('/detail').then(() => this.router.navigateByUrl('/detail/' + id));
@@ -115,7 +127,7 @@ export class GlobalService {
     else if (this.diff_days(new Date(), new Date(date)) < 7)
       return this.diff_days(new Date(), new Date(date)) + " يوم ";
     else
-      return  pipe.transform(date, 'dd-MM-yyyy');
+      return pipe.transform(date, 'dd-MM-yyyy');
 
 
   }

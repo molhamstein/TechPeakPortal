@@ -5,7 +5,7 @@ export class NavigationModel {
     public model: any[];
     role = "";
 
-    constructor(private mainServ : MainService) {
+    constructor(private mainServ: MainService) {
         this.role = mainServ.loginServ.getRole();
         if (this.role == "partner") {
             this.model = [
@@ -22,21 +22,21 @@ export class NavigationModel {
                     'type': 'item',
                     'icon': 'send',
                     'url': '/advertising'
-    
+
                 }, {
                     'id': 'home',
                     'title': 'النقرات',
                     'type': 'item',
                     'icon': 'forum',
                     'url': '/clicked'
-    
+
                 }, {
                     'id': 'home',
                     'title': 'المشاهدات',
                     'type': 'item',
                     'icon': 'forum',
                     'url': '/impressions'
-    
+
                 }, {
                     'id': 'home',
                     'title': 'الحملات الإعلانية',
@@ -50,10 +50,19 @@ export class NavigationModel {
                     'type': 'item',
                     'icon': 'attach_money',
                     'url': '/billing'
+                },
+                {
+                    'id': 'code',
+                    'title': 'Codes',
+                    'type': 'item',
+                    'icon': 'fullscreen',
+                    'url': '/codes'
                 }
-    
+
+
+
             ]
-           // navServ.setNavigationModel(this.model);
+            // navServ.setNavigationModel(this.model);
         }
         else {
 
@@ -71,21 +80,21 @@ export class NavigationModel {
                     'type': 'item',
                     'icon': 'send',
                     'url': '/advertising'
-    
+
                 }, {
                     'id': 'home',
                     'title': 'النقرات',
                     'type': 'item',
                     'icon': 'forum',
                     'url': '/clicked'
-    
+
                 }, {
                     'id': 'home',
                     'title': 'المشاهدات',
                     'type': 'item',
                     'icon': 'forum',
                     'url': '/impressions'
-    
+
                 }, {
                     'id': 'home',
                     'title': 'الحملات الإعلانية',
@@ -98,7 +107,7 @@ export class NavigationModel {
                     'type': 'item',
                     'icon': 'forum',
                     'url': '/payment'
-    
+
                 },
                 {
                     'id': 'home',
@@ -106,14 +115,14 @@ export class NavigationModel {
                     'type': 'item',
                     'icon': 'people',
                     'url': '/partner'
-    
+
                 }, {
                     'id': 'home',
                     'title': 'المشتركين',
                     'type': 'item',
                     'icon': 'people',
                     'url': '/client'
-    
+
                 },
                 {
                     'id': 'loc',
@@ -121,7 +130,7 @@ export class NavigationModel {
                     'type': 'item',
                     'icon': 'location_on',
                     'url': '/locations'
-    
+
                 },
                 {
                     'id': 'bil',
@@ -129,7 +138,7 @@ export class NavigationModel {
                     'type': 'item',
                     'icon': 'attach_money',
                     'url': '/billing'
-    
+
                 },
                 {
                     'id': 'isp',
@@ -137,7 +146,21 @@ export class NavigationModel {
                     'type': 'item',
                     'icon': 'forum',
                     'url': '/isp'
-    
+
+                }
+                ,
+                {
+                    'id': 'code',
+                    'title': 'Codes',
+                    'type': 'item',
+                    'icon': 'fullscreen',
+                    'url': '/codes'
+                },{
+                    'id': 'pos',
+                    'title': 'نقاط البيع',
+                    'type': 'item',
+                    'icon': 'supervised_user_circle',
+                    'url': '/pos'
                 }/* ,{
                     'id': 'home',
                     'title': 'الصفحة الشخصية',
@@ -167,11 +190,11 @@ export class NavigationModel {
                     'url': '/apps/dashboards/project'
     
                 } */
-    
+
             ]
-           // navServ.setNavigationModel(this.model);
-        
+            // navServ.setNavigationModel(this.model);
+
         }
-  
+
     }
 }

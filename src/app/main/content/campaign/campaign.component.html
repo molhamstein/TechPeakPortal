@@ -38,6 +38,8 @@
           <mat-chip *ngIf="row.status == 'expired'" style="background-color:#e81d1d" selected>{{row.status}}</mat-chip>
           <mat-chip *ngIf="row.status == 'completed'" style="background-color:#15b328" selected>{{row.status}}</mat-chip>
           <mat-chip *ngIf="row.status == 'pending'" style="background-color:#e8a713" selected>{{row.status}}</mat-chip>
+          <mat-chip *ngIf="row.status == 'deactivated'" style="background-color:#e81d1d" selected>{{row.status}}</mat-chip>
+
         </mat-chip-list>
       </ng-template>
     </ngx-datatable-column>

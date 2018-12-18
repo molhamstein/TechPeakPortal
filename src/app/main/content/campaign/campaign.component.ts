@@ -48,12 +48,12 @@ export class FuseCampaignComponent implements OnInit {
                 for (let index = 0; index < this.rows.length; index++) {
                     var today = new Date();
                     var exp = new Date(this.rows[index].expiration_date);
-                    if (this.rows[index].status == "active" && today.getDate() > exp.getDate()) {
-                        this.rows[index].status = "expired";
-                    }
                     if (this.rows[index].status == "active" && this.rows[index].completed == this.rows[index].target) {
                         this.rows[index].status = "completed";
-                    }
+                    } else
+                        if (this.rows[index].status == "active" && today.getTime() > exp.getTime()) {
+                            this.rows[index].status = "expired";
+                        }
                 }
                 this.loadingIndicator = true;
 
@@ -92,7 +92,7 @@ export class FuseCampaignComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe((data) => {
             if (data != undefined) {
-                if(data.status == "completed" || data.status == "expired") {
+                if (data.status == "completed" || data.status == "expired") {
                     data.status = "active"
                 }
                 row.status = data.status;
@@ -104,23 +104,24 @@ export class FuseCampaignComponent implements OnInit {
                             for (let index = 0; index < this.rows.length; index++) {
                                 var today = new Date();
                                 var exp = new Date(this.rows[index].expiration_date);
-                                if (this.rows[index].status == "active" && today.getDate() > exp.getDate()) {
-                                    this.rows[index].status = "expired";
-                                }
+
                                 if (this.rows[index].status == "active" && this.rows[index].completed == this.rows[index].target) {
                                     this.rows[index].status = "completed";
                                 }
+                                else if (this.rows[index].status == "active" && today.getTime() > exp.getTime()) {
+                                    this.rows[index].status = "expired";
+                                }
                             }
                             this.loadingIndicator = true;
-            
+
                         }
                         else if (this.mainServ.APIServ.getErrorCode() == 400) {
-            
+
                         }
                         else {
                             this.mainServ.globalServ.somthingError();
                         }
-            
+
                     });
                 })
             }

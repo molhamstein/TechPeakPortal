@@ -1,0 +1,123 @@
+<div class="page-layout blank p-24">
+
+  <!-- <button style="float: left;" mat-raised-button class="mat-accent mr-16" (click)="addAds()">إضافة إعلان
+    <mat-icon class="s-30">add</mat-icon>
+  </button> -->
+
+  <div *ngIf="loadingIndicator == true" style="font-size : 17px; font-weight: 700">
+    عدد نقاط البيع : {{rowsCount}}
+  </div>
+
+  <div *ngIf="loadingIndicator == true" [formGroup]="form" style="width:50%; margin-right: 75%">
+    <mat-form-field fxFlex="50">
+      <mat-select placeholder="Filter By Location" formControlName="location" (selectionChange)="selectLocation(currentLocation)"
+        [(ngModel)]="currentLocation">
+        <mat-option *ngFor="let l of locations" [value]="l">
+          {{l.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div style="width: 100%;height: 60px;">
+    <button mat-raised-button color="primary" (click)="addpos()" style="background-color: darkslateblue;float: left;">
+        
+        <label style="color: white;font-family: 'Cairo', sans-serif;"> إنشاء نقطة بيع </label>
+  <mat-icon aria-label="Example icon-button with a heart icon" style="color:white">add</mat-icon>
+        
+        </button>
+  </div>
+  <div *ngIf="loadingIndicator == false" style="margin-right: 45%;">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <ngx-datatable *ngIf="rows[0]!=null && loadingIndicator == true" class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="48"
+    [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable" [limit]="5">
+
+    <ngx-datatable-column  name="اسم" prop="username">
+    </ngx-datatable-column>
+
+    <!--<ngx-datatable-column name="الموقع" prop="locations.name">
+    </ngx-datatable-column>-->
+
+    <ngx-datatable-column [width]="200" name="المكان" prop="locations.name">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <!--{{getLocation(row.calledstationid)}}-->
+
+        <mat-chip-list>
+          <mat-chip [ngStyle]="{'background-color': colorsLocation[row.locations.id]}" selected="true">{{row.locations.name}}</mat-chip>
+        </mat-chip-list>
+      </ng-template>
+    </ngx-datatable-column>
+
+
+    <ngx-datatable-column [width]="100" name="الرصيد" prop="cash">
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="نقطة بيع أساسية" prop="">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <button mat-mini-fab color="primary" *ngIf="row.is_primary" style="background-color: #24b10b;">
+        <mat-icon aria-label="Example icon-button with a heart icon"  style="color:white">check</mat-icon>
+       </button>
+        <button mat-mini-fab color="primary" *ngIf="!row.is_primary" style="background-color: #ce352d;">
+        <mat-icon aria-label="Example icon-button with a heart icon"  style="color:white">close</mat-icon>
+       </button>
+
+
+      </ng-template>
+    </ngx-datatable-column>
+
+
+
+
+    <ngx-datatable-column name="عمليات الصندوق" prop="calledstationid">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <button mat-mini-fab class="mr-16" (click)="addPaidAccess(row.id,'add')" style="background-color: #24b10b;">  
+          <mat-icon aria-label="Example icon-button with a heart icon" style="color:white">attach_money</mat-icon>
+      </button>
+        <button mat-mini-fab class="mr-16" (click)="addPaidAccess(row.id,'minuse')" style="background-color: #ce352d;">  
+          <mat-icon aria-label="Example icon-button with a heart icon" style="color:white">money_off</mat-icon>
+      </button>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="">
+
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <button style="background-color: rgba(7, 112, 7, 0.849);" (click)="view(row['id'])" mat-mini-fab class="mr-16" (click)="view(row['id'])">
+          <mat-icon style="color : white;">visibility</mat-icon>
+        </button>
+        <button mat-mini-fab class="mr-16" (click)="edit(row['id'])" style="background-color: rgba(20, 160, 202, 0.911);">
+          <mat-icon style="color : white;">edit</mat-icon>
+        </button>
+      </ng-template>
+
+    </ngx-datatable-column>
+
+
+    <!--  <ngx-datatable-column name="id">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <div class="table-header-font">
+            صورة
+        </div>
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <img src="{{row['thumb_link']}}">
+      </ng-template>
+    </ngx-datatable-column> -->
+
+    <!-- <ngx-datatable-column name="id">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <div class="table-header-font" style="padding-right : 17px; padding-top:12px;">
+          Action
+        </div>
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <button mat-mini-fab class="mr-16" (click)="edit(row['id'])" style="background-color: rgba(20, 160, 202, 0.911);">
+          <mat-icon style="color : white;">edit</mat-icon>
+        </button>
+
+      </ng-template>
+    </ngx-datatable-column> -->
+  </ngx-datatable>
+
+</div>

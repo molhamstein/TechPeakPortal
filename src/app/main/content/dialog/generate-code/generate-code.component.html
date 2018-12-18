@@ -1,0 +1,108 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar matDialogTitle class="mat-accent m-0">
+    <div style="padding-top: 7px;" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">إنشاء اكواد</span>
+      <button style="float: right;" mat-button class="mat-icon-button" (click)="dialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+    </div>
+  </mat-toolbar>
+
+  <div *ngIf="loadingIndicator == false" style="position: absolute;top: 100px;left: calc(50% - 50px);">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+    <form name="eventForm" [formGroup]="codeForm" class="event-form">
+
+      <div style="padding-top:10px;">
+        <div fxFlex="50">
+
+          <mat-form-field fxFlex="90" class="w-100-p">
+            <mat-select formControlName="seller_id" placeholder="اختر نقطة البيع" [(ngModel)]="currentSeller" required>
+              <mat-option *ngFor="let oneSeller of sellers" [value]="oneSeller.id">
+                {{ oneSeller.username }}
+              </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error>This Field is Requierd</mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <div fxFlex="50">
+
+          <mat-form-field fxFlex="90" class="w-100-p">
+            <mat-select formControlName="location_id" placeholder="اختر المكان" (selectionChange)="getSeller(currentLocation)" [(ngModel)]="currentLocation"
+              required>
+              <mat-option *ngFor="let oneLocation of locations" [value]="oneLocation.id">
+                {{ oneLocation.name }}
+              </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>location_on</mat-icon>
+            <mat-error>This Field is Requierd</mat-error>
+          </mat-form-field>
+        </div>
+        <!--<mat-form-field class="w-100-p">
+          <input matInput name="location" type="number" formControlName="value" placeholder="القيمة" required>
+          <mat-icon matSuffix>place</mat-icon>
+          <mat-error>This Field is Requierd</mat-error>
+        </mat-form-field>
+      -->
+      </div>
+      <div style="padding-top:10px;">
+
+
+
+        <div fxFlex="50">
+
+          <mat-form-field fxFlex="90" class="w-100-p">
+            <input matInput name="location" type="number" formControlName="used_count" placeholder="عدد مرات الاستخدام" required>
+            <mat-icon matSuffix>timer</mat-icon>
+            <mat-error>This Field is Requierd</mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50">
+          <mat-form-field fxFlex="90" class="w-100-p">
+            <input matInput name="location" type="number" formControlName="price" placeholder="القيمة" required>
+            <mat-icon matSuffix>monetization_on</mat-icon>
+            <mat-error>This Field is Requierd</mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div style="padding-top:10px;">
+
+        <div fxFlex="50">
+
+          <label>مُباع</label>
+          <mat-slide-toggle style="padding-right: 22px;padding-top: 22px;" class="example-margin"  formControlName="is_sold" [(ngModel)]="is_sold">
+          </mat-slide-toggle>
+        </div>
+
+        <div fxFlex="50">
+          <mat-form-field fxFlex="90" class="w-100-p">
+            <input matInput name="location" type="number" formControlName="count" placeholder="العدد" required>
+            <mat-icon matSuffix>playlist_add</mat-icon>
+            <mat-error>This Field is Requierd</mat-error>
+          </mat-form-field>
+        </div>
+
+
+      </div>
+
+    </form>
+  </div>
+
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+
+    <button mat-raised-button class="save-button mat-accent" (click)="generate(false)" [disabled]="codeForm.invalid" aria-label="SAVE">
+           إنشاء واغلاق
+        </button>
+    <button mat-raised-button class="save-button mat-accent" (click)="generate(true)" [disabled]="codeForm.invalid" aria-label="SAVE">
+            إنشاء واستخراج
+        </button>
+
+  </div>
+
+</div>

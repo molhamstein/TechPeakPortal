@@ -15,23 +15,41 @@ import { ActivatedRoute } from '@angular/router';
 export class FuseeditLocationComponent {
     form: FormGroup;
     formErrors: any;
-    id:any;
+    id: any;
     myControl = new FormControl();
     filteredOptions: Observable<Partners[]>;
     partners: Partners[] = [];
     selectedPartner: any;
-    editedData : any;
+    editedData: any;
     lat = 33.51380000000012;
     lng = 36.27649999999994;
-    ISPs :any= [];
-    selectedISP:any ;
+    ISPs: any = [];
+    selectedISP: any;
+    type;
+    typs = [{
+        "view": "مجانا",
+        "value": "free"
+    },
+    {
+        "view": "الكتروني",
+        "value": "automatic"
+    },
+    {
+        "view": "يدوي",
+        "value": "manual"
+    }
+    ]
+
 
     constructor(private formBuilder: FormBuilder, private mainServ: MainService, private loc: Location
-        ,private route: ActivatedRoute, private snack : MatSnackBar) {
+        , private route: ActivatedRoute, private snack: MatSnackBar) {
         this.formErrors = {
             name: {},
             ip: {},
             routerName: {},
+            user: {},
+            password: {},
+            port: {},
         };
     }
 
@@ -41,7 +59,12 @@ export class FuseeditLocationComponent {
             ip: ['', Validators.required],
             routerName: ['', Validators.required],
             dailyLimit: [0],
-            isp:[]
+            user: ['', Validators.required],
+            password: ['', Validators.required],
+            type: ['', Validators.required],
+            port: [22, Validators.required],
+            manualActivationPrice: [0, Validators.required],
+            isp: []
         });
 
         this.form.valueChanges.subscribe(() => {
@@ -50,30 +73,31 @@ export class FuseeditLocationComponent {
 
         this.id = this.route.snapshot.paramMap.get('id');
 
-        this.mainServ.APIServ.get('locations/' + this.id + '?filter={"include":["partner"]}').subscribe((res:any) => {
+        this.mainServ.APIServ.get('locations/' + this.id + '?filter={"include":["partner"]}').subscribe((res: any) => {
             this.editedData = res;
-            this.selectedPartner = this.editedData.partner;     
+            this.selectedPartner = this.editedData.partner;
             this.lng = this.editedData.lng;
             this.lat = this.editedData.lat;
+            this.type = this.typs.find(o => o.value === this.editedData.type);
 
-            this.mainServ.APIServ.get("ISP").subscribe((res:any) => {
+            this.mainServ.APIServ.get("ISP").subscribe((res: any) => {
                 this.ISPs = res;
-                this.ISPs.push({username:"No ISP", id:0});
+                this.ISPs.push({ username: "No ISP", id: 0 });
                 for (let index = 0; index < this.ISPs.length; index++) {
                     if (this.ISPs[index].id == this.editedData.isp_id) {
                         this.selectedISP = this.ISPs[index];
                     }
                 }
-            })       
+            })
         })
 
         this.mainServ.APIServ.get("partners").subscribe((res: any) => {
             this.partners = res;
             this.filteredOptions = this.myControl.valueChanges
                 .pipe(
-                    startWith<string | Partners>(''),
-                    map(value => typeof value === 'string' ? value : value.fullname),
-                    map(title => title ? this._filter(title) : this.partners.slice())
+                startWith<string | Partners>(''),
+                map(value => typeof value === 'string' ? value : value.fullname),
+                map(title => title ? this._filter(title) : this.partners.slice())
                 );
         })
     }
@@ -103,14 +127,14 @@ export class FuseeditLocationComponent {
         this.mainServ.APIServ.put("locations", data).subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.mainServ.globalServ.goTo("locations");
-                this.snack.open("أدخلت المعلومات بنجاح","حسناً")._dismissAfter(2000);
+                this.snack.open("أدخلت المعلومات بنجاح", "حسناً")._dismissAfter(2000);
             }
             else if (this.mainServ.APIServ.getErrorCode() == 400) {
 
             }
             else {
                 this.mainServ.globalServ.somthingError();
-                this.snack.open("الرجاء إدخال المعلومات الصحيحة","حسناً");
+                this.snack.open("الرجاء إدخال المعلومات الصحيحة", "حسناً");
             }
 
         });

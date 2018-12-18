@@ -29,10 +29,8 @@ const routes = [
         NgxChartsModule,
         FuseWidgetModule,
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyAfaEzR5KKaRsI6ByG0oEokmAIG4wjZ848'
+            apiKey: 'AIzaSyDIKQCsMIbHaOKEoo4u3a0SmPwpCTwuKRA'
         })
-
-        // RouterModule.forChild(routes)
     ],
     providers: [
         AuthGuardService,
