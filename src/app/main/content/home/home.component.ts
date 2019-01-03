@@ -87,7 +87,7 @@ export class FusehomeComponent {
             }
         })
 
-        this.mainServ.APIServ.get("campaigns/states?").subscribe((data: any) => {
+        this.mainServ.APIServ.get("campaigns/states?isActive=true").subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.compagins = data;
                 for (let index = 0; index < this.compagins.length; index++) {

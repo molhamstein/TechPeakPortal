@@ -7167,7 +7167,7 @@ var FuseAdvertisingComponent = (function () {
     }
     FuseAdvertisingComponent.prototype.setPage = function (offset, limit) {
         var _this = this;
-        this.mainServ.APIServ.get("ADs?filter[limit]=" + limit + "&filter[skip]=" + offset * limit).subscribe(function (data) {
+        this.mainServ.APIServ.get("ADs?filter[limit]=" + limit + "&filter[skip]=" + offset * limit + "&filter[order]=id%20DESC").subscribe(function (data) {
             if (_this.mainServ.APIServ.getErrorCode() == 0) {
                 _this.rows = data;
                 _this.loadingIndicator = true;
@@ -7378,7 +7378,7 @@ var FuseBillingComponent = (function () {
         if (role == "partner") {
             this.isPartner = true;
         }
-        this.mainServ.APIServ.get("campaigns/states").subscribe(function (data) {
+        this.mainServ.APIServ.get("campaigns/states?isActive=false").subscribe(function (data) {
             if (_this.mainServ.APIServ.getErrorCode() == 0) {
                 _this.rowsCampaign = data;
                 for (var index = 0; index < _this.rowsCampaign.length; index++) {
@@ -7427,7 +7427,7 @@ var FuseBillingComponent = (function () {
         for (var index = 0; index < this.partners.length; index++) {
             if (this.selectedPartner.fullname == this.partners[index].fullname) {
                 this.netBalance = 0;
-                this.mainServ.APIServ.get("campaigns/states?partner_id=" + this.partners[index].id).subscribe(function (data) {
+                this.mainServ.APIServ.get("campaigns/states?partner_id=" + this.partners[index].id + "&isActive=false").subscribe(function (data) {
                     if (_this.mainServ.APIServ.getErrorCode() == 0) {
                         _this.rowsCampaign = data;
                         _this.campaignCount = 0;
@@ -7468,7 +7468,7 @@ var FuseBillingComponent = (function () {
             this.netBalance = 0;
             this.invoiceCount = 0;
             this.campaignCount = 0;
-            this.mainServ.APIServ.get("campaigns/states").subscribe(function (data) {
+            this.mainServ.APIServ.get("campaigns/states?isActive=false").subscribe(function (data) {
                 if (_this.mainServ.APIServ.getErrorCode() == 0) {
                     _this.rowsCampaign = data;
                     for (var index = 0; index < _this.rowsCampaign.length; index++) {
@@ -7690,7 +7690,7 @@ var FuseCampaignComponent = (function () {
         if (role == "partner") {
             this.isAdmin = false;
         }
-        this.mainServ.APIServ.get("campaigns").subscribe(function (data) {
+        this.mainServ.APIServ.get("campaigns?filter[order]=id%20DESC").subscribe(function (data) {
             if (_this.mainServ.APIServ.getErrorCode() == 0) {
                 _this.rows = data;
                 for (var index = 0; index < _this.rows.length; index++) {
@@ -7738,7 +7738,7 @@ var FuseCampaignComponent = (function () {
                 row.status = data.status;
                 row.view_impressions = data.view_impressions;
                 _this.mainServ.APIServ.put("campaigns", row).subscribe(function (res) {
-                    _this.mainServ.APIServ.get("campaigns").subscribe(function (data) {
+                    _this.mainServ.APIServ.get("campaigns?filter[order]=id%20DESC").subscribe(function (data) {
                         if (_this.mainServ.APIServ.getErrorCode() == 0) {
                             _this.rows = data;
                             for (var index = 0; index < _this.rows.length; index++) {
@@ -8312,7 +8312,7 @@ var FuseClientComponent = (function () {
     }
     FuseClientComponent.prototype.setPage = function (offset, limit) {
         var _this = this;
-        this.mainServ.APIServ.get("clients?filter[limit]=" + limit + "&filter[skip]=" + offset * limit).subscribe(function (data) {
+        this.mainServ.APIServ.get("clients?filter[limit]=" + limit + "&filter[skip]=" + offset * limit + "&filter[order]=id%20DESC").subscribe(function (data) {
             if (_this.mainServ.APIServ.getErrorCode() == 0) {
                 _this.rows = data;
                 _this.loadingIndicator = true;
@@ -10606,7 +10606,7 @@ var FusehomeComponent = (function () {
                 _this.locations.push(res[index]);
             }
         });
-        this.mainServ.APIServ.get("campaigns/states?").subscribe(function (data) {
+        this.mainServ.APIServ.get("campaigns/states?isActive=true").subscribe(function (data) {
             if (_this.mainServ.APIServ.getErrorCode() == 0) {
                 _this.compagins = data;
                 for (var index = 0; index < _this.compagins.length; index++) {

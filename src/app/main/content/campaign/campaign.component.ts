@@ -42,7 +42,7 @@ export class FuseCampaignComponent implements OnInit {
             this.isAdmin = false;
         }
 
-        this.mainServ.APIServ.get("campaigns").subscribe((data: any) => {
+        this.mainServ.APIServ.get("campaigns?filter[order]=id%20DESC").subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.rows = data;
                 for (let index = 0; index < this.rows.length; index++) {
@@ -98,7 +98,7 @@ export class FuseCampaignComponent implements OnInit {
                 row.status = data.status;
                 row.view_impressions = data.view_impressions;
                 this.mainServ.APIServ.put("campaigns", row).subscribe(res => {
-                    this.mainServ.APIServ.get("campaigns").subscribe((data: any) => {
+                    this.mainServ.APIServ.get("campaigns?filter[order]=id%20DESC").subscribe((data: any) => {
                         if (this.mainServ.APIServ.getErrorCode() == 0) {
                             this.rows = data;
                             for (let index = 0; index < this.rows.length; index++) {

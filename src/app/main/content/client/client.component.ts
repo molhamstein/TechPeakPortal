@@ -27,7 +27,7 @@ export class FuseClientComponent implements OnInit {
 
     setPage(offset, limit) {
 
-        this.mainServ.APIServ.get("clients?filter[limit]=" + limit + "&filter[skip]=" + offset * limit).subscribe((data: any) => {
+        this.mainServ.APIServ.get("clients?filter[limit]=" + limit + "&filter[skip]=" + offset * limit+"&filter[order]=id%20DESC").subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
 
                 this.rows = data;
