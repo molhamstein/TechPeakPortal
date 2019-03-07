@@ -21,6 +21,7 @@ export class FuseeditLocationComponent {
     partners: Partners[] = [];
     selectedPartner: any;
     editedData: any;
+    city = []
     lat = 33.51380000000012;
     lng = 36.27649999999994;
     ISPs: any = [];
@@ -60,6 +61,7 @@ export class FuseeditLocationComponent {
             routerName: ['', Validators.required],
             dailyLimit: [0],
             user: ['', Validators.required],
+            cityId: ['', Validators.required],
             password: ['', Validators.required],
             type: ['', Validators.required],
             port: [22, Validators.required],
@@ -72,6 +74,11 @@ export class FuseeditLocationComponent {
         });
 
         this.id = this.route.snapshot.paramMap.get('id');
+
+        this.mainServ.APIServ.get("cities").subscribe((res: any) => {
+            this.city = res;
+            // this.ISPs.push({ username: "No ISP", id: 0 });
+        })
 
         this.mainServ.APIServ.get('locations/' + this.id + '?filter={"include":["partner"]}').subscribe((res: any) => {
             this.editedData = res;
@@ -95,9 +102,9 @@ export class FuseeditLocationComponent {
             this.partners = res;
             this.filteredOptions = this.myControl.valueChanges
                 .pipe(
-                startWith<string | Partners>(''),
-                map(value => typeof value === 'string' ? value : value.fullname),
-                map(title => title ? this._filter(title) : this.partners.slice())
+                    startWith<string | Partners>(''),
+                    map(value => typeof value === 'string' ? value : value.fullname),
+                    map(title => title ? this._filter(title) : this.partners.slice())
                 );
         })
     }

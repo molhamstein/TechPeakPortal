@@ -20,11 +20,11 @@ export class FuseaddLocationComponent {
     filteredOptions: Observable<Partners[]>;
     partners: Partners[] = [];
     selectedPartner: any;
-
+    city = [];
     lat = 33.51380000000012;
     lng = 36.27649999999994;
     ISPs: any = [];
-    selectedType="free";
+    selectedType = "free";
     selectedISP: any = { username: "No ISP", id: 0 };
 
     typs = [{
@@ -59,6 +59,7 @@ export class FuseaddLocationComponent {
             ip: ['', Validators.required],
             routerName: ['', Validators.required],
             user: ['', Validators.required],
+            cityId: ['', Validators.required],
             password: ['', Validators.required],
             type: ['', Validators.required],
             port: [22, Validators.required],
@@ -70,6 +71,10 @@ export class FuseaddLocationComponent {
         this.form.valueChanges.subscribe(() => {
             this.onFormValuesChanged();
         });
+        this.mainServ.APIServ.get("cities").subscribe((res: any) => {
+            this.city = res;
+            // this.ISPs.push({ username: "No ISP", id: 0 });
+        })
 
         this.mainServ.APIServ.get("ISP").subscribe((res: any) => {
             this.ISPs = res;
@@ -80,9 +85,9 @@ export class FuseaddLocationComponent {
             this.partners = res;
             this.filteredOptions = this.myControl.valueChanges
                 .pipe(
-                startWith<string | Partners>(''),
-                map(value => typeof value === 'string' ? value : value.fullname),
-                map(title => title ? this._filter(title) : this.partners.slice())
+                    startWith<string | Partners>(''),
+                    map(value => typeof value === 'string' ? value : value.fullname),
+                    map(title => title ? this._filter(title) : this.partners.slice())
                 );
         })
     }

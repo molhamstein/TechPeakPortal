@@ -32,9 +32,12 @@ export class FuseaddCampaignComponent {
     selectedPartner: any;
 
     myControl1 = new FormControl();
+    cityControl = new FormControl();
     filteredOptions1: Observable<Locations[]>;
+    city = [];
     locations: Locations[] = [];
     selectedLocation: any;
+    selectedCity: any;
 
     criteriaTypes: any = [];
     selectedCriteria: any = {};
@@ -87,7 +90,7 @@ export class FuseaddCampaignComponent {
             fromAge: [''],
             toAge: [''],
             profession: [''],
-            view_impressions:[false],
+            view_impressions: [false],
         });
 
         this.form.valueChanges.subscribe(() => {
@@ -201,21 +204,30 @@ export class FuseaddCampaignComponent {
         return this.locations.filter(part => part.name.toLowerCase().indexOf(filterValue) === 0);
     }
 
+    changeCity() {
+
+        var filter = { "where": { "cityId": this.selectedCity } }
+        this.myControl1 = new FormControl();
+        this.mainServ.APIServ.get("locations?filter=" + JSON.stringify(filter)).subscribe((res: any) => {
+            this.locations = res;
+            this.filteredOptions1 = this.myControl1.valueChanges
+                .pipe(
+                    startWith<string | Locations>(''),
+                    map(value => typeof value === 'string' ? value : value.name),
+                    map(title => title ? this._filterLoc(title) : this.locations.slice())
+                );
+        })
+
+    }
     criteriaSelectChange() {
         if (this.selectedCriteria.type == "location") {
+            this.mainServ.APIServ.get("cities").subscribe((res: any) => {
+                this.city = res;
+            })
             this.selectedGender = "";
             this.fromAge = "";
             this.toAge = "";
             this.selectedProfession = "";
-            this.mainServ.APIServ.get("locations").subscribe((res: any) => {
-                this.locations = res;
-                this.filteredOptions1 = this.myControl1.valueChanges
-                    .pipe(
-                        startWith<string | Locations>(''),
-                        map(value => typeof value === 'string' ? value : value.name),
-                        map(title => title ? this._filterLoc(title) : this.locations.slice())
-                    );
-            })
         }
         else if (this.selectedCriteria.type == "gender") {
             this.selectedLocation = "";

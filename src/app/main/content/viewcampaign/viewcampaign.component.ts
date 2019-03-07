@@ -200,8 +200,7 @@ export class FuseviewCampaignComponent implements OnInit {
 
                 }
             }
-
-            this.showPie = this.pieImpressions;
+            this.toggle("impressions")
         })
 
         this.endDate = new Date();
@@ -210,7 +209,7 @@ export class FuseviewCampaignComponent implements OnInit {
         this.startDate = new Date(year, month - 1, 1);
         this.search();
 
-        this.mainServ.APIServ.get("campaigns/locationStates").subscribe((res: any) => {
+        this.mainServ.APIServ.get("campaigns/locationStates?campaignId=" + this.id).subscribe((res: any) => {
             this.mapClicks = res[0].series;
             this.mapImpressions = res[1].series;
             this.toggleMap("impressions");
@@ -292,11 +291,11 @@ export class FuseviewCampaignComponent implements OnInit {
     }
 
     toggleMap(str) {
-        this.markers=[];
+        this.markers = [];
         if (str == "clicks") {
             this.mapToggle = "clicks";
-            this.showMap = this.mapImpressions;
-            this.mapImpressions.forEach(element => {
+            this.showMap = this.mapClicks;
+            this.mapClicks.forEach(element => {
                 this.markers.push(
                     {
                         "latitude": element.lat,
@@ -307,7 +306,8 @@ export class FuseviewCampaignComponent implements OnInit {
         }
         else {
             this.mapToggle = "impressions";
-            this.mapClicks.forEach(element => {
+            this.showMap = this.mapImpressions;
+            this.mapImpressions.forEach(element => {
                 this.markers.push(
                     {
                         "latitude": element.lat,
@@ -323,12 +323,32 @@ export class FuseviewCampaignComponent implements OnInit {
     toggle(str) {
         if (str == "clicks") {
             this.pieToggle = "clicks";
-            this.showPie = this.pieImpressions;
+            this.showPie = this.pieClicks;
         }
         else {
             this.pieToggle = "impressions";
-            this.showPie = this.pieClicks;
+            this.showPie = this.pieImpressions;
         }
+    }
+
+    toString(value) {
+        var tempStr: String = "0"
+        if (value != undefined) {
+            tempStr = value.toString()
+        }
+        return tempStr
+    }
+
+
+    onMouseOver(infoWindow, gm) {
+
+        if (gm.lastOpen != null) {
+            gm.lastOpen.close();
+        }
+
+        gm.lastOpen = infoWindow;
+
+        infoWindow.open();
     }
 
     search() {

@@ -192,7 +192,20 @@
       </div>
       <div fxFlex="10">
       </div>
-      <div *ngIf="selectedCriteria.type == 'location'" fxFlex="40">
+      <div *ngIf="selectedCriteria.type == 'location'" fxFlex="25">
+
+        <mat-form-field>
+          <mat-select [formControl]="cityControl" placeholder="اختر المدينة" (selectionChange)="changeCity()"
+            [(ngModel)]="selectedCity">
+            <mat-option *ngFor="let oneCity of city" [value]="oneCity.id">
+              {{oneCity.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="5" *ngIf="selectedCriteria.type == 'location'">
+      </div>
+      <div *ngIf="selectedCriteria.type == 'location'" fxFlex="25">
         <mat-form-field>
           <input type="text" placeholder="اختر الموقع" matInput [formControl]="myControl1" [matAutocomplete]="auto1"
             [(ngModel)]="selectedLocation">
@@ -201,11 +214,6 @@
               {{option.name}}
             </mat-option>
           </mat-autocomplete>
-          <!--  <mat-select formControlName="location" placeholder="الموقع" [(ngModel)]="selectedLocation">
-            <mat-option *ngFor="let l of locations" [value]="l">
-              {{l.name}}
-            </mat-option>
-          </mat-select> -->
         </mat-form-field>
       </div>
       <div *ngIf="selectedCriteria.type == 'gender'" fxFlex="40">

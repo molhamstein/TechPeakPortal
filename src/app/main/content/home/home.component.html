@@ -9,18 +9,24 @@
               <label>عدد المشاهدات</label>
             </div>
             <div fxLayout="row" class="details">
-              <div class="from">
+              <div fxFlex="45" class="from">
                 <label>
                   حتى الأن
                 </label>
                 <h3>{{headLines.impressions.all}}</h3>
               </div>
-              <div fxFlex="45" class="from" style="padding-right: 150px;">
+              <div fxFlex="45" class="from">
                 <label>
                   اليوم
                 </label>
                 <h3>{{headLines.impressions.day}}</h3>
               </div>
+              <!-- <div fxFlex="45" class="from" style="padding-right: 100px;">
+                <label>
+                  اليوم
+                </label>
+                <h3>{{headLines.impressions.day}}</h3>
+              </div> -->
             </div>
           </div>
           <div fxFlex="2"></div>
@@ -29,13 +35,13 @@
               <label>عدد النقرات</label>
             </div>
             <div fxLayout="row" class="details">
-              <div class="from">
+              <div fxFlex="45" class="from">
                 <label>
                   حتى الأن
                 </label>
                 <h3>{{headLines.clicks.all}}</h3>
               </div>
-              <div fxFlex="45" class="from" style="padding-right: 150px;">
+              <div fxFlex="45" class="from">
                 <label>
                   اليوم
                 </label>
@@ -89,7 +95,7 @@
                   <div class="mb-16" fxFlex="100" fxLayoutAlign="row" fxLayoutWrap>
                     <div fxLayout="column" fxFlex="100" fxLayoutAlign="center">
                       <div class="px-24">
-                        <div class="h4 secondary-text">القيم</div> 
+                        <div class="h4 secondary-text">القيم</div>
                         <div class="mat-display-1 m-0">
                           {{dateArray[0].series.length + dateArray[1].series.length}}
                         </div>
