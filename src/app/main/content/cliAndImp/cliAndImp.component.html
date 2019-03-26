@@ -1,0 +1,27 @@
+<div class="page-layout blank p-24">
+
+  <!-- <button style="float: left;" mat-raised-button class="mat-accent mr-16" (click)="addAds()">إضافة إعلان
+    <mat-icon class="s-30">add</mat-icon>
+  </button> -->
+
+
+  <div *ngIf="loadingIndicator == false" style="margin-right: 45%;">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <ngx-datatable *ngIf="rows[0]!=null && loadingIndicator == true" class="material" [rows]="rows" [columnMode]="'force'"
+    [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
+    [limit]="5">
+
+    <ngx-datatable-column name="الموقع" prop="name">
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="عدد المشاهدات" prop="impressionCount">
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="عدد النقرات" prop="clcickedCount">
+    </ngx-datatable-column>
+
+  </ngx-datatable>
+
+</div>

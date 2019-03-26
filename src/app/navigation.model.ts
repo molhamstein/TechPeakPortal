@@ -25,19 +25,28 @@ export class NavigationModel {
 
                 }, {
                     'id': 'home',
-                    'title': 'النقرات',
+                    'title': 'النقرات والمشاهدات',
                     'type': 'item',
-                    'icon': 'forum',
-                    'url': '/clicked'
+                    'icon': 'send',
+                    'url': '/clickedAndImpressions'
 
-                }, {
-                    'id': 'home',
-                    'title': 'المشاهدات',
-                    'type': 'item',
-                    'icon': 'forum',
-                    'url': '/impressions'
+                },
+                //  {
+                //     'id': 'home',
+                //     'title': 'النقرات',
+                //     'type': 'item',
+                //     'icon': 'forum',
+                //     'url': '/clicked'
 
-                }, {
+                // }, {
+                //     'id': 'home',
+                //     'title': 'المشاهدات',
+                //     'type': 'item',
+                //     'icon': 'forum',
+                //     'url': '/impressions'
+
+                // }, 
+                {
                     'id': 'home',
                     'title': 'الحملات الإعلانية',
                     'type': 'item',
@@ -81,21 +90,31 @@ export class NavigationModel {
                     'icon': 'send',
                     'url': '/advertising'
 
-                }, {
-                    'id': 'home',
-                    'title': 'النقرات',
-                    'type': 'item',
-                    'icon': 'forum',
-                    'url': '/clicked'
+                    // }, {
+                    //     'id': 'home',
+                    //     'title': 'النقرات',
+                    //     'type': 'item',
+                    //     'icon': 'forum',
+                    //     'url': '/clicked'
 
-                }, {
-                    'id': 'home',
-                    'title': 'المشاهدات',
-                    'type': 'item',
-                    'icon': 'forum',
-                    'url': '/impressions'
+                    // }, {
+                    //     'id': 'home',
+                    //     'title': 'المشاهدات',
+                    //     'type': 'item',
+                    //     'icon': 'forum',
+                    //     'url': '/impressions'
 
-                }, {
+                },
+
+                {
+                    'id': 'home',
+                    'title': 'النقرات والمشاهدات',
+                    'type': 'item',
+                    'icon': 'send',
+                    'url': '/clickedAndImpressions'
+
+                },
+                {
                     'id': 'home',
                     'title': 'الحملات الإعلانية',
                     'type': 'item',
@@ -155,7 +174,7 @@ export class NavigationModel {
                     'type': 'item',
                     'icon': 'fullscreen',
                     'url': '/codes'
-                },{
+                }, {
                     'id': 'pos',
                     'title': 'نقاط البيع',
                     'type': 'item',

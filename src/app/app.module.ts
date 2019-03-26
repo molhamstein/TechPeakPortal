@@ -83,6 +83,8 @@ import { FuseaddISPModule } from './main/content/addisp/addisp.module';
 import { FuseaddISPComponent } from './main/content/addisp/addisp.component';
 import { FuseeditISPComponent } from './main/content/editisp/editisp.component';
 import { FuseeditISPModule } from './main/content/editisp/editisp.module';
+import { FuseCliAndImpComponent } from './main/content/cliAndImp/cliAndImp.component';
+import { FuseCliAndImpModule } from './main/content/cliAndImp/cliAndImp.module';
 
 const appRoutes: Routes = [
 
@@ -236,6 +238,11 @@ const appRoutes: Routes = [
         }
     },
     {
+        path: 'clickedAndImpressions',
+        component: FuseCliAndImpComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
         path: 'clicked',
         component: FuseClickedComponent,
         canActivate: [AuthGuardService]
@@ -331,6 +338,7 @@ const appRoutes: Routes = [
 
         FuseClickedModule,
         FuseImpressionsModule,
+        FuseCliAndImpModule,
 
         FuseLocationsModule,
         FuseaddLocationModule,

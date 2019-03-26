@@ -48,7 +48,7 @@ export class FuseBillingComponent implements OnInit {
         if (role == "partner") {
             this.isPartner = true;
         }
-        this.mainServ.APIServ.get("campaigns/states?isActive=false").subscribe((data: any) => {
+        this.mainServ.APIServ.get("campaigns/states?isActive=false&isAllCampaign=true").subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.rowsCampaign = data;
                 for (let index = 0; index < this.rowsCampaign.length; index++) {
@@ -111,7 +111,7 @@ export class FuseBillingComponent implements OnInit {
         for (let index = 0; index < this.partners.length; index++) {
             if (this.selectedPartner.fullname == this.partners[index].fullname) {
                 this.netBalance = 0 ;
-                this.mainServ.APIServ.get("campaigns/states?partner_id=" + this.partners[index].id+"&isActive=false").subscribe((data: any) => {
+                this.mainServ.APIServ.get("campaigns/states?partner_id=" + this.partners[index].id+"&isActive=false&isAllCampaign=true").subscribe((data: any) => {
                     if (this.mainServ.APIServ.getErrorCode() == 0) {
                         this.rowsCampaign = data;
                         this.campaignCount = 0;
@@ -153,7 +153,7 @@ export class FuseBillingComponent implements OnInit {
             this.netBalance = 0;
             this.invoiceCount = 0;
             this.campaignCount = 0;
-            this.mainServ.APIServ.get("campaigns/states?isActive=false").subscribe((data: any) => {
+            this.mainServ.APIServ.get("campaigns/states?isActive=false&isAllCampaign=true").subscribe((data: any) => {
                 if (this.mainServ.APIServ.getErrorCode() == 0) {
                     this.rowsCampaign = data;
                     for (let index = 0; index < this.rowsCampaign.length; index++) {
