@@ -23,6 +23,7 @@ export class FuseBillingComponent implements OnInit {
     allRowsSelectedCampaign: any;
     campaignCount = 0;
 
+    simpleLoder = false;
     rowsInvoice = [];
     loadingIndicatorInvoice = false;
     reorderableInvoice = true;
@@ -110,8 +111,10 @@ export class FuseBillingComponent implements OnInit {
     filterByName() {
         for (let index = 0; index < this.partners.length; index++) {
             if (this.selectedPartner.fullname == this.partners[index].fullname) {
-                this.netBalance = 0 ;
-                this.mainServ.APIServ.get("campaigns/states?partner_id=" + this.partners[index].id+"&isActive=false&isAllCampaign=true").subscribe((data: any) => {
+                this.netBalance = 0;
+                this.simpleLoder = true;
+                this.mainServ.APIServ.get("campaigns/states?partner_id=" + this.partners[index].id + "&isActive=false&isAllCampaign=true").subscribe((data: any) => {
+                    this.simpleLoder = false;
                     if (this.mainServ.APIServ.getErrorCode() == 0) {
                         this.rowsCampaign = data;
                         this.campaignCount = 0;
@@ -148,12 +151,14 @@ export class FuseBillingComponent implements OnInit {
         this.snack.open("الرجاء إدخال اسم المستخدم الصحيح", "حسناً")
     }
 
-    getAllData(event){
+    getAllData(event) {
         if (this.selectedPartner == "") {
             this.netBalance = 0;
             this.invoiceCount = 0;
             this.campaignCount = 0;
+            this.simpleLoder = true;
             this.mainServ.APIServ.get("campaigns/states?isActive=false&isAllCampaign=true").subscribe((data: any) => {
+                this.simpleLoder = false;
                 if (this.mainServ.APIServ.getErrorCode() == 0) {
                     this.rowsCampaign = data;
                     for (let index = 0; index < this.rowsCampaign.length; index++) {
@@ -181,7 +186,7 @@ export class FuseBillingComponent implements OnInit {
                     this.netBalance = this.invoiceCount - this.campaignCount;
                 }
             });
-    
+
         }
     }
 

@@ -50,23 +50,36 @@
           Required
         </mat-error>
       </mat-form-field>
-      <mat-form-field fxFlex="24%">
+      <!-- <mat-form-field fxFlex="24%">
         <input matInput placeholder="balance" formControlName="balance" [(ngModel)]="editedData.balance" autocomplete="off">
         <mat-error *ngIf="formErrors.balance.required">
           Required
         </mat-error>
-      </mat-form-field>
+      </mat-form-field> -->
       <mat-form-field fxFlex="24%">
-        <input matInput placeholder="min_balance" formControlName="min_balance" [(ngModel)]="editedData.min_balance" autocomplete="off">
+        <input matInput placeholder="الحد الأدنى للرصيد" formControlName="min_balance" [(ngModel)]="editedData.min_balance" autocomplete="off">
         <mat-error *ngIf="formErrors.min_balance.required">
           Required
         </mat-error>
+      </mat-form-field>
+      <mat-form-field fxFlex="24%">
+        <mat-select formControlName="status" placeholder="الحالة"  [(ngModel)]="editedData.status">
+          <mat-option [value]="'active'">
+            Active
+          </mat-option>
+          <mat-option [value]="'pending'">
+            Pending
+          </mat-option>
+          <mat-option [value]="'deactivated'">
+            Deactivated
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
     </div>
 
 
-    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
+    <!-- <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="right" fxLayoutGap="10px" fxLayoutGap.xs="0">
       <mat-form-field>
         <mat-select formControlName="status" placeholder="الحالة" fxFlex="50%" [(ngModel)]="editedData.status">
           <mat-option [value]="'active'">
@@ -81,7 +94,7 @@
         </mat-select>
       </mat-form-field>
 
-    </div>
+    </div> -->
 
     <button mat-raised-button color="accent" class="submit-button" aria-label="LOG IN" (click)="edit()" [disabled]="form.invalid">
       تعديل

@@ -32,7 +32,7 @@
     </div>
   </div>
 
-<!--   <mat-card *ngIf="loadingIndicatorCampaign == true && loadingIndicatorInvoice == true">
+  <!--   <mat-card *ngIf="loadingIndicatorCampaign == true && loadingIndicatorInvoice == true">
     <form name="form" [formGroup]="form">
       <div fxFlex="50" *ngIf="loadingIndicatorCampaign == true" style="font-size : 17px; font-weight: 700; margin-top: 15px;">
         الربح : {{netBalance}}
@@ -69,7 +69,7 @@
           <input type="text" placeholder="اختر المستخدم" matInput [formControl]="myControl" [matAutocomplete]="auto"
             [(ngModel)]="selectedPartner" (input)="getAllData($event)">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option" >
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
               {{option.fullname}}
             </mat-option>
           </mat-autocomplete>
@@ -82,15 +82,33 @@
       </div>
     </form>
 
-    <div class="title">
+    <div class="title" style="float: right;">
       الحملات:
     </div>
+    <div  style="width: 50px;height: 50px;">
+      <div class="sk-circle" *ngIf="simpleLoder == true">
+        <div class="sk-circle1 sk-child"></div>
+        <div class="sk-circle2 sk-child"></div>
+        <div class="sk-circle3 sk-child"></div>
+        <div class="sk-circle4 sk-child"></div>
+        <div class="sk-circle5 sk-child"></div>
+        <div class="sk-circle6 sk-child"></div>
+        <div class="sk-circle7 sk-child"></div>
+        <div class="sk-circle8 sk-child"></div>
+        <div class="sk-circle9 sk-child"></div>
+        <div class="sk-circle10 sk-child"></div>
+        <div class="sk-circle11 sk-child"></div>
+        <div class="sk-circle12 sk-child"></div>
+      </div>
+    </div>
+
     <!--     <div *ngIf="loadingIndicatorCampaign == true" class="cost">
       الكلفة الكلية للحملات : {{campaignCount}}
     </div> -->
 
     <ngx-datatable class="material" [rows]="rowsCampaign" [columnMode]="'force'" [headerHeight]="48" [footerHeight]="56"
-      [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderableCampaign" [limit]="5" style="margin-bottom:60px;">
+      [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderableCampaign" [limit]="5"
+      style="margin-bottom:60px;">
 
       <ngx-datatable-column [width]="125" name="اسم الحملة" prop="campaign.name">
       </ngx-datatable-column>
@@ -111,8 +129,24 @@
       </ngx-datatable-column>
     </ngx-datatable>
 
-    <div class="title">
+    <div class="title" style="float: right;">
       الدفعات:
+    </div>
+    <div  style="width: 50px;height: 50px;">
+      <div class="sk-circle" *ngIf="simpleLoder == true">
+        <div class="sk-circle1 sk-child"></div>
+        <div class="sk-circle2 sk-child"></div>
+        <div class="sk-circle3 sk-child"></div>
+        <div class="sk-circle4 sk-child"></div>
+        <div class="sk-circle5 sk-child"></div>
+        <div class="sk-circle6 sk-child"></div>
+        <div class="sk-circle7 sk-child"></div>
+        <div class="sk-circle8 sk-child"></div>
+        <div class="sk-circle9 sk-child"></div>
+        <div class="sk-circle10 sk-child"></div>
+        <div class="sk-circle11 sk-child"></div>
+        <div class="sk-circle12 sk-child"></div>
+      </div>
     </div>
 
     <ngx-datatable class="material" [rows]="rowsInvoice" [columnMode]="'force'" [headerHeight]="48" [footerHeight]="56"
